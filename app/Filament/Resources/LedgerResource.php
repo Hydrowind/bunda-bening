@@ -57,8 +57,11 @@ class LedgerResource extends Resource
                     ->formatStateUsing(fn ($state) => Str::of(Number::currency($state, 'IDR', 'id'))->replace(',00', ''))
                     ->label('Nominal'),
                 TextColumn::make('direction')
+                    ->badge()
                     ->label('Arus Kas'),
-                TextColumn::make('date')->label('Tanggal'),
+                TextColumn::make('date')
+                    ->date()
+                    ->label('Tanggal'),
 
             ])
             ->filters([

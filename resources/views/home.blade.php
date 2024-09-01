@@ -11,7 +11,7 @@
     <div class="container text-center">
       <div class="d-flex flex-column justify-content-center align-items-center">
         <h1 data-aos="fade-up">SLB <span>Bunda Bening</span></h1>
-        <p data-aos="fade-up" data-aos-delay="100">Jln. Cincin Kota No.8 Kebumen Pos 54351 Tel. 0287-381820<br></p>
+        <p data-aos="fade-up" data-aos-delay="100">Jl. Cibiru Beet Hilir, Cileunyi Wetan, Kabupaten Bandung, Jawa Barat<br></p>
         {{-- <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
           <a href="#about" class="btn-get-started">Get Started</a>
           <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
@@ -723,7 +723,7 @@
           <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="200">
             <i class="bi bi-geo-alt"></i>
             <h3>Alamat</h3>
-            <p>Jln. Cincin Kota No.8 Kebumen Pos 54351 </p>
+            <p>Jl. Cibiru Beet Hilir, Cileunyi Wetan, Kabupaten Bandung, Jawa Barat Pos 40622</p>
           </div>
         </div><!-- End Info Item -->
 
@@ -731,7 +731,7 @@
           <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="300">
             <i class="bi bi-telephone"></i>
             <h3>Telepon</h3>
-            <p>+62287-381820</p>
+            <p>+62813-2092-1473</p>
           </div>
         </div><!-- End Info Item -->
 
@@ -739,7 +739,7 @@
           <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="400">
             <i class="bi bi-envelope"></i>
             <h3>Email</h3>
-            <p>bunda.bening@example.com</p>
+            <p>slbautismabsh@gmail.com</p>
           </div>
         </div><!-- End Info Item -->
 
@@ -747,7 +747,7 @@
 
       <div class="row gy-4 mt-1">
         <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d48389.78314118045!2d-74.006138!3d40.710059!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a22a3bda30d%3A0xb89d1fe6bc499443!2sDowntown%20Conference%20Center!5e0!3m2!1sen!2sus!4v1676961268712!5m2!1sen!2sus" frameborder="0" style="border:0; width: 100%; height: 400px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.8340102908787!2d107.75372307548002!3d-6.910441867633191!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68dcac97238f99%3A0x786863fcc0925a02!2sSLB%20Autisma%20Bunda%20Bening%20Selakshahati!5e0!3m2!1sen!2sid!4v1725210145241!5m2!1sen!2sid" frameborder="0" style="border:0; width: 100%; height: 400px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div><!-- End Google Maps -->
 
         <div class="col-lg-6">
@@ -755,27 +755,27 @@
             <div class="row gy-4">
 
               <div class="col-md-6">
-                <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
+                <input type="text" name="name" class="form-control" placeholder="Nama" required="">
               </div>
 
               <div class="col-md-6 ">
-                <input type="email" class="form-control" name="email" placeholder="Your Email" required="">
+                <input type="email" class="form-control" name="email" placeholder="Email" required="">
               </div>
 
               <div class="col-md-12">
-                <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
+                <input type="text" class="form-control" name="subject" placeholder="Subjek" required="">
               </div>
 
               <div class="col-md-12">
-                <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
+                <textarea class="form-control" name="message" rows="6" placeholder="Pesan" required=""></textarea>
               </div>
 
               <div class="col-md-12 text-center">
                 <div class="loading">Loading</div>
                 <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
+                <div class="sent-message">Pesan anda telah terkirim. Terima kasih!</div>
 
-                <button type="submit">Send Message</button>
+                <button type="submit">Kirim Pesan</button>
               </div>
 
             </div>

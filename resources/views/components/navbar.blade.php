@@ -1,10 +1,10 @@
 <nav id="navmenu" class="navmenu">
   <ul>
-    <li><a href="#hero" class="active">Home</a></li>
-    <li><a href="#vision">Visi Misi</a></li>
-    <li><a href="#features">Keunggulan</a></li>
-    <li><a href="#services">Layanan</a></li>
-    {{-- <li><a href="#pricing">Artikel</a></li> --}}
+    <li><a href="{{ route('home') . '#hero' }}" class="active">Home</a></li>
+    <li><a href="{{ route('home') . '#vision' }}">Visi Misi</a></li>
+    <li><a href="{{ route('home') . '#features' }}">Keunggulan</a></li>
+    <li><a href="{{ route('home') . '#services' }}">Layanan</a></li>
+    <li><a href="{{ route('blog') }}">Artikel</a></li>
     {{-- <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
       <ul>
         <li><a href="#">Dropdown 1</a></li>

@@ -7,10 +7,10 @@
           <span class="sitename">SLB Bunda Bening</span>
         </a>
         <div class="footer-contact pt-3">
-          <p>Jln. Cincin Kota No.8</p>
-          <p>Jawa Tengah, Kebumen, 54351</p>
-          <p class="mt-3"><strong>Telepon:</strong> <span>+1 5589 55488 55</span></p>
-          <p><strong>Email:</strong> <span>bunda.bening@example.com</span></p>
+          <p>Jl. Cibiru Beet Hilir, Cileunyi Wetan</p>
+          <p>Kabupaten Bandung, Jawa Barat 40622</p>
+          <p class="mt-3"><strong>Telepon:</strong> <span>+62813-2092-1473</span></p>
+          <p><strong>Email:</strong> <span>slbautismabsh@gmail.com</span></p>
         </div>
         <div class="social-links d-flex mt-4">
           <a href=""><i class="bi bi-twitter-x"></i></a>

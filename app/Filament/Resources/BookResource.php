@@ -37,6 +37,8 @@ class BookResource extends Resource
                 Section::make()->schema([
                     TextInput::make('title')->label('Judul'),
                     TextInput::make('author')->label('Penulis'),
+                    TextInput::make('publisher')->label('Penerbit'),
+                    TextInput::make('year')->label('Tahun Terbit'),
                     TextInput::make('pages')->label('Halaman')->numeric(),
                 ])
             ]);
@@ -49,6 +51,8 @@ class BookResource extends Resource
                 TextColumn::make('no')->rowIndex(),
                 TextColumn::make('title')->label('Judul')->sortable(),
                 TextColumn::make('author')->label('Penulis')->sortable(),
+                TextColumn::make('publisher')->label('Penerbit')->sortable(),
+                TextColumn::make('year')->label('Tahun Terbit')->sortable(),
                 TextColumn::make('pages')->label('Halaman')
             ])
             ->filters([

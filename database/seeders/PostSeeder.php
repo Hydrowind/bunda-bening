@@ -17,7 +17,7 @@ class PostSeeder extends Seeder
     {
         $faker = Factory::create();
 
-        foreach (range(1, 50) as $index) {
+        foreach (range(1, 5) as $index) {
             $title = $faker->sentence(6); // Generates a random title with 6 words
             
             DB::table('posts')->insert([
