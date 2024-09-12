@@ -17,21 +17,24 @@ class UserSeeder extends Seeder
         $superadmin = User::factory()->create([
             'name' => 'SuperAdmin',
             'email' => 'superadmin@mail.com',
-            'password' => '$2y$10$qmHHpCehp2iAePN473WIkeHN4luggbZT9EKzVU1kohjniPU9riGKe'
+            'password' => '$2y$10$qmHHpCehp2iAePN473WIkeHN4luggbZT9EKzVU1kohjniPU9riGKe',
+            'classroom' => null
         ]);
         $superadmin->assignRole('superadmin');
 
         $admin = User::factory()->create([
             'name' => 'Admin',
             'email' => 'admin@mail.com',
-            'password' => '$2y$10$qmHHpCehp2iAePN473WIkeHN4luggbZT9EKzVU1kohjniPU9riGKe'
+            'password' => '$2y$10$qmHHpCehp2iAePN473WIkeHN4luggbZT9EKzVU1kohjniPU9riGKe',
+            'classroom' => null
         ]);
         $admin->assignRole('admin');
 
         $user = User::factory()->create([
             'name' => 'Staff',
             'email' => 'staff@mail.com',
-            'password' => Hash::make('password')
+            'password' => Hash::make('password'),
+            'classroom' => null
         ]);
         $user->assignRole('staff');
 

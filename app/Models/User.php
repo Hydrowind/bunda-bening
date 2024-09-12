@@ -66,4 +66,8 @@ class User extends Authenticatable implements FilamentUser
     public function reports(){
         return $this->hasMany(Report::class);
     }
+
+    public function presences(){
+        return $this->hasMany(Presence::class);
+    }
 }

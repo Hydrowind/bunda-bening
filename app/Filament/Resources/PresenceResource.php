@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\ReportResource\Pages;
-use App\Filament\Resources\ReportResource\RelationManagers;
-use App\Models\Report;
+use App\Filament\Resources\PresenceResource\Pages;
+use App\Filament\Resources\PresenceResource\RelationManagers;
+use App\Models\Presence;
 use App\Models\User;
 use Auth;
 use Filament\Forms;
@@ -17,11 +17,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
-use Filament\Tables\Columns\Layout\Split;
-use Filament\Tables\Columns\Layout\Stack;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Columns\TextInputColumn;
-use Filament\Tables\Enums\FiltersLayout;
 use Filament\Tables\Filters\Filter;
 use Filament\Tables\Grouping\Group;
 use Filament\Tables\Table;
@@ -29,15 +25,15 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Spatie\Permission\Models\Role;
 
-class ReportResource extends Resource
+class PresenceResource extends Resource
 {
-    protected static ?string $model = Report::class;
+    protected static ?string $model = Presence::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-presentation-chart-line';
+    protected static ?string $navigationIcon = 'heroicon-o-clipboard-document-check';
 
-    protected static ?string $modelLabel = 'Laporan Siswa';
+    protected static ?string $modelLabel = 'Kehadiran Siswa';
 
-    protected static ?string $pluralModelLabel = 'Laporan Siswa';
+    protected static ?string $pluralModelLabel = 'Kehadiran Siswa';
 
     public static function form(Form $form): Form
     {
@@ -45,26 +41,15 @@ class ReportResource extends Resource
             ->schema([
                 Section::make()->schema([ 
                     DatePicker::make('date')->label('Tanggal'),
-                    RichEditor::make('note')->label('Catatan'),
-                    Select::make('user_id')->label('Siswa')
-                        ->options(function () {
-                            $user = Auth::user();
-                            
-                            $members = User::all();
-                            if ($user->hasRole('teacher')) { 
-                                $members = User::role('student')->where('classroom', $user->classroom);
-                            }
-            
-                            if ($user->hasRole('staff')) {
-                                $members = User::role(['student', 'staff', 'teacher']);
-                            }
-            
-                            if ($user->hasRole('admin')) {
-                                $members = User::role(['student', 'staff']);
-                            }
-
-                            return $members->pluck('name', 'id');
-                        })
+                    Select::make('note')
+                        ->helperText('Sakit, Izin, Alpa')
+                        ->options([
+                            'sakit' => 'Sakit',
+                            'izih' => 'Izin',
+                            'alpa' => 'Alpa',
+                        ]),
+                    Select::make('user_id')
+                        ->options(User::all()->pluck('name', 'id'))
                         ->searchable()
                 ])
             ]);
@@ -88,18 +73,18 @@ class ReportResource extends Resource
                     $members = User::role(['student', 'staff']);
                 }
 
-                return Report::query()->whereIn('user_id', $members->pluck('id'));
+                return Presence::query()->whereIn('user_id', $members->pluck('id'));  
+
             })
             ->columns([
-                // TextColumn::make('no')->rowIndex(),
-                Split::make([
-                    TextColumn::make('date')->label('Tanggal'),
-                    TextColumn::make('note')->limit(50)->label('Catatan')->columnSpan(10),
-                ])
+                TextColumn::make('no')->rowIndex(),
+                TextColumn::make('user.name')->label('Nama')->searchable()->sortable(),
+                TextColumn::make('date')->label('Tanggal')->date(),
+                TextColumn::make('note')->limit(50)->label('Catatan'),
             ])
-            ->defaultGroup('user.name')
+            ->defaultGroup('date')
             ->groups([
-                Group::make('user.name')->titlePrefixedWithLabel(false)
+                Group::make('date')->date()->titlePrefixedWithLabel(false)
             ])
             ->filters([
                 Filter::make('date')
@@ -118,9 +103,8 @@ class ReportResource extends Resource
                                     fn (Builder $query, $date): Builder => $query->whereDate('date', '<=', $date),
                                 );
                         })
-            ], layout: FiltersLayout::AboveContent)
+            ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
@@ -140,15 +124,10 @@ class ReportResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListReports::route('/'),
-            'create' => Pages\CreateReport::route('/create'),
-            'view' => Pages\ViewReport::route('/{record}'),
-            'edit' => Pages\EditReport::route('/{record}/edit'),
+            'index' => Pages\ListPresences::route('/'),
+            'create' => Pages\CreatePresence::route('/create'),
+            'edit' => Pages\EditPresence::route('/{record}/edit'),
+            'sheet' => Pages\AttendanceSheet::route('/sheet'),
         ];
-    }
-
-    public static function canViewAny(): bool
-    {
-        return auth()->user()->hasAnyRole(['teacher', 'admin', 'superadmin']);
     }
 }

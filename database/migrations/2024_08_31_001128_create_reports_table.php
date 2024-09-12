@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('presence');
-            $table->text('note');
+            $table->date('date');
+            $table->text('note')->nullable();
             $table->foreignId('user_id')->cascadeOnDelete();
             $table->timestamps();
         });

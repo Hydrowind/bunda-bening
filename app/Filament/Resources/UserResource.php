@@ -7,7 +7,9 @@ use App\Filament\Resources\UserResource\RelationManagers;
 use App\Models\User;
 use Auth;
 use Filament\Forms;
+use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Hidden;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -42,10 +44,20 @@ class UserResource extends Resource
                     ->password()
                     ->dehydrateStateUsing(fn ($state) => Hash::make($state))
                     ->dehydrated(fn ($state) => filled($state)),
-                Hidden::make('roles')
-                    ->saveRelationshipsUsing(function (Model $record, $state){
-                        $record->assignRole('admin');
-                })
+                DatePicker::make('dob')->label('Tanggal Lahir'),
+                TextInput::make('address')->label('Alamat'),
+                TextInput::make('disability_type')->label('Kebutuhan Khusus'),
+                TextInput::make('classroom')->label('Kelas'),
+                Select::make('roles')
+                    ->options([
+                        'staff' => 'Staff',
+                        'teacher' => 'Guru',
+                        'student' => 'Siswa',
+                    ]),
+                    
+                    // ->saveRelationshipsUsing(function (Model $record, $state){
+                    //     $record->assignRole('admin');
+                    // })
             ]);
     }
 
@@ -55,13 +67,15 @@ class UserResource extends Resource
             ->modifyQueryUsing(function (Builder $query) {
                 $user = Auth::user();
                 
-                if ($user->hasRole('teacher')) {
+                if ($user->hasRole('teacher')) { 
                     $studentRole = Role::where('name', 'student')->first();
                     if ($studentRole) {
                         $query->whereHas('roles', function ($q) use ($studentRole) {
                             $q->where('role_id', $studentRole->id);
                         });
                     }
+
+                    $query->where('classroom', $user->classroom);
                 }
 
                 if ($user->hasRole('staff')) {
@@ -89,6 +103,10 @@ class UserResource extends Resource
                 TextColumn::make('no')->rowIndex(),
                 TextColumn::make('name')->sortable(),
                 TextColumn::make('email')->sortable()->copyable(),
+                TextColumn::make('dob')->sortable()->date()->label('Tanggal Lahir'),
+                TextColumn::make('address')->sortable()->label('Alamat'),
+                TextColumn::make('disability_type')->sortable()->label('Disabilitas'),
+                TextColumn::make('classroom')->sortable()->label('Kelas'),
                 TextColumn::make('roles.name'),
             ])
             ->filters([
@@ -120,5 +138,14 @@ class UserResource extends Resource
             'view' => Pages\ViewUser::route('/{record}'),
             'edit' => Pages\EditUser::route('/{record}/edit'),
         ];
+    }
+
+    public static function getNavigationLabel(): string
+    {
+        if(Auth::user()->hasRole(['admin', 'staff', 'superadmin'])) {
+            return 'Staff & Guru';
+        } else if(Auth::user()->hasRole('teacher')) {
+            return 'Siswa';
+        }
     }
 }

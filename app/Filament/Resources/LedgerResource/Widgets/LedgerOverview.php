@@ -16,8 +16,17 @@ class LedgerOverview extends BaseWidget
                         ->selectRaw('SUM(amount) AS sum, direction')
                         ->pluck('sum', 'direction');
         
+        $last3Month = Ledger::groupBy('direction')
+                                ->selectRaw('SUM(amount) AS sum, direction')
+                                ->whereBetween('date', [now()->startOfMonth()->subMonths(3), now()->endOfMonth()])
+                                ->pluck('sum', 'direction');
+
+        // dd($last3Month);
+        
         return [
-            Stat::make('Sisa Kas Sekolah', Str::of(Number::currency($cashflow['IN'] - $cashflow['OUT'], 'IDR', 'id'))->replace(',00', ''))
+            Stat::make('Sisa Kas Sekolah', Str::of(Number::currency($cashflow['IN'] - $cashflow['OUT'], 'IDR', 'id'))->replace(',00', '')),
+            Stat::make('Total Pemasukan 3 Bulan Terakhir', Str::of(Number::currency($last3Month['IN'] ?? 0, 'IDR', 'id'))->replace(',00', '')),
+            Stat::make('Total Pengeluaran 3 Bulan Terakhir', Str::of(Number::currency($last3Month['OUT'] ?? 0, 'IDR', 'id'))->replace(',00', '')),
         ];
     }
 }

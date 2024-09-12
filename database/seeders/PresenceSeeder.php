@@ -7,7 +7,7 @@ use Faker\Factory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class ReportSeeder extends Seeder
+class PresenceSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -17,12 +17,12 @@ class ReportSeeder extends Seeder
         $faker = Factory::create();
         $userIds = DB::table('users')->pluck('id')->toArray();
 
-        foreach (range(1, 10) as $index) {           
-            DB::table('reports')->insert([
-                'date' => $faker->dateTimeBetween('-12 week', 'now'),
-                'note' => $faker->paragraphs(2, true), // Generates a slug from the title
+        foreach (range(1, 20) as $index) {      
+            DB::table('presences')->insert([
+                'date' => $faker->dateTimeBetween('-12 week', 'now')->format('Y-m-d'),
+                'note' => $faker->randomElement(['hadir', 'izin', 'sakit', 'alpa']),
                 'user_id' => $faker->randomElement($userIds),
-                'created_at' => now(), // Current timestamp
+                'created_at' => now(), // Current timestamps
                 'updated_at' => now(), // Current timestamp
             ]);
         }

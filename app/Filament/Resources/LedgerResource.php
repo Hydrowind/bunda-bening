@@ -61,7 +61,8 @@ class LedgerResource extends Resource
                     ->label('Arus Kas'),
                 TextColumn::make('date')
                     ->date()
-                    ->label('Tanggal'),
+                    ->label('Tanggal')
+                    ->sortable(),
 
             ])
             ->filters([
