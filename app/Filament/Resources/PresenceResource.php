@@ -7,6 +7,7 @@ use App\Filament\Resources\PresenceResource\RelationManagers;
 use App\Models\Presence;
 use App\Models\User;
 use Auth;
+use Filament\Tables\Actions\Action;
 use Filament\Forms;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\DateTimePicker;
@@ -61,6 +62,7 @@ class PresenceResource extends Resource
             ->modifyQueryUsing(function (Builder $query) {
                 $user = Auth::user();
                 
+                $members = User::all();
                 if ($user->hasRole('teacher')) { 
                     $members = User::role('student')->where('classroom', $user->classroom);
                 }
@@ -106,6 +108,14 @@ class PresenceResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+            ])
+            ->headerActions([
+                Action::make('Laporan Kehadiran')
+                    ->url(fn (): string => route('filament.admin.resources.presences.sheet'))
+                    ->icon('heroicon-o-printer'),
+                Action::make('QR absensi')
+                    ->modalContent(view('filament.pages.actions.presence-qr'))
+                    ->modalSubmitAction(false)
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

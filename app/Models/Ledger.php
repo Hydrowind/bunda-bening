@@ -10,6 +10,13 @@ class Ledger extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'amount',
+        'direction',
+        'date'
+    ];
+
     protected $casts = [
         'direction' =>  Cashflow::class,
     ];

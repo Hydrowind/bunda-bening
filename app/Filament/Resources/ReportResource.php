@@ -76,6 +76,7 @@ class ReportResource extends Resource
             ->modifyQueryUsing(function (Builder $query) {
                 $user = Auth::user();
                 
+                $members = User::all();
                 if ($user->hasRole('teacher')) { 
                     $members = User::role('student')->where('classroom', $user->classroom);
                 }
@@ -94,7 +95,7 @@ class ReportResource extends Resource
                 // TextColumn::make('no')->rowIndex(),
                 Split::make([
                     TextColumn::make('date')->label('Tanggal'),
-                    TextColumn::make('note')->limit(50)->label('Catatan')->columnSpan(10),
+                    TextColumn::make('note')->limit(50)->label('Catatan')->html(),
                 ])
             ])
             ->defaultGroup('user.name')
@@ -144,6 +145,7 @@ class ReportResource extends Resource
             'create' => Pages\CreateReport::route('/create'),
             'view' => Pages\ViewReport::route('/{record}'),
             'edit' => Pages\EditReport::route('/{record}/edit'),
+            'summary' => Pages\SummaryReport::route('/{record}/summary'),
         ];
     }
 

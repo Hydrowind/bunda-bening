@@ -1,30 +1,65 @@
-<x-filament-panels::page>
-  <div class="p-4">
-        <table class="w-full border border-gray-300">
-            <thead>
-                <tr>
-                    <th class="border p-2">Student</th>
-                    @foreach ($dates as $date)
-                        <th class="border p-2">{{ $date->format('Y-m-d') }}</th>
-                    @endforeach
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($students as $student)
+<x-filament::page>
+    <!-- Header section with month selector -->
+    <div class="flex justify-between items-center mb-4">
+        <h2 class="text-xl font-bold">Attendance Overview</h2>
+        <div>
+            <!-- Month Selector -->
+            <input 
+                type="month" 
+                wire:model="selectedMonth" 
+                wire:change="updateSelectedMonth" 
+                class="block w-full border-gray-300 rounded-md shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm
+                bg-white text-gray-900 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600">
+        </div>
+
+        <!-- Print Button -->
+        <a href="{{ route('attendance.pdf', ['month' => $selectedMonth]) }}" 
+           target="_blank"
+           class="ml-4 px-4 py-2 bg-blue-600 text-white rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+           Download PDF
+        </a>
+    </div>
+
+    <!-- Make the table container scrollable horizontally -->
+    <div class="flex">
+        <div class="w-full overflow-x-auto">
+            <table class="divide-y divide-gray-200">
+                <thead class="">
                     <tr>
-                        <td class="border p-2">{{ $student->name }}</td>
-                        @foreach ($dates as $date)
-                            <td class="border p-2">
-                                @if ($attendanceData[$student->id]->contains('date', $date->format('Y-m-d')))
-                                    <input type="checkbox" checked disabled />
-                                @else
-                                    <input type="checkbox" disabled />
-                                @endif
-                            </td>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Student Name</th>
+                        @foreach($datesInMonth as $date)
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ $date->format('d') }}</th>
                         @endforeach
                     </tr>
-                @endforeach
-            </tbody>
-        </table>
+                </thead>
+                <tbody class=" divide-y divide-gray-200">
+                    @foreach($students as $student)
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ $student->name }}</td>
+                            @foreach($datesInMonth as $date)
+                                <td class="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-900">
+                                    @if($student->presences->contains('date', $date) && 
+                                        $student->presences->where('date', $date)->first()->note == 'hadir')
+                                        <x-heroicon-o-check class="w-5 h-5 text-green-500 inline"/>
+                                    @else
+                                        <!-- Leave blank if no attendance -->
+                                    @endif
+                                </td>
+                            @endforeach
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
-</x-filament-panels::page>
+
+    <!-- Print-Specific Styles -->
+    <style>
+        @media print {
+            /* Optional: Add custom styles for printing */
+            .flex, .filament-main-footer { display: none !important; } /* Hide buttons and footer */
+            .overflow-x-auto { overflow: visible !important; } /* Ensure the table is fully visible */
+            .dark { color-scheme: light; } /* Prevent dark mode from affecting the print */
+        }
+    </style>
+</x-filament::page>

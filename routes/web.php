@@ -1,16 +1,9 @@
 <?php
 
+use App\Http\Controllers\PDFController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\SitemapController;
 
-use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\ConfigurationController;
-use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Admin\ProductController;
-use App\Http\Controllers\Admin\PostController;
-use App\Http\Controllers\Admin\FileUploadController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,3 +19,4 @@ use App\Http\Controllers\Admin\FileUploadController;
 Route::get('/', [PageController::class, 'home'])->name('home');
 Route::get('blog', [PageController::class, 'blog'])->name('blog');
 Route::get('blog/{slug}', [PageController::class, 'blogview'])->name('blog.view');
+Route::get('/presence/pdf', [PDFController::class, 'generatePDF'])->name('attendance.pdf');
