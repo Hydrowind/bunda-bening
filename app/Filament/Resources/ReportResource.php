@@ -17,6 +17,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Actions\Action;
 use Filament\Tables\Columns\Layout\Split;
 use Filament\Tables\Columns\Layout\Stack;
 use Filament\Tables\Columns\TextColumn;
@@ -123,6 +124,12 @@ class ReportResource extends Resource
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
+                Action::make('Laporan')
+                    ->url(fn (Report $record): string => route('filament.admin.resources.reports.monthly-report', $record))
+            ])
+            ->headerActions([
+                Action::make('Laporan')
+                    ->url(fn (): string => route('filament.admin.resources.reports.monthly-report', Auth::user()->id))
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -146,6 +153,7 @@ class ReportResource extends Resource
             'view' => Pages\ViewReport::route('/{record}'),
             'edit' => Pages\EditReport::route('/{record}/edit'),
             'summary' => Pages\SummaryReport::route('/{record}/summary'),
+            'monthly-report' => Pages\MonthlyReport::route('/{record}/monthly-report'),
         ];
     }
 
