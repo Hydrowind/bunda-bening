@@ -140,12 +140,17 @@ class UserResource extends Resource
         ];
     }
 
-    public static function getNavigationLabel(): string
+    public static function canViewAny(): bool
     {
-        if(Auth::user()->hasRole(['admin', 'staff', 'superadmin'])) {
-            return 'Staff & Guru';
-        } else if(Auth::user()->hasRole('teacher')) {
+        return auth()->user()->hasAnyRole(['teacher', 'staff', 'admin', 'superadmin']);
+    }
+
+    public static function getNavigationLabel(): string
+    {  
+        if(Auth::user()->hasRole('teacher')) {
             return 'Siswa';
         }
+
+        return 'Staff & Guru';
     }
 }

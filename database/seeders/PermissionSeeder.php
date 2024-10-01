@@ -40,7 +40,9 @@ class PermissionSeeder extends Seeder
         $role->givePermissionTo('manage-financial');
 
         $role = Role::create(['name' => 'staff']);
+        $role = Role::create(['name' => 'treasurer']);
         $role = Role::create(['name' => 'teacher']);
         $role = Role::create(['name' => 'student']);
+
     }
 }

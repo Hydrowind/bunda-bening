@@ -90,6 +90,6 @@ class PostResource extends Resource
 
     public static function canViewAny(): bool
     {
-        return auth()->user()->hasAnyRole(['staff', 'admin', 'superadmin']);
+        return auth()->user()->hasAnyRole(['admin', 'superadmin']);
     }
 }

@@ -45,6 +45,7 @@ class PresenceResource extends Resource
                     Select::make('note')
                         ->helperText('Sakit, Izin, Alpa')
                         ->options([
+                            'hadir' => 'Hadir',
                             'sakit' => 'Sakit',
                             'izih' => 'Izin',
                             'alpa' => 'Alpa',
@@ -138,6 +139,12 @@ class PresenceResource extends Resource
             'create' => Pages\CreatePresence::route('/create'),
             'edit' => Pages\EditPresence::route('/{record}/edit'),
             'sheet' => Pages\AttendanceSheet::route('/sheet'),
+            'qr' => Pages\QrPresence::route('/qr'),
         ];
+    }
+
+    public static function canViewAny(): bool
+    {
+        return auth()->user()->hasAnyRole(['teacher', 'admin', 'superadmin']);
     }
 }
