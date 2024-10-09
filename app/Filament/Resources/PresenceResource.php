@@ -34,7 +34,7 @@ class PresenceResource extends Resource
 
     protected static ?string $modelLabel = 'Kehadiran Siswa';
 
-    protected static ?string $pluralModelLabel = 'Kehadiran Siswa';
+    protected static ?string $pluralModelLabel = 'Kehadiran';
 
     public static function form(Form $form): Form
     {
@@ -69,7 +69,7 @@ class PresenceResource extends Resource
                 }
 
                 if ($user->hasRole('staff')) {
-                    $members = User::role(['student', 'staff', 'teacher']);
+                    $members = User::role(['teacher']);
                 }
 
                 if ($user->hasRole('admin')) {
@@ -114,9 +114,6 @@ class PresenceResource extends Resource
                 Action::make('Laporan Kehadiran')
                     ->url(fn (): string => route('filament.admin.resources.presences.sheet'))
                     ->icon('heroicon-o-printer'),
-                Action::make('QR absensi')
-                    ->modalContent(view('filament.pages.actions.presence-qr'))
-                    ->modalSubmitAction(false)
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -145,6 +142,15 @@ class PresenceResource extends Resource
 
     public static function canViewAny(): bool
     {
-        return auth()->user()->hasAnyRole(['teacher', 'admin', 'superadmin']);
+        return auth()->user()->hasAnyRole(['teacher', 'staff', 'admin', 'superadmin']);
+    }
+
+    public static function getNavigationLabel(): string
+    {
+        if(Auth::user()->hasRole('staff')) {
+            return 'Kehadiran Guru';
+        }
+
+        return 'Kehadiran Siswa';
     }
 }

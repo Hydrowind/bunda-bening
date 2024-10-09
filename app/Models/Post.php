@@ -17,9 +17,4 @@ class Post extends Model
         'meta',
         'slug',
     ];
-
-    public function images()
-    {
-        return $this->morphMany(FileUpload::class, 'object');
-    }
 }

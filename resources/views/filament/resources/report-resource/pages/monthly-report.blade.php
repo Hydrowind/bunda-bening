@@ -22,7 +22,7 @@
         <!-- Print Button -->
         <button 
             wire:click="downloadPDF"
-            class="ml-4 bg-blue-500 text-white px-4 py-2 rounded-md shadow hover:bg-blue-600 focus:outline-none">
+            class="ml-4 bg-blue-500 px-4 py-2 rounded-md shadow hover:bg-blue-600 focus:outline-none dark:text-gray-200">
             Print PDF
         </button>
     </div>

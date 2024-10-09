@@ -151,6 +151,6 @@ class UserResource extends Resource
             return 'Siswa';
         }
 
-        return 'Staff & Guru';
+        return 'Anggota';
     }
 }

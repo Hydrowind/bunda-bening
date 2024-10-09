@@ -35,11 +35,11 @@ class BookResource extends Resource
         return $form
             ->schema([
                 Section::make()->schema([
-                    TextInput::make('title')->label('Judul'),
-                    TextInput::make('author')->label('Penulis'),
-                    TextInput::make('publisher')->label('Penerbit'),
-                    TextInput::make('year')->label('Tahun Terbit'),
-                    TextInput::make('pages')->label('Halaman')->numeric(),
+                    TextInput::make('title')->label('Judul')->required(),
+                    TextInput::make('author')->label('Penulis')->required(),
+                    TextInput::make('publisher')->label('Penerbit')->required(),
+                    TextInput::make('year')->label('Tahun Terbit')->required(),
+                    TextInput::make('pages')->label('Halaman')->numeric()->required(),
                 ])
             ]);
     }

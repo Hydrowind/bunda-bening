@@ -40,14 +40,16 @@ class BookloanResource extends Resource
                         ->relationship(name: 'book', titleAttribute: 'title')
                         ->searchable()
                         ->preload()
-                        ->label('Judul Buku'),
+                        ->label('Judul Buku')
+                        ->required(),
                     Select::make('user')
                         ->relationship(name: 'user', titleAttribute: 'name')
                         ->searchable()
                         ->preload()
-                        ->label('Peminjam'),
-                    DateTimePicker::make('start_date')->label('Tanggal Pinjam'),
-                    DateTimePicker::make('end_date')->label('Tanggal Pengembalian')
+                        ->label('Peminjam')
+                        ->required(),
+                    DateTimePicker::make('start_date')->label('Tanggal Pinjam')->required(),
+                    DateTimePicker::make('end_date')->label('Tanggal Pengembalian')->required()
                 ])
             ]);
     }
