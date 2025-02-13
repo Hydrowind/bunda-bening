@@ -47,7 +47,7 @@ class ReportResource extends Resource
                 Section::make()->schema([ 
                     DatePicker::make('date')->label('Tanggal'),
                     RichEditor::make('note')->label('Catatan'),
-                    Select::make('user_id')->label('Siswa')
+                    Select::make('user_id')->label('Siswa')->required()
                         ->options(function () {
                             $user = Auth::user();
                             
@@ -124,8 +124,8 @@ class ReportResource extends Resource
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
-                Action::make('Laporan')
-                    ->url(fn (Report $record): string => route('filament.admin.resources.reports.monthly-report', $record))
+                // Action::make('Laporan')
+                //     ->url(fn (Report $record): string => route('filament.admin.resources.reports.monthly-report', $record))
             ])
             ->headerActions([
                 Action::make('Laporan')

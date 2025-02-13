@@ -49,7 +49,11 @@ class BookloanResource extends Resource
                         ->label('Peminjam')
                         ->required(),
                     DateTimePicker::make('start_date')->label('Tanggal Pinjam')->required(),
-                    DateTimePicker::make('end_date')->label('Tanggal Pengembalian')->required()
+                    DateTimePicker::make('end_date')->label('Tanggal Pengembalian')->required(),
+                    Select::make('returned')->options([
+                        0 => 'Belum Dikembalikan',
+                        1 => 'Sudah Dikembalikan',
+                    ])->default(0)->label('Status Pengembalian')->required(),
                 ])
             ]);
     }

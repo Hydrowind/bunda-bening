@@ -11,6 +11,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasRoles;
+use function Laravel\Prompts\table;
 
 class User extends Authenticatable implements FilamentUser
 {
@@ -23,8 +24,12 @@ class User extends Authenticatable implements FilamentUser
      */
     protected $fillable = [
         'name',
+        'dob',
         'email',
         'password',
+        'address',
+        'disability_type',
+        'classroom',
     ];
 
     /**
@@ -70,4 +75,5 @@ class User extends Authenticatable implements FilamentUser
     public function presences(){
         return $this->hasMany(Presence::class);
     }
+
 }

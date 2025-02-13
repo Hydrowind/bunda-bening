@@ -6,6 +6,7 @@ use App\Filament\Resources\UserResource\Pages;
 use App\Filament\Resources\UserResource\RelationManagers;
 use App\Models\User;
 use Auth;
+use DB;
 use Filament\Forms;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Hidden;
@@ -20,6 +21,9 @@ use Hash;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Database\QueryException;
+use Illuminate\Database\UniqueConstraintViolationException;
+use Notification;
 use Spatie\Permission\Models\Role;
 
 class UserResource extends Resource
@@ -43,17 +47,21 @@ class UserResource extends Resource
                 TextInput::make('password')
                     ->password()
                     ->dehydrateStateUsing(fn ($state) => Hash::make($state))
-                    ->dehydrated(fn ($state) => filled($state)),
+                    ->dehydrated(fn ($state) => filled($state))
+                    ->hidden(Auth::user()->hasRole('teacher')),
                 DatePicker::make('dob')->label('Tanggal Lahir'),
                 TextInput::make('address')->label('Alamat'),
-                TextInput::make('disability_type')->label('Kebutuhan Khusus'),
-                TextInput::make('classroom')->label('Kelas'),
+                TextInput::make('disability_type')->label('Kebutuhan Khusus')
+                    ->hidden(Auth::user()->hasRole('staff')),
+                TextInput::make('classroom')->label('Kelas')
+                    ->hidden(Auth::user()->hasRole('staff')),
+                
+                
                 Select::make('roles')
-                    ->options([
-                        'staff' => 'Staff',
-                        'teacher' => 'Guru',
-                        'student' => 'Siswa',
-                    ]),
+                    ->relationship('roles', 'name')
+                    ->default(Role::where('name', 'student')->first()->id)
+                    // ->disabled(Auth::user()->hasRole('teacher'))
+                    ->preload(),
                     
                     // ->saveRelationshipsUsing(function (Model $record, $state){
                     //     $record->assignRole('admin');
@@ -102,12 +110,16 @@ class UserResource extends Resource
             ->columns([
                 TextColumn::make('no')->rowIndex(),
                 TextColumn::make('name')->sortable(),
-                TextColumn::make('email')->sortable()->copyable(),
+                TextColumn::make('email')->sortable()->copyable()
+                    ->hidden(Auth::user()->hasRole('teacer')),
                 TextColumn::make('dob')->sortable()->date()->label('Tanggal Lahir'),
                 TextColumn::make('address')->sortable()->label('Alamat'),
-                TextColumn::make('disability_type')->sortable()->label('Disabilitas'),
-                TextColumn::make('classroom')->sortable()->label('Kelas'),
-                TextColumn::make('roles.name'),
+                TextColumn::make('disability_type')->sortable()->label('Disabilitas')
+                    ->hidden(Auth::user()->hasRole('staff')),
+                TextColumn::make('classroom')->sortable()->label('Kelas')
+                    ->hidden(Auth::user()->hasRole('staff')),
+                TextColumn::make('roles.name')
+                    ->hidden(Auth::user()->hasRole('teacher')),
             ])
             ->filters([
                 //
@@ -147,10 +159,11 @@ class UserResource extends Resource
 
     public static function getNavigationLabel(): string
     {  
-        if(Auth::user()->hasRole('teacher')) {
+        if(Auth::user()->hasAnyRole(['teacher', 'staff'])) {
             return 'Siswa';
         }
 
         return 'Anggota';
     }
+
 }
