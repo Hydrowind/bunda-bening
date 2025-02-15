@@ -9,6 +9,7 @@ use Auth;
 use DB;
 use Filament\Forms;
 use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -16,6 +17,7 @@ use Filament\Forms\Form;
 use Filament\Forms\Get;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Hash;
@@ -26,6 +28,7 @@ use Illuminate\Database\QueryException;
 use Illuminate\Database\UniqueConstraintViolationException;
 use Notification;
 use Spatie\Permission\Models\Role;
+use Storage;
 
 
 class UserResource extends Resource
@@ -52,6 +55,10 @@ class UserResource extends Resource
                     ->dehydrated(fn ($state) => filled($state))
                     ->hidden(Auth::user()->hasRole('teacher')),
                 DatePicker::make('dob')->label('Tanggal Lahir'),
+                FileUpload::make('avatar')
+                        ->directory('uploads')
+                        ->image()
+                        ->label('Foto'),
                 TextInput::make('address')->label('Alamat'),
                 TextInput::make('disability_type')->label('Kebutuhan Khusus')
                     ->hidden(Auth::user()->hasRole('staff')),
@@ -112,6 +119,8 @@ class UserResource extends Resource
                 TextColumn::make('email')->sortable()->copyable()
                     ->hidden(Auth::user()->hasRole('teacer')),
                 TextColumn::make('dob')->sortable()->date()->label('Tanggal Lahir'),
+                ImageColumn::make('avatar')->label('Foto')->circular()
+                    ->defaultImageUrl(Storage::url('uploads/no-image.jpg')),
                 TextColumn::make('address')->sortable()->label('Alamat'),
                 TextColumn::make('disability_type')->sortable()->label('Disabilitas')
                     ->hidden(Auth::user()->hasRole('staff')),

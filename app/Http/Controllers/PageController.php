@@ -12,7 +12,7 @@ class PageController extends Controller
     }
 
     public function blog(){
-        return view('blog', ['posts' => Post::all()]);
+        return view('blog', ['posts' => Post::all()->sortByDesc('created_at')]);
     }
 
     public function blogview(Request $request, string $slug){

@@ -14,20 +14,21 @@
           <a href="#about" class="btn-get-started">Get Started</a>
           <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
         </div> --}}
-        <img src="{{ $post->cover }}" class="img-fluid hero-img" alt="" data-aos="zoom-out" data-aos-delay="300">
+        {{-- <img src="{{ Storage::url($post->cover) }}" class="img-fluid hero-img" alt="" data-aos="zoom-out" data-aos-delay="300"> --}}
       </div>
     </div>
 
   </section>
 
 
-  <section id="" class="services section">
+  <section id="" class="services section mt-2">
     <div class="container section-title" data-aos="fade-up">
       <h2>{{ $post->title }}</h2>
     </div>
 
     <div class="container">
-      <div class="row g-5">
+      <img src="{{ Storage::url($post->cover) }}" class="img-fluid hero-img" alt="" data-aos="zoom-out" data-aos-delay="300">
+      <div class="row g-5 mt-2">
         @php echo $post->content; @endphp
       </div>
     </div>

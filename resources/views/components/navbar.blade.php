@@ -4,6 +4,7 @@
     <li><a href="{{ route('home') . '#vision' }}">Visi Misi</a></li>
     <li><a href="{{ route('home') . '#features' }}">Keunggulan</a></li>
     <li><a href="{{ route('home') . '#services' }}">Layanan</a></li>
+    <li><a href="{{ route('blog') }}">Artikel</a></li>
     {{-- <li><a href="{{ route('blog') }}">Artikel</a></li> --}}
     {{-- <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
       <ul>
