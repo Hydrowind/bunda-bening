@@ -13,6 +13,7 @@ use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
+use Filament\Forms\Get;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
@@ -25,6 +26,7 @@ use Illuminate\Database\QueryException;
 use Illuminate\Database\UniqueConstraintViolationException;
 use Notification;
 use Spatie\Permission\Models\Role;
+
 
 class UserResource extends Resource
 {
@@ -53,19 +55,16 @@ class UserResource extends Resource
                 TextInput::make('address')->label('Alamat'),
                 TextInput::make('disability_type')->label('Kebutuhan Khusus')
                     ->hidden(Auth::user()->hasRole('staff')),
-                TextInput::make('classroom')->label('Kelas')
-                    ->hidden(Auth::user()->hasRole('staff')),
-                
-                
-                Select::make('roles')
-                    ->relationship('roles', 'name')
-                    ->default(Role::where('name', 'student')->first()->id)
-                    // ->disabled(Auth::user()->hasRole('teacher'))
-                    ->preload(),
                     
-                    // ->saveRelationshipsUsing(function (Model $record, $state){
-                    //     $record->assignRole('admin');
-                    // })
+                Select::make('roles')
+                    ->relationship('roles', 'name', fn (Builder $query) => $query->whereIn('name', ['staff', 'teacher']))
+                    ->default(Role::where('name', 'student')->first()->id)
+                    ->hidden(Auth::user()->hasRole('teacher'))
+                    ->preload()
+                    ->live(),
+                
+                TextInput::make('classroom')->label(Auth::user()->hasRole('teacher') ? 'Kelas' : 'Kelas yang Diajar')
+                    ->visible(fn (Get $get): bool => $get('roles') == Role::where('name', 'teacher')->first()->id || Auth::user()->hasRole('teacher')),
             ]);
     }
 
@@ -159,7 +158,25 @@ class UserResource extends Resource
 
     public static function getNavigationLabel(): string
     {  
-        if(Auth::user()->hasAnyRole(['teacher', 'staff'])) {
+        if(Auth::user()->hasAnyRole(['teacher'])) {
+            return 'Siswa';
+        }
+
+        return 'Staff, Guru, dan Siswa';
+    }
+
+    public static function getModelLabel(): string
+    {
+        if(Auth::user()->hasAnyRole(['teacher'])) {
+            return 'Siswa';
+        }
+
+        return 'Anggota';
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        if(Auth::user()->hasAnyRole(['teacher'])) {
             return 'Siswa';
         }
 

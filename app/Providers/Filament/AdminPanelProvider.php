@@ -61,7 +61,8 @@ class AdminPanelProvider extends PanelProvider
                     ->icon('heroicon-o-qr-code')
                     ->sort(50)
                     ->url(fn():string => route('filament.admin.resources.presences.qr'))
-                    ->visible(fn() => auth()->user()->hasRole('teacher')),
+                    ->visible(fn() => auth()->user()->hasRole('teacher'))
+                    ->hidden(),
             ]) ;
     }
 }

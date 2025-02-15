@@ -1,30 +1,28 @@
 <x-filament::page>
-    <div class="flex justify-between items-center mb-4">
+    <div class="md:flex justify-between items-center mb-4">
         <!-- Month Selector -->
         <input 
             type="month" 
             wire:model="selectedMonth" 
             wire:change="fetchReports" 
             class="block border-gray-300 rounded-md shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm 
-                   bg-white text-gray-900 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600">
+                   bg-white text-gray-900 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600 mb-2">
         
         <!-- User Selector -->
         <select 
             wire:model="selectedUserId" 
             wire:change="fetchReports" 
             class="ml-4 block border-gray-300 rounded-md shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm 
-                   bg-white text-gray-900 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600">
+                   bg-white text-gray-900 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600 mb-2">
             @foreach($members as $user)
                 <option value="{{ $user->id }}">{{ $user->name }}</option>
             @endforeach
         </select>
 
         <!-- Print Button -->
-        <button 
-            wire:click="downloadPDF"
-            class="ml-4 bg-blue-500 px-4 py-2 rounded-md shadow hover:bg-blue-600 focus:outline-none dark:text-gray-200">
+        <x-filament::button wire:click="downloadPDF" color="primary">
             Print PDF
-        </button>
+        </x-filament::button>
     </div>
 
     <div class="bg-white shadow overflow-hidden sm:rounded-lg dark:bg-gray-800 dark:text-gray-200">
