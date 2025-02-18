@@ -69,7 +69,7 @@ class PresenceResource extends Resource
                 }
 
                 if ($user->hasRole('staff')) {
-                    $members = User::role(['teacher']);
+                    $members = User::role(['student']);
                 }
 
                 if ($user->hasRole('admin')) {
@@ -147,10 +147,6 @@ class PresenceResource extends Resource
 
     public static function getNavigationLabel(): string
     {
-        if(Auth::user()->hasRole('staff')) {
-            return 'Kehadiran Guru';
-        }
-
         return 'Kehadiran Siswa';
     }
 }
