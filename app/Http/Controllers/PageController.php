@@ -21,4 +21,8 @@ class PageController extends Controller
 
         return view('blogview', ['post' => $post]);
     }
+
+    public function faq(){
+        return view('faq');
+    }
 }

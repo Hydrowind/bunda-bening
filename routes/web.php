@@ -18,5 +18,6 @@ use App\Http\Controllers\PageController;
 
 Route::get('/', [PageController::class, 'home'])->name('home');
 Route::get('blog', [PageController::class, 'blog'])->name('blog');
+Route::get('faq', [PageController::class, 'faq'])->name('faq');
 Route::get('blog/{slug}', [PageController::class, 'blogview'])->name('blog.view');
 Route::get('/presence/pdf', [PDFController::class, 'generatePDF'])->name('attendance.pdf');
