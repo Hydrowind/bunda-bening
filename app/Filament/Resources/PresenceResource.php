@@ -137,6 +137,7 @@ class PresenceResource extends Resource
             'edit' => Pages\EditPresence::route('/{record}/edit'),
             'sheet' => Pages\AttendanceSheet::route('/sheet'),
             'qr' => Pages\QrPresence::route('/qr'),
+            'faq' => Pages\Faq::route('/faq'),
         ];
     }
 

@@ -62,7 +62,14 @@ class AdminPanelProvider extends PanelProvider
                     ->sort(50)
                     ->url(fn():string => route('filament.admin.resources.presences.qr'))
                     ->visible(fn() => auth()->user()->hasRole('teacher'))
-                    ->hidden(),
+                    // ->hidden(),
+            ])
+            ->navigationItems([
+                NavigationItem::make('FAQ')
+                    ->icon('heroicon-o-information-circle')
+                    ->sort(51)
+                    ->url(fn():string => route('filament.admin.resources.presences.faq'))
+                    ->visible(fn() => auth()->user()->hasAnyRole(['teacher', 'staff']))
             ]) ;
     }
 }
