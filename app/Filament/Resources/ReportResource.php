@@ -154,6 +154,7 @@ class ReportResource extends Resource
             'edit' => Pages\EditReport::route('/{record}/edit'),
             'summary' => Pages\SummaryReport::route('/{record}/summary'),
             'monthly-report' => Pages\MonthlyReport::route('/{record}/monthly-report'),
+            'student-report' => Pages\StudentReport::route('/student-report'),
         ];
     }
 

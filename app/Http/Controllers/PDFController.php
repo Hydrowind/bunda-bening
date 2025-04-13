@@ -61,4 +61,16 @@ class PDFController extends Controller
         // Download the PDF file
         return $pdf->download('attendance-sheet-' . $selectedMonth . '.pdf');
     }
+
+    public function generateReportPDF(Request $request)
+    {
+
+        // Pass the data to the view
+        $pdf = Pdf::loadView('student-report-pdf', [
+        
+            ])->setPaper('a4', 'portrait');
+
+        // Download the PDF file
+        return $pdf->download('rapor-siswa.pdf');
+    }
 }

@@ -138,6 +138,7 @@ class PresenceResource extends Resource
             'sheet' => Pages\AttendanceSheet::route('/sheet'),
             'qr' => Pages\QrPresence::route('/qr'),
             'faq' => Pages\Faq::route('/faq'),
+            'students-report' => Pages\StudentsReport::route('/students-report'),
         ];
     }
 

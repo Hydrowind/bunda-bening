@@ -70,6 +70,19 @@ class AdminPanelProvider extends PanelProvider
                     ->sort(51)
                     ->url(fn():string => route('filament.admin.resources.presences.faq'))
                     ->visible(fn() => auth()->user()->hasAnyRole(['teacher', 'staff']))
-            ]) ;
+            ]) 
+            ->navigationItems([
+                NavigationItem::make('Rapor Siswa')
+                    ->icon('heroicon-o-book-open')
+                    ->sort(52)
+                    ->url(fn():string => route('filament.admin.resources.presences.students-report'))
+                    ->visible(fn() => auth()->user()->hasAnyRole(['teacher']))
+            ])->navigationItems([
+                NavigationItem::make('Rapor Siswa Report')
+                    ->icon('heroicon-o-book-open')
+                    ->sort(52)
+                    ->url(fn():string => route('filament.admin.resources.reports.student-report'))
+                    ->visible(fn() => auth()->user()->hasAnyRole(['teacher']))
+            ]);
     }
 }
