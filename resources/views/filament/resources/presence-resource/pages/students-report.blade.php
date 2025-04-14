@@ -107,6 +107,7 @@
   ]
 @endphp
 
+<form action="{{ route('studentreport.pdf') }}" method="get">
 <div>
     <!-- Sikap Section -->
     <h2 class="font-bold">A. Sikap</h2>
@@ -144,10 +145,10 @@
             <tr>
                 <td class="border border-gray-300 p-2">{{ $index + 1 }}</td>
                 <td class="border border-gray-300 p-2">{{ $subject['name'] }}</td>
-                <td class="border border-gray-300 p-2 text-center"><input type="text" name="score" id="score" class="w-20 rounded"></td>
-                <td class="border border-gray-300 p-2 text-center"><input type="text" name="score" id="score" class="w-20 rounded"></td>
-                <td class="border border-gray-300 p-2 text-center"><input type="text" name="score" id="score" class="w-20 rounded"></td>
-                <td class="border border-gray-300 p-2 text-center"><input type="text" name="score" id="score" class="w-20 rounded"></td>
+                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokA[]" class="w-20 rounded"></td>
+                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokA[]" class="w-20 rounded"></td>
+                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokA[]" class="w-20 rounded"></td>
+                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokA[]" class="w-20 rounded"></td>
                 {{-- <td class="border border-gray-300 p-2">{{ $subject['knowledge_score'] }}</td>
                 <td class="border border-gray-300 p-2">{{ $subject['knowledge_grade'] }}</td>
                 <td class="border border-gray-300 p-2">{{ $subject['skill_score'] }}</td>
@@ -163,10 +164,10 @@
             <tr>
                 <td class="border border-gray-300 p-2">{{ $index + 1 }}</td>
                 <td class="border border-gray-300 p-2">{{ $subject['name'] }}</td>
-                <td class="border border-gray-300 p-2 text-center"><input type="text" name="score" id="score" class="w-20 rounded"></td>
-                <td class="border border-gray-300 p-2 text-center"><input type="text" name="score" id="score" class="w-20 rounded"></td>
-                <td class="border border-gray-300 p-2 text-center"><input type="text" name="score" id="score" class="w-20 rounded"></td>
-                <td class="border border-gray-300 p-2 text-center"><input type="text" name="score" id="score" class="w-20 rounded"></td>
+                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokB[]" class="w-20 rounded"></td>
+                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokB[]" class="w-20 rounded"></td>
+                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokB[]" class="w-20 rounded"></td>
+                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokB[]" class="w-20 rounded"></td>
                 {{-- <td class="border border-gray-300 p-2">{{ $subject['knowledge_score'] }}</td>
                 <td class="border border-gray-300 p-2">{{ $subject['knowledge_grade'] }}</td>
                 <td class="border border-gray-300 p-2">{{ $subject['skill_score'] }}</td>
@@ -182,11 +183,11 @@
             @foreach ($kelompokC as $index => $subject)
             <tr>
                 <td class="border border-gray-300 p-2">{{ $index + 1 }}</td>
-                <td class="border border-gray-300 p-2 text-center"><input type="text" name="score" id="score" class="w-full rounded"></td>
-                <td class="border border-gray-300 p-2 text-center"><input type="text" name="score" id="score" class="w-20 rounded"></td>
-                <td class="border border-gray-300 p-2 text-center"><input type="text" name="score" id="score" class="w-20 rounded"></td>
-                <td class="border border-gray-300 p-2 text-center"><input type="text" name="score" id="score" class="w-20 rounded"></td>
-                <td class="border border-gray-300 p-2 text-center"><input type="text" name="score" id="score" class="w-20 rounded"></td>
+                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokC" class="w-full rounded"></td>
+                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokC" class="w-20 rounded"></td>
+                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokC" class="w-20 rounded"></td>
+                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokC" class="w-20 rounded"></td>
+                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokC" class="w-20 rounded"></td>
                 {{-- <td class="border border-gray-300 p-2">{{ $subject['name'] }}</td>
                 <td class="border border-gray-300 p-2">{{ $subject['knowledge_score'] }}</td>
                 <td class="border border-gray-300 p-2">{{ $subject['knowledge_grade'] }}</td>
@@ -203,11 +204,11 @@
             @foreach ($kelompokD as $index => $subject)
             <tr>
                 <td class="border border-gray-300 p-2">{{ $index + 1 }}</td>
-                <td class="border border-gray-300 p-2 text-center"><input type="text" name="score" id="score" class="w-full rounded"></td>
-                <td class="border border-gray-300 p-2 text-center"><input type="text" name="score" id="score" class="w-20 rounded"></td>
-                <td class="border border-gray-300 p-2 text-center"><input type="text" name="score" id="score" class="w-20 rounded"></td>
-                <td class="border border-gray-300 p-2 text-center"><input type="text" name="score" id="score" class="w-20 rounded"></td>
-                <td class="border border-gray-300 p-2 text-center"><input type="text" name="score" id="score" class="w-20 rounded"></td>
+                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokD" class="w-full rounded"></td>
+                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokD" class="w-20 rounded"></td>
+                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokD" class="w-20 rounded"></td>
+                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokD" class="w-20 rounded"></td>
+                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokD" class="w-20 rounded"></td>
                 {{-- <td class="border border-gray-300 p-2">{{ $subject['name'] }}</td>
                 <td class="border border-gray-300 p-2">{{ $subject['knowledge_score'] }}</td>
                 <td class="border border-gray-300 p-2">{{ $subject['knowledge_grade'] }}</td>
@@ -224,10 +225,10 @@
             <tr>
                 <td class="border border-gray-300 p-2">{{ $index + 1 }}</td>
                 <td class="border border-gray-300 p-2">{{ $subject['name'] }}</td>
-                <td class="border border-gray-300 p-2 text-center"><input type="text" name="score" id="score" class="w-20 rounded"></td>
-                <td class="border border-gray-300 p-2 text-center"><input type="text" name="score" id="score" class="w-20 rounded"></td>
-                <td class="border border-gray-300 p-2 text-center"><input type="text" name="score" id="score" class="w-20 rounded"></td>
-                <td class="border border-gray-300 p-2 text-center"><input type="text" name="score" id="score" class="w-20 rounded"></td>
+                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokE" class="w-20 rounded"></td>
+                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokE" class="w-20 rounded"></td>
+                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokE" class="w-20 rounded"></td>
+                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokE" class="w-20 rounded"></td>
                 {{-- <td class="border border-gray-300 p-2">{{ $subject['knowledge_score'] }}</td>
                 <td class="border border-gray-300 p-2">{{ $subject['knowledge_grade'] }}</td>
                 <td class="border border-gray-300 p-2">{{ $subject['skill_score'] }}</td>
@@ -570,9 +571,11 @@ Sastra Sunda/Cirebonan</td>
     </div>
 </div>
 
+{{-- onclick="window.location.href='{{ route('studentreport.pdf') }}'" --}}
 <div>
-  <x-filament::button type="button" color="primary" onclick="window.location.href='{{ route('studentreport.pdf') }}'">Print</x-filament::button>
+  <x-filament::button type="submit" color="primary" >Print</x-filament::button>
 </div>
+</form>
 
 
 

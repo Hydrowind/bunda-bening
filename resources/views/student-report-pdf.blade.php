@@ -2,81 +2,29 @@
 
 @section('body')
 @php
-  $kelompokA = [
-    [
-      'name' => 'Pendidikan Agama dan Budi Pekerti',
-      'knowledge_score' => 80,
-      'knowledge_grade' => 'B',
-      'skill_score' => 90,
-      'skill_grade' => 'A',
-    ],
-    [
-      'name' => 'Pendidikan Pancasila dan Kewarganegaraan',
-      'knowledge_score' => 80,
-      'knowledge_grade' => 'B',
-      'skill_score' => 90,
-      'skill_grade' => 'A',
-    ],
-    [
-      'name' => 'Bahasa Indonesia',
-      'knowledge_score' => 80,
-      'knowledge_grade' => 'B',
-      'skill_score' => 90,
-      'skill_grade' => 'A',
-    ],
-    [
-      'name' => 'Matematika',
-      'knowledge_score' => 70,
-      'knowledge_grade' => 'C',
-      'skill_score' => 80,
-      'skill_grade' => 'B',
-    ],
-    [
-      'name' => 'Bahasa Inggris',
-      'knowledge_score' => 90,
-      'knowledge_grade' => 'A',
-      'skill_score' => 100,
-      'skill_grade' => 'A',
-    ],
-    [
-      'name' => 'Ilmu Pengetahuan Alam',
-      'knowledge_score' => 80,
-      'knowledge_grade' => 'B',
-      'skill_score' => 90,
-      'skill_grade' => 'A',
-    ],
-    [
-      'name' => 'Ilmu Pengetahuan Sosial',
-      'knowledge_score' => 80,
-      'knowledge_grade' => 'B',
-      'skill_score' => 90,
-      'skill_grade' => 'A',
-    ],
-  ];
+  $kelompokA = [];
+  $data = [];
+  for($i = 0; $i < count($_GET['kelompokA'])/4;) {
+    $data['name'] = 'Mata Pelajaran A';
+    $data['knowledge_score'] = $_GET['kelompokA'][$i++];
+    $data['knowledge_grade'] = $_GET['kelompokA'][$i++];
+    $data['skill_score'] = $_GET['kelompokA'][$i++];
+    $data['skill_grade'] = $_GET['kelompokA'][$i++];
 
-  $kelompokB = [
-    [
-      'name' => 'Seni Budaya',
-      'knowledge_score' => 80,
-      'knowledge_grade' => 'B',
-      'skill_score' => 90,
-      'skill_grade' => 'A',
-    ],
-    [
-      'name' => 'Pendidikan Jasmani, Olah Raga, dan Kesehatan',
-      'knowledge_score' => 70,
-      'knowledge_grade' => 'C',
-      'skill_score' => 80,
-      'skill_grade' => 'B',
-    ],
-    [
-      'name' => 'Muatan Lokal Bahasa dan Sastra Sunda/Cirebonan',
-      'knowledge_score' => 90,
-      'knowledge_grade' => 'C',
-      'skill_score' => 80,
-      'skill_grade' => 'B',
-    ]
-  ];
+    array_push($kelompokA, $data);
+  }
+
+  $kelompokB = [];
+  $data = [];
+  for($i = 0; $i < count($_GET['kelompokB'])/4;) {
+    $data['name'] = 'Mata Pelajaran B';
+    $data['knowledge_score'] = $_GET['kelompokB'][$i++];
+    $data['knowledge_grade'] = $_GET['kelompokB'][$i++];
+    $data['skill_score'] = $_GET['kelompokB'][$i++];
+    $data['skill_grade'] = $_GET['kelompokB'][$i++];
+
+    array_push($kelompokB, $data);
+  }
 
   $kelompokC = [
     [

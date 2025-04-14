@@ -64,11 +64,15 @@ class PDFController extends Controller
 
     public function generateReportPDF(Request $request)
     {
-
+        // dd($request->input('kelompokB'));
         // Pass the data to the view
         $pdf = Pdf::loadView('student-report-pdf', [
-        
-            ])->setPaper('a4', 'portrait');
+            'groupA' => $request->input('kelompokA'),
+            'groupB' => $request->input('kelompokB'),
+            'groupC' => $request->input('kelompokC'),
+            'groupD' => $request->input('kelompokD'),
+            'groupE' => $request->input('kelompokE'),
+        ])->setPaper('a4', 'portrait');
 
         // Download the PDF file
         return $pdf->download('rapor-siswa.pdf');
