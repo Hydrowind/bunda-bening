@@ -2,10 +2,20 @@
 
 @section('body')
 @php
+  $kelompokAMapel= [
+    'Pendidikan Agama dan Budi Pekerti',
+    'Pendidikan Pancasila dan Kewarganegaraan',
+    'Bahasa Indonesia',
+    'Matematika',
+    'Ilmu Pengetahuan Alam',
+    'Ilmu Pengetahuan Sosial',
+    'Bahasa Inggris'
+  ];
   $kelompokA = [];
   $data = [];
-  for($i = 0; $i < count($_GET['kelompokA'])/4;) {
-    $data['name'] = 'Mata Pelajaran A';
+  $j=0;
+  for($i = 0; $i < count($_GET['kelompokA']);) {
+    $data['name'] = $kelompokAMapel[$j++];
     $data['knowledge_score'] = $_GET['kelompokA'][$i++];
     $data['knowledge_grade'] = $_GET['kelompokA'][$i++];
     $data['skill_score'] = $_GET['kelompokA'][$i++];
@@ -14,10 +24,16 @@
     array_push($kelompokA, $data);
   }
 
+  $kelompokBMapel = [
+    'Seni Budaya dan Prakarya',
+    'Pendidikan Jasmani, Olahraga dan Kesehatan',
+    'Muatan Lokal Bahasa dan Sastra Sunda/Cirebonan'
+  ];
   $kelompokB = [];
   $data = [];
-  for($i = 0; $i < count($_GET['kelompokB'])/4;) {
-    $data['name'] = 'Mata Pelajaran B';
+  $j=0;
+  for($i = 0; $i < count($_GET['kelompokB']);) {
+    $data['name'] = $kelompokBMapel[$j++];
     $data['knowledge_score'] = $_GET['kelompokB'][$i++];
     $data['knowledge_grade'] = $_GET['kelompokB'][$i++];
     $data['skill_score'] = $_GET['kelompokB'][$i++];
@@ -26,45 +42,55 @@
     array_push($kelompokB, $data);
   }
 
-  $kelompokC = [
-    [
-      'name' => '..............................',
-      'knowledge_score' => ' ',
-      'knowledge_grade' => ' ',
-      'skill_score' => ' ',
-      'skill_grade' => ' ',
-    ],
-  ];
+  $kelompokC = [];
+  $data = [];
+  for($i = 0; $i < count($_GET['kelompokC']);) {
+    $data['name'] = $_GET['kelompokCMapel'];
+    $data['knowledge_score'] = $_GET['kelompokC'][$i++];
+    $data['knowledge_grade'] = $_GET['kelompokC'][$i++];
+    $data['skill_score'] = $_GET['kelompokC'][$i++];
+    $data['skill_grade'] = $_GET['kelompokC'][$i++];
 
-  $kelompokD = [
-    [
-      'name' => '..............................',
-      'knowledge_score' => ' ',
-      'knowledge_grade' => ' ',
-      'skill_score' => ' ',
-      'skill_grade' => ' ',
-    ],
-  ];
+    array_push($kelompokC, $data);
+  }
 
-  $kelompokE = [
-    [
-      'name' => 'Program Khusus',
-      'knowledge_score' => 80,
-      'knowledge_grade' => 'B',
-      'skill_score' => 90,
-      'skill_grade' => 'A',
-    ],
-  ]
+  $kelompokD = [];
+  $data = [];
+  for($i = 0; $i < count($_GET['kelompokD']);) {
+    $data['name'] = $_GET['kelompokDMapel'];
+    $data['knowledge_score'] = $_GET['kelompokD'][$i++];
+    $data['knowledge_grade'] = $_GET['kelompokD'][$i++];
+    $data['skill_score'] = $_GET['kelompokD'][$i++];
+    $data['skill_grade'] = $_GET['kelompokD'][$i++];
+
+    array_push($kelompokD, $data);
+  }
+
+  $kelompokEMapel = [
+    'Program Khusus Bina Diri'
+  ];
+  $kelompokE = [];
+  $data = [];
+  $j=0;
+  for($i = 0; $i < count($_GET['kelompokE']);) {
+    $data['name'] = $kelompokEMapel[$j++];
+    $data['knowledge_score'] = $_GET['kelompokE'][$i++];
+    $data['knowledge_grade'] = $_GET['kelompokE'][$i++];
+    $data['skill_score'] = $_GET['kelompokE'][$i++];
+    $data['skill_grade'] = $_GET['kelompokE'][$i++];
+
+    array_push($kelompokE, $data);
+  }
 @endphp
 
 <div>
     <!-- Sikap Section -->
     <h2 class="font-bold">A. Sikap</h2>
     <h3 class="font-bold mt-3">Sikap Spiritual</h3>
-    <textarea rows="5" name="sikap-spiritual" id="ta-sikap-spiritual" class="rounded w-full mt-1"></textarea>
+    <p>{{ $_GET['sikap-spiritual'] }}</p>
     
     <h3 class="font-bold mt-3">Sikap Sosial</h3>
-    <textarea rows="5" name="sikap-spiritual" id="ta-sikap-spiritual" class="rounded w-full mt-1"></textarea>
+    <p>{{ $_GET['sikap-sosial'] }}</p>
     
     <!-- Pengetahuan dan Keterampilan Section -->
     <h2 class="font-bold mt-6">B. Pengetahuan dan Keterampilan</h2>
@@ -480,7 +506,7 @@ Sastra Sunda/Cirebonan</td>
     <p>&nbsp;</p>
     <p>&nbsp;</p>
     <div class="sign flex justify-between mt-10">
-      <div>
+      <div style="float: left;">
         <p>&nbsp;</p>
         <p>Mengetahui,</p>
         <p>Orang Tua/Wali,</p>
@@ -488,7 +514,7 @@ Sastra Sunda/Cirebonan</td>
         <br>
         <p>......................</p>
       </div>
-      <div>
+      <div style="float: right;">
         <p>Bandung, 01 April 2025</p>
         <p>&nbsp;</p>
         <p>Guru Kelas</p>

@@ -115,7 +115,7 @@
     <textarea rows="5" name="sikap-spiritual" id="ta-sikap-spiritual" class="rounded w-full mt-1"></textarea>
     
     <h3 class="font-bold mt-3">Sikap Sosial</h3>
-    <textarea rows="5" name="sikap-spiritual" id="ta-sikap-spiritual" class="rounded w-full mt-1"></textarea>
+    <textarea rows="5" name="sikap-sosial" id="ta-sikap-sosial" class="rounded w-full mt-1"></textarea>
     
     <!-- Pengetahuan dan Keterampilan Section -->
     <h2 class="font-bold mt-6">B. Pengetahuan dan Keterampilan</h2>
@@ -149,10 +149,6 @@
                 <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokA[]" class="w-20 rounded"></td>
                 <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokA[]" class="w-20 rounded"></td>
                 <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokA[]" class="w-20 rounded"></td>
-                {{-- <td class="border border-gray-300 p-2">{{ $subject['knowledge_score'] }}</td>
-                <td class="border border-gray-300 p-2">{{ $subject['knowledge_grade'] }}</td>
-                <td class="border border-gray-300 p-2">{{ $subject['skill_score'] }}</td>
-                <td class="border border-gray-300 p-2">{{ $subject['skill_grade'] }}</td> --}}
             </tr>
             @endforeach
             
@@ -168,10 +164,6 @@
                 <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokB[]" class="w-20 rounded"></td>
                 <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokB[]" class="w-20 rounded"></td>
                 <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokB[]" class="w-20 rounded"></td>
-                {{-- <td class="border border-gray-300 p-2">{{ $subject['knowledge_score'] }}</td>
-                <td class="border border-gray-300 p-2">{{ $subject['knowledge_grade'] }}</td>
-                <td class="border border-gray-300 p-2">{{ $subject['skill_score'] }}</td>
-                <td class="border border-gray-300 p-2">{{ $subject['skill_grade'] }}</td> --}}
             </tr>
             @endforeach
 
@@ -183,16 +175,11 @@
             @foreach ($kelompokC as $index => $subject)
             <tr>
                 <td class="border border-gray-300 p-2">{{ $index + 1 }}</td>
-                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokC" class="w-full rounded"></td>
-                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokC" class="w-20 rounded"></td>
-                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokC" class="w-20 rounded"></td>
-                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokC" class="w-20 rounded"></td>
-                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokC" class="w-20 rounded"></td>
-                {{-- <td class="border border-gray-300 p-2">{{ $subject['name'] }}</td>
-                <td class="border border-gray-300 p-2">{{ $subject['knowledge_score'] }}</td>
-                <td class="border border-gray-300 p-2">{{ $subject['knowledge_grade'] }}</td>
-                <td class="border border-gray-300 p-2">{{ $subject['skill_score'] }}</td>
-                <td class="border border-gray-300 p-2">{{ $subject['skill_grade'] }}</td> --}}
+                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokCMapel" value='' class="w-full rounded"></td>
+                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokC[]" class="w-20 rounded"></td>
+                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokC[]" class="w-20 rounded"></td>
+                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokC[]" class="w-20 rounded"></td>
+                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokC[]" class="w-20 rounded"></td>
             </tr>
             @endforeach
 
@@ -204,16 +191,11 @@
             @foreach ($kelompokD as $index => $subject)
             <tr>
                 <td class="border border-gray-300 p-2">{{ $index + 1 }}</td>
-                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokD" class="w-full rounded"></td>
-                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokD" class="w-20 rounded"></td>
-                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokD" class="w-20 rounded"></td>
-                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokD" class="w-20 rounded"></td>
-                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokD" class="w-20 rounded"></td>
-                {{-- <td class="border border-gray-300 p-2">{{ $subject['name'] }}</td>
-                <td class="border border-gray-300 p-2">{{ $subject['knowledge_score'] }}</td>
-                <td class="border border-gray-300 p-2">{{ $subject['knowledge_grade'] }}</td>
-                <td class="border border-gray-300 p-2">{{ $subject['skill_score'] }}</td>
-                <td class="border border-gray-300 p-2">{{ $subject['skill_grade'] }}</td> --}}
+                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokDMapel" value='' class="w-full rounded"></td>
+                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokD[]" class="w-20 rounded"></td>
+                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokD[]" class="w-20 rounded"></td>
+                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokD[]" class="w-20 rounded"></td>
+                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokD[]" class="w-20 rounded"></td>
             </tr>
             @endforeach
 
@@ -225,14 +207,10 @@
             <tr>
                 <td class="border border-gray-300 p-2">{{ $index + 1 }}</td>
                 <td class="border border-gray-300 p-2">{{ $subject['name'] }}</td>
-                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokE" class="w-20 rounded"></td>
-                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokE" class="w-20 rounded"></td>
-                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokE" class="w-20 rounded"></td>
-                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokE" class="w-20 rounded"></td>
-                {{-- <td class="border border-gray-300 p-2">{{ $subject['knowledge_score'] }}</td>
-                <td class="border border-gray-300 p-2">{{ $subject['knowledge_grade'] }}</td>
-                <td class="border border-gray-300 p-2">{{ $subject['skill_score'] }}</td>
-                <td class="border border-gray-300 p-2">{{ $subject['skill_grade'] }}</td> --}}
+                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokE[]" class="w-20 rounded"></td>
+                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokE[]" class="w-20 rounded"></td>
+                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokE[]" class="w-20 rounded"></td>
+                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokE[]" class="w-20 rounded"></td>
             </tr>
             @endforeach
         </tbody>
