@@ -14,6 +14,9 @@
   <h2>Bagaimana mengunduh Absensi Siswa?</h2>
   <p style="color: grey">Login sebagai Guru > Buka Menu Kehadiran Siswa > Klik tombol Laporan Kehadiran > Pilih Tanggal & Nama Siswa > Download PDF</p>
   <br>
+  <h2>Bagaimana membuat Rapot Siswa?</h2>
+  <p style="color: grey">Login sebagai Guru > Buka Menu Rapor Siswa > Isi Form Rapot Siswa > Klik Button Print</p>
+  <br>
   <h2>Bagaimana membuat Guru Baru?</h2>
   <p style="color: grey">Login sebagai Staff > Buka Menu Guru > Create New Anggota > Isi Formulir > Submit</p>
   <br>

@@ -56,14 +56,14 @@ class AdminPanelProvider extends PanelProvider
                 Authenticate::class,
             ])
 
-            ->navigationItems([
-                NavigationItem::make('QR Absensi')
-                    ->icon('heroicon-o-qr-code')
-                    ->sort(50)
-                    ->url(fn():string => route('filament.admin.resources.presences.qr'))
-                    ->visible(fn() => auth()->user()->hasRole('teacher'))
-                    // ->hidden(),
-            ])
+            // ->navigationItems([
+            //     NavigationItem::make('QR Absensi')
+            //         ->icon('heroicon-o-qr-code')
+            //         ->sort(50)
+            //         ->url(fn():string => route('filament.admin.resources.presences.qr'))
+            //         ->visible(fn() => auth()->user()->hasRole('teacher'))
+            //         // ->hidden(),
+            // ])
             ->navigationItems([
                 NavigationItem::make('FAQ')
                     ->icon('heroicon-o-information-circle')

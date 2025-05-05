@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Student;
 use App\Models\User;
+use App\Services\StudentFuzzyEvaluator;
 use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -64,14 +65,71 @@ class PDFController extends Controller
 
     public function generateReportPDF(Request $request)
     {
-        // dd($request->input('kelompokB'));
+        $evaluator = new StudentFuzzyEvaluator();
+
+        $attitudeScore = 100;
+
+        $sum = 0;
+        for($i = 0; $i < count($_GET['knowledgeA']);) {
+            $sum += $_GET['knowledgeA'][$i];
+            $i++;
+        }
+        for($i = 0; $i < count($_GET['knowledgeB']);) {
+            $sum += $_GET['knowledgeB'][$i];
+            $i++;
+        }
+        for($i = 0; $i < count($_GET['knowledgeC']);) {
+            $sum += $_GET['knowledgeC'][$i];
+            $i++;
+        }
+        for($i = 0; $i < count($_GET['knowledgeD']);) {
+            $sum += $_GET['knowledgeD'][$i];
+            $i++;
+        }
+        for($i = 0; $i < count($_GET['knowledgeE']);) {
+            $sum += $_GET['knowledgeE'][$i];
+            $i++;
+        }
+        $knowledgeScore = $sum / (count($_GET['knowledgeA']) + count($_GET['knowledgeB']) + count($_GET['knowledgeC']) + count($_GET['knowledgeD']) + count($_GET['knowledgeE']));
+
+        $sum = 0;
+        for($i = 0; $i < count($_GET['skillA']);) {
+            $sum += $_GET['skillA'][$i];
+            $i++;
+        }
+        for($i = 0; $i < count($_GET['skillB']);) {
+            $sum += $_GET['skillB'][$i];
+            $i++;
+        }
+        for($i = 0; $i < count($_GET['skillC']);) {
+            $sum += $_GET['skillC'][$i];
+            $i++;
+        }
+        for($i = 0; $i < count($_GET['skillD']);) {
+            $sum += $_GET['skillD'][$i];
+            $i++;
+        }
+        for($i = 0; $i < count($_GET['skillE']);) {
+            $sum += $_GET['skillE'][$i];
+            $i++;
+        }
+        $skillScore = $sum / (count($_GET['skillA']) + count($_GET['skillB']) + count($_GET['skillC']) + count($_GET['skillD']) + count($_GET['skillE']));
+        
         // Pass the data to the view
         $pdf = Pdf::loadView('student-report-pdf', [
-            'groupA' => $request->input('kelompokA'),
-            'groupB' => $request->input('kelompokB'),
-            'groupC' => $request->input('kelompokC'),
-            'groupD' => $request->input('kelompokD'),
-            'groupE' => $request->input('kelompokE'),
+            'knowledgeA' => $request->input('knowledgeA'),
+            'knowledgeB' => $request->input('knowledgeB'),
+            'knowledgeC' => $request->input('knowledgeC'),
+            'knowledgeD' => $request->input('knowledgeD'),
+            'knowledgeE' => $request->input('knowledgeE'),
+
+            'skillA' => $request->input('skillA'),
+            'skillB' => $request->input('skillB'),
+            'skillC' => $request->input('skillC'),
+            'skillD' => $request->input('skillD'),
+            'skillE' => $request->input('skillE'),
+
+            'evaluationResult' => $evaluator->evaluate($attitudeScore, knowledgeScore: $knowledgeScore, skillScore: $skillScore)
         ])->setPaper('a4', 'portrait');
 
         // Download the PDF file

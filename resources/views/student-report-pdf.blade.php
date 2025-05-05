@@ -2,6 +2,16 @@
 
 @section('body')
 @php
+
+  // Function to convert number to letter grade
+  function numberToLetterGrade($value) {
+    if ($value >= 80.5) return 'A';
+    if ($value >= 65.5) return 'B';
+    if ($value >= 50.5) return 'C';
+    if ($value > 0) return 'D';
+    return '-';
+  }
+
   $kelompokAMapel= [
     'Pendidikan Agama dan Budi Pekerti',
     'Pendidikan Pancasila dan Kewarganegaraan',
@@ -11,15 +21,19 @@
     'Ilmu Pengetahuan Sosial',
     'Bahasa Inggris'
   ];
+
   $kelompokA = [];
   $data = [];
   $j=0;
-  for($i = 0; $i < count($_GET['kelompokA']);) {
+  for($i = 0; $i < count($_GET['knowledgeA']); $i++) {
+    $knowledgeScore = $_GET['knowledgeA'][$i];
+    $skillScore = $_GET['skillA'][$i];
+
     $data['name'] = $kelompokAMapel[$j++];
-    $data['knowledge_score'] = $_GET['kelompokA'][$i++];
-    $data['knowledge_grade'] = $_GET['kelompokA'][$i++];
-    $data['skill_score'] = $_GET['kelompokA'][$i++];
-    $data['skill_grade'] = $_GET['kelompokA'][$i++];
+    $data['knowledge_score'] =$knowledgeScore;
+    $data['knowledge_grade'] = numberToLetterGrade($knowledgeScore);
+    $data['skill_score'] = $skillScore;
+    $data['skill_grade'] = numberToLetterGrade($skillScore);
 
     array_push($kelompokA, $data);
   }
@@ -32,36 +46,45 @@
   $kelompokB = [];
   $data = [];
   $j=0;
-  for($i = 0; $i < count($_GET['kelompokB']);) {
+  for($i = 0; $i < count($_GET['knowledgeB']); $i++) {
+    $knowledgeScore = $_GET['knowledgeB'][$i];
+    $skillScore = $_GET['skillB'][$i];
+
     $data['name'] = $kelompokBMapel[$j++];
-    $data['knowledge_score'] = $_GET['kelompokB'][$i++];
-    $data['knowledge_grade'] = $_GET['kelompokB'][$i++];
-    $data['skill_score'] = $_GET['kelompokB'][$i++];
-    $data['skill_grade'] = $_GET['kelompokB'][$i++];
+    $data['knowledge_score'] =$knowledgeScore;
+    $data['knowledge_grade'] = numberToLetterGrade($knowledgeScore);
+    $data['skill_score'] = $skillScore;
+    $data['skill_grade'] = numberToLetterGrade($skillScore);
 
     array_push($kelompokB, $data);
   }
 
   $kelompokC = [];
   $data = [];
-  for($i = 0; $i < count($_GET['kelompokC']);) {
+  for($i = 0; $i < count($_GET['knowledgeC']); $i++) {
+    $knowledgeScore = $_GET['knowledgeC'][$i];
+    $skillScore = $_GET['skillC'][$i];
+
     $data['name'] = $_GET['kelompokCMapel'];
-    $data['knowledge_score'] = $_GET['kelompokC'][$i++];
-    $data['knowledge_grade'] = $_GET['kelompokC'][$i++];
-    $data['skill_score'] = $_GET['kelompokC'][$i++];
-    $data['skill_grade'] = $_GET['kelompokC'][$i++];
+    $data['knowledge_score'] =$knowledgeScore;
+    $data['knowledge_grade'] = numberToLetterGrade($knowledgeScore);
+    $data['skill_score'] = $skillScore;
+    $data['skill_grade'] = numberToLetterGrade($skillScore);
 
     array_push($kelompokC, $data);
   }
 
   $kelompokD = [];
   $data = [];
-  for($i = 0; $i < count($_GET['kelompokD']);) {
+  for($i = 0; $i < count($_GET['knowledgeD']); $i++) {
+    $knowledgeScore = $_GET['knowledgeD'][$i];
+    $skillScore = $_GET['skillD'][$i];
+
     $data['name'] = $_GET['kelompokDMapel'];
-    $data['knowledge_score'] = $_GET['kelompokD'][$i++];
-    $data['knowledge_grade'] = $_GET['kelompokD'][$i++];
-    $data['skill_score'] = $_GET['kelompokD'][$i++];
-    $data['skill_grade'] = $_GET['kelompokD'][$i++];
+    $data['knowledge_score'] =$knowledgeScore;
+    $data['knowledge_grade'] = numberToLetterGrade($knowledgeScore);
+    $data['skill_score'] = $skillScore;
+    $data['skill_grade'] = numberToLetterGrade($skillScore);
 
     array_push($kelompokD, $data);
   }
@@ -72,18 +95,81 @@
   $kelompokE = [];
   $data = [];
   $j=0;
-  for($i = 0; $i < count($_GET['kelompokE']);) {
+  for($i = 0; $i < count($_GET['knowledgeE']); $i++) {
+    $knowledgeScore = $_GET['knowledgeE'][$i];
+    $skillScore = $_GET['skillE'][$i];
+
     $data['name'] = $kelompokEMapel[$j++];
-    $data['knowledge_score'] = $_GET['kelompokE'][$i++];
-    $data['knowledge_grade'] = $_GET['kelompokE'][$i++];
-    $data['skill_score'] = $_GET['kelompokE'][$i++];
-    $data['skill_grade'] = $_GET['kelompokE'][$i++];
+    $data['knowledge_score'] =$knowledgeScore;
+    $data['knowledge_grade'] = numberToLetterGrade($knowledgeScore);
+    $data['skill_score'] = $skillScore;
+    $data['skill_grade'] = numberToLetterGrade($skillScore);
 
     array_push($kelompokE, $data);
   }
 @endphp
 
 <div>
+<!-- Header -->
+    <div class="flex">
+      <table class="w-1/2 border-gray-300">
+          <tbody>
+            <!-- Nama Sekolah -->
+            <tr>
+                <td class="w-1/2 p-2 font-bold">Nama Sekolah</td>
+                <td class="w-1/2 p-2 font-bold">SLB Autisma Bunda Bening Selakshahati</td>
+            </tr>
+
+            <!-- Alamat Sekolah -->
+            <tr>
+                <td class="w-1/2 p-2 font-bold">Alamat Sekolah</td>
+                <td class="w-1/2 p-2 font-bold">kp. Ciburubeet Hilir Ds. Cileunyi Wetan Kec. Cileunyi</td>
+            </tr>
+
+            <!-- Nama -->
+            <tr>
+                <td class="w-1/2 p-2 font-bold">Nama</td>
+                <td class="w-1/2 p-2 font-bold">{{ $_GET['nama'] }}</td>
+            </tr>
+
+            <!-- NISN -->
+            <tr>
+                <td class="w-1/2 p-2 font-bold">Nomor Induk / NISN</td>
+                <td class="w-1/2 p-2 font-bold">{{ $_GET['nisn'] }}</td>
+            </tr>
+          </tbody>
+      </table>
+
+      <table class="w-1/2 border-collapse border-gray-300">
+          <tbody>
+              <!-- Kelas -->
+              <tr>
+                  <td class="w-1/2 p-2 font-bold">Kelas</td>
+                  <td class="w-1/2 p-2 font-bold">{{ $_GET['kelas'] }}</td>
+              </tr>
+
+              <!-- Semester -->
+              <tr>
+                <td class="w-1/2 p-2 font-bold">Semester</td>
+                <td class="w-1/2 p-2 font-bold">{{ $_GET['semester'] }}</td>
+              </tr>
+
+              <!-- Tahun Pelajaran -->
+              <tr>
+                <td class="w-1/2 p-2 font-bold">Tahun Pelajaran</td>
+                <td class="w-1/2 p-2 font-bold">{{ $_GET['tahun'] }}</td>
+              </tr>
+          </tbody>
+      </table>
+    </div>
+
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <h2 class="font-bold text-center">Capaian Hasil Belajar</h2>
+
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+
     <!-- Sikap Section -->
     <h2 class="font-bold">A. Sikap</h2>
     <h3 class="font-bold mt-3">Sikap Spiritual</h3>
@@ -501,6 +587,30 @@ Sastra Sunda/Cirebonan</td>
                 </td>
             </tr>
         </t>
+    </table>
+    <p>Tingkat Pemahaman Siswa: <span class="font-bold">{{ $evaluationResult }}</span></p>
+    <p>&nbsp;</p>
+    <h2 class="font-bold">C. Ketidakharidan</h2>
+    <table class="w-1/2 border-collapse border border-gray-300">
+        <tbody>
+            <!-- Sakit -->
+            <tr>
+                <td colspan="6" class="border border-gray-300 p-2 font-bold">Sakit</td>
+                <td colspan="6" class="border border-gray-300 p-2 font-bold">{{ $_GET['sakit'] }} Hari</td>
+            </tr>
+
+            <!-- Izin -->
+            <tr>
+                <td colspan="6" class="border border-gray-300 p-2 font-bold">Izin</td>
+                <td colspan="6" class="border border-gray-300 p-2 font-bold">{{ $_GET['izin'] }} Hari</td>
+            </tr>
+
+            <!-- Tanpa Keterangan -->
+            <tr>
+                <td colspan="6" class="border border-gray-300 p-2 font-bold">Tanpa Keterangan</td>
+                <td colspan="6" class="border border-gray-300 p-2 font-bold">{{ $_GET['alfa'] }} Hari</td>
+            </tr>
+        </tbody>
     </table>
 
     <p>&nbsp;</p>

@@ -108,14 +108,77 @@
 @endphp
 
 <form action="{{ route('studentreport.pdf') }}" method="get">
-<div>
+<div class="max-h-screen overflow-y-auto">
+    <!-- Header -->
+    <div class="flex">
+      <table class="w-1/2 border-gray-300">
+          <tbody>
+              <!-- Nama -->
+              <tr>
+                  <td class="w-1/2 p-2 font-bold">Nama</td>
+                  <td class="w-1/2 p-2 font-bold">
+                    <x-filament::input.wrapper class="w-full">
+                      <x-filament::input type="text" name="nama" required/>
+                    </x-filament::input.wrapper>
+                  </td>
+              </tr>
+
+              <!-- NISN -->
+              <tr>
+                  <td class="w-1/2 p-2 font-bold">Nomor Induk / NISN</td>
+                  <td class="w-1/2 p-2 font-bold">
+                    <x-filament::input.wrapper class="w-full">
+                      <x-filament::input type="text" name="nisn" required/>
+                    </x-filament::input.wrapper>
+                  </td>
+              </tr>
+          </tbody>
+      </table>
+
+      <table class="w-1/2 border-collapse border-gray-300">
+          <tbody>
+              <!-- Kelas -->
+              <tr>
+                  <td class="w-1/2 p-2 font-bold">Kelas</td>
+                  <td class="w-1/2 p-2 font-bold">
+                    <x-filament::input.wrapper class="w-full">
+                      <x-filament::input type="text" name="kelas" required/>
+                    </x-filament::input.wrapper>
+                  </td>
+              </tr>
+
+              <!-- Semester -->
+              <tr>
+                <td class="w-1/2 p-2 font-bold">Semester</td>
+                <td class="w-1/2 p-2 font-bold">
+                  <x-filament::input.wrapper class="w-full">
+                    <x-filament::input type="text" name="semester" required/>
+                  </x-filament::input.wrapper>
+                </td>
+              </tr>
+
+              <!-- Tahun Pelajaran -->
+              <tr>
+                <td class="w-1/2 p-2 font-bold">Tahun Pelajaran</td>
+                  <td class="w-1/2 p-2 font-bold">
+                    <x-filament::input.wrapper class="w-full">
+                      <x-filament::input type="text" name="tahun" required/>
+                    </x-filament::input.wrapper>
+                  </td>
+              </tr>
+          </tbody>
+      </table>
+    </div>
+
     <!-- Sikap Section -->
     <h2 class="font-bold">A. Sikap</h2>
     <h3 class="font-bold mt-3">Sikap Spiritual</h3>
-    <textarea rows="5" name="sikap-spiritual" id="ta-sikap-spiritual" class="rounded w-full mt-1"></textarea>
+    <textarea rows="5" name="sikap-spiritual" id="ta-sikap-spiritual" class="rounded mt-1
+    fi-input block w-full py-1.5 text-base text-gray-950 transition duration-75 placeholder:text-gray-400 focus:ring-0 disabled:text-gray-500 disabled:[-webkit-text-fill-color:theme(colors.gray.500)] disabled:placeholder:[-webkit-text-fill-color:theme(colors.gray.400)] dark:text-white dark:placeholder:text-gray-500 dark:disabled:text-gray-400 dark:disabled:[-webkit-text-fill-color:theme(colors.gray.400)] dark:disabled:placeholder:[-webkit-text-fill-color:theme(colors.gray.500)] sm:text-sm sm:leading-6 bg-white/0 ps-3 pe-3"></textarea>
     
     <h3 class="font-bold mt-3">Sikap Sosial</h3>
-    <textarea rows="5" name="sikap-sosial" id="ta-sikap-sosial" class="rounded w-full mt-1"></textarea>
+    <textarea rows="5" name="sikap-sosial" id="ta-sikap-sosial" class="rounded mt-1
+    fi-input block w-full py-1.5 text-base text-gray-950 transition duration-75 placeholder:text-gray-400 focus:ring-0 disabled:text-gray-500 disabled:[-webkit-text-fill-color:theme(colors.gray.500)] disabled:placeholder:[-webkit-text-fill-color:theme(colors.gray.400)] dark:text-white dark:placeholder:text-gray-500 dark:disabled:text-gray-400 dark:disabled:[-webkit-text-fill-color:theme(colors.gray.400)] dark:disabled:placeholder:[-webkit-text-fill-color:theme(colors.gray.500)] sm:text-sm sm:leading-6 bg-white/0 ps-3 pe-3"></textarea>
     
     <!-- Pengetahuan dan Keterampilan Section -->
     <h2 class="font-bold mt-6">B. Pengetahuan dan Keterampilan</h2>
@@ -145,10 +208,45 @@
             <tr>
                 <td class="border border-gray-300 p-2">{{ $index + 1 }}</td>
                 <td class="border border-gray-300 p-2">{{ $subject['name'] }}</td>
-                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokA[]" class="w-20 rounded"></td>
-                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokA[]" class="w-20 rounded"></td>
-                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokA[]" class="w-20 rounded"></td>
-                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokA[]" class="w-20 rounded"></td>
+                <td class="border border-gray-300 p-2 text-center">
+                  <x-filament::input.wrapper class="w-20">
+                      <x-filament::input
+                          type="text"
+                          name="knowledgeA[]"
+                          required
+                      />
+                  </x-filament::input.wrapper>
+                  {{-- <x-filament::input type="text" name="kelompokA[]" class="w-20 rounded"></x-filament::input> --}}
+                </td>
+                <td class="border border-gray-300 p-2 text-center">
+                  <x-filament::input.wrapper class="w-20">
+                      <x-filament::input
+                          type="text"
+                          name="knowledgeAletter[]"
+                          disabled
+                      />
+                  </x-filament::input.wrapper>
+                </td>
+                <td class="border border-gray-300 p-2 text-center">
+                  <x-filament::input.wrapper class="w-20">
+                      <x-filament::input
+                          type="text"
+                          name="skillA[]"
+                          required
+                      />
+                  </x-filament::input.wrapper>
+                  {{-- <input type="text" name="kelompokA[]" class="w-20 rounded"> --}}
+                </td>
+                <td class="border border-gray-300 p-2 text-center">
+                  <x-filament::input.wrapper class="w-20">
+                      <x-filament::input
+                          type="text"
+                          name="skillAletter[]"
+                          disabled
+                      />
+                  </x-filament::input.wrapper>
+                  {{-- <input type="text" name="kelompokA[]" class="w-20 rounded"> --}}
+                </td>
             </tr>
             @endforeach
             
@@ -160,10 +258,43 @@
             <tr>
                 <td class="border border-gray-300 p-2">{{ $index + 1 }}</td>
                 <td class="border border-gray-300 p-2">{{ $subject['name'] }}</td>
-                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokB[]" class="w-20 rounded"></td>
-                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokB[]" class="w-20 rounded"></td>
-                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokB[]" class="w-20 rounded"></td>
-                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokB[]" class="w-20 rounded"></td>
+                <td class="border border-gray-300 p-2 text-center">
+                  <x-filament::input.wrapper class="w-20">
+                      <x-filament::input
+                          type="text"
+                          name="knowledgeB[]"
+                          required
+                      />
+                  </x-filament::input.wrapper>
+                </td>
+                <td class="border border-gray-300 p-2 text-center">
+                  <x-filament::input.wrapper class="w-20">
+                      <x-filament::input
+                          type="text"
+                          name="knowledgeBletter[]"
+                          required
+                          disabled
+                      />
+                  </x-filament::input.wrapper>
+                </td>
+                <td class="border border-gray-300 p-2 text-center">
+                  <x-filament::input.wrapper class="w-20">
+                      <x-filament::input
+                          type="text"
+                          name="skillB[]"
+                          required
+                      />
+                  </x-filament::input.wrapper>
+                </td>
+                <td class="border border-gray-300 p-2 text-center">
+                  <x-filament::input.wrapper class="w-20">
+                      <x-filament::input
+                          type="text"
+                          name="skillBletter[]"
+                          disabled
+                      />
+                  </x-filament::input.wrapper>
+                </td>
             </tr>
             @endforeach
 
@@ -175,11 +306,51 @@
             @foreach ($kelompokC as $index => $subject)
             <tr>
                 <td class="border border-gray-300 p-2">{{ $index + 1 }}</td>
-                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokCMapel" value='' class="w-full rounded"></td>
-                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokC[]" class="w-20 rounded"></td>
-                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokC[]" class="w-20 rounded"></td>
-                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokC[]" class="w-20 rounded"></td>
-                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokC[]" class="w-20 rounded"></td>
+                <td class="border border-gray-300 p-2 text-center">
+                  <x-filament::input.wrapper class="w-full">
+                      <x-filament::input
+                          type="text"
+                          name="kelompokCMapel"
+                          value=""
+                      />
+                  </x-filament::input.wrapper>
+                </td>
+                <td class="border border-gray-300 p-2 text-center">
+                  <x-filament::input.wrapper class="w-20">
+                      <x-filament::input
+                          type="text"
+                          name="knowledgeC[]"
+                          value="0"
+                      />
+                  </x-filament::input.wrapper>
+                </td>
+                <td class="border border-gray-300 p-2 text-center">
+                  <x-filament::input.wrapper class="w-20">
+                      <x-filament::input
+                          type="text"
+                          name="knowledgeCletter[]"
+                          disabled
+                      />
+                  </x-filament::input.wrapper>
+                </td>
+                <td class="border border-gray-300 p-2 text-center">
+                  <x-filament::input.wrapper class="w-20">
+                      <x-filament::input
+                          type="text"
+                          name="skillC[]"
+                          value="0"
+                      />
+                  </x-filament::input.wrapper>
+                </td>
+                <td class="border border-gray-300 p-2 text-center">
+                  <x-filament::input.wrapper class="w-20">
+                      <x-filament::input
+                          type="text"
+                          name="skillCletter[]"
+                          disabled
+                      />
+                  </x-filament::input.wrapper>
+                </td>
             </tr>
             @endforeach
 
@@ -191,11 +362,51 @@
             @foreach ($kelompokD as $index => $subject)
             <tr>
                 <td class="border border-gray-300 p-2">{{ $index + 1 }}</td>
-                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokDMapel" value='' class="w-full rounded"></td>
-                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokD[]" class="w-20 rounded"></td>
-                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokD[]" class="w-20 rounded"></td>
-                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokD[]" class="w-20 rounded"></td>
-                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokD[]" class="w-20 rounded"></td>
+                <td class="border border-gray-300 p-2 text-center">
+                  <x-filament::input.wrapper class="w-full">
+                      <x-filament::input
+                          type="text"
+                          name="kelompokDMapel"
+                          value=""
+                      />
+                  </x-filament::input.wrapper>
+                </td>
+                <td class="border border-gray-300 p-2 text-center">
+                  <x-filament::input.wrapper class="w-20">
+                      <x-filament::input
+                          type="text"
+                          name="knowledgeD[]"
+                          value="0"
+                      />
+                  </x-filament::input.wrapper>
+                </td>
+                <td class="border border-gray-300 p-2 text-center">
+                  <x-filament::input.wrapper class="w-20">
+                      <x-filament::input
+                          type="text"
+                          name="knowledgeDletter[]"
+                          disabled
+                      />
+                  </x-filament::input.wrapper>
+                </td>
+                <td class="border border-gray-300 p-2 text-center">
+                  <x-filament::input.wrapper class="w-20">
+                      <x-filament::input
+                          type="text"
+                          name="skillD[]"
+                          value="0"
+                      />
+                  </x-filament::input.wrapper>
+                </td>
+                <td class="border border-gray-300 p-2 text-center">
+                  <x-filament::input.wrapper class="w-20">
+                      <x-filament::input
+                          type="text"
+                          name="skillDletter[]"
+                          disabled
+                      />
+                  </x-filament::input.wrapper>
+                </td>
             </tr>
             @endforeach
 
@@ -207,10 +418,42 @@
             <tr>
                 <td class="border border-gray-300 p-2">{{ $index + 1 }}</td>
                 <td class="border border-gray-300 p-2">{{ $subject['name'] }}</td>
-                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokE[]" class="w-20 rounded"></td>
-                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokE[]" class="w-20 rounded"></td>
-                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokE[]" class="w-20 rounded"></td>
-                <td class="border border-gray-300 p-2 text-center"><input type="text" name="kelompokE[]" class="w-20 rounded"></td>
+                <td class="border border-gray-300 p-2 text-center">
+                  <x-filament::input.wrapper class="w-20">
+                      <x-filament::input
+                          type="text"
+                          name="knowledgeE[]"
+                          required
+                      />
+                  </x-filament::input.wrapper>
+                </td>
+                <td class="border border-gray-300 p-2 text-center">
+                  <x-filament::input.wrapper class="w-20">
+                      <x-filament::input
+                          type="text"
+                          name="knowledgeEletter[]"
+                          disabled
+                      />
+                  </x-filament::input.wrapper>
+                </td>
+                <td class="border border-gray-300 p-2 text-center">
+                  <x-filament::input.wrapper class="w-20">
+                      <x-filament::input
+                          type="text"
+                          name="skillE[]"
+                          required
+                      />
+                  </x-filament::input.wrapper>
+                </td>
+                <td class="border border-gray-300 p-2 text-center">
+                  <x-filament::input.wrapper class="w-20">
+                      <x-filament::input
+                          type="text"
+                          name="skillEletter[]"
+                          disabled
+                      />
+                  </x-filament::input.wrapper>
+                </td>
             </tr>
             @endforeach
         </tbody>
@@ -527,6 +770,58 @@ Sastra Sunda/Cirebonan</td>
         </tbody>
     </table>
 
+
+    <h2 class="font-bold mt-6">C. Ketidakharidan</h2>
+    <table class="w-1/4 border-collapse border border-gray-300">
+        <tbody>
+            <!-- Sakit -->
+            <tr>
+                <td colspan="6" class="border border-gray-300 p-2 font-bold">Sakit</td>
+                <td colspan="6" class="border border-gray-300 p-2 font-bold">
+                  <x-filament::input.wrapper>
+                      <x-filament::input
+                          type="text"
+                          name="sakit"
+                          value="0"
+                      />
+                      <x-slot name="suffix">Hari</x-slot>
+                  </x-filament::input.wrapper>
+                </td>
+            </tr>
+
+            <!-- Izin -->
+            <tr>
+                <td colspan="6" class="border border-gray-300 p-2 font-bold">Izin</td>
+                <td colspan="6" class="border border-gray-300 p-2 font-bold">
+                  <x-filament::input.wrapper>
+                      <x-filament::input
+                          type="text"
+                          name="izin"
+                          value="0"
+                      />
+                      <x-slot name="suffix">Hari</x-slot>
+                  </x-filament::input.wrapper>
+                </td>
+            </tr>
+
+            <!-- Tanpa Keterangan -->
+            <tr>
+                <td colspan="6" class="border border-gray-300 p-2 font-bold">Tanpa Keterangan</td>
+                <td colspan="6" class="border border-gray-300 p-2 font-bold">
+                  <x-filament::input.wrapper>
+                      <x-filament::input
+                          type="text"
+                          name="alfa"
+                          value="0"
+                      />
+                      <x-slot name="suffix">Hari</x-slot>
+                  </x-filament::input.wrapper>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+
     <p>&nbsp;</p>
     <p>&nbsp;</p>
     <div class="sign flex justify-between mt-10">
@@ -554,6 +849,101 @@ Sastra Sunda/Cirebonan</td>
   <x-filament::button type="submit" color="primary" >Print</x-filament::button>
 </div>
 </form>
+
+<script>
+    // Function to convert number to letter grade
+    function numberToLetterGrade(value) {
+        if (value >= 80.5) return 'A';
+        if (value >= 65.5) return 'B';
+        if (value >= 50.5) return 'C';
+        if (value > 0) return 'D';
+        return '-';
+    }
+
+    
+    // Kelompok A
+    document.getElementsByName('knowledgeA[]').forEach(function(input, index) {
+        input.addEventListener('change', function() {
+            const value = parseFloat(this.value);
+            const letterInput = document.getElementsByName('knowledgeAletter[]')[index];
+            letterInput.value = numberToLetterGrade(value);
+        });
+    });
+
+    document.getElementsByName('skillA[]').forEach(function(input, index) {
+        input.addEventListener('change', function() {
+            const value = parseFloat(this.value);
+            const letterInput = document.getElementsByName('skillAletter[]')[index];
+            letterInput.value = numberToLetterGrade(value);
+        });
+    });
+
+    // Kelompok B
+    document.getElementsByName('knowledgeB[]').forEach(function(input, index) {
+        input.addEventListener('change', function() {
+            const value = parseFloat(this.value);
+            const letterInput = document.getElementsByName('knowledgeBletter[]')[index];
+            letterInput.value = numberToLetterGrade(value);
+        });
+    });
+
+    document.getElementsByName('skillB[]').forEach(function(input, index) {
+        input.addEventListener('change', function() {
+            const value = parseFloat(this.value);
+            const letterInput = document.getElementsByName('skillBletter[]')[index];
+            letterInput.value = numberToLetterGrade(value);
+        });
+    });
+
+    // Kelompok C
+    document.getElementsByName('knowledgeC[]').forEach(function(input, index) {
+        input.addEventListener('change', function() {
+            const value = parseFloat(this.value);
+            const letterInput = document.getElementsByName('knowledgeCletter[]')[index];
+            letterInput.value = numberToLetterGrade(value);
+        });
+    });
+    document.getElementsByName('skillC[]').forEach(function(input, index) {
+        input.addEventListener('change', function() {
+            const value = parseFloat(this.value);
+            const letterInput = document.getElementsByName('skillCletter[]')[index];
+            letterInput.value = numberToLetterGrade(value);
+        });
+    });
+
+    // Kelompok D
+    document.getElementsByName('knowledgeD[]').forEach(function(input, index) {
+        input.addEventListener('change', function() {
+            const value = parseFloat(this.value);
+            const letterInput = document.getElementsByName('knowledgeDletter[]')[index];
+            letterInput.value = numberToLetterGrade(value);
+        });
+    });
+    document.getElementsByName('skillD[]').forEach(function(input, index) {
+        input.addEventListener('change', function() {
+            const value = parseFloat(this.value);
+            const letterInput = document.getElementsByName('skillDletter[]')[index];
+            letterInput.value = numberToLetterGrade(value);
+        });
+    });
+
+    // Kelompok E
+    document.getElementsByName('knowledgeE[]').forEach(function(input, index) {
+        input.addEventListener('change', function() {
+            const value = parseFloat(this.value);
+            const letterInput = document.getElementsByName('knowledgeEletter[]')[index];
+            letterInput.value = numberToLetterGrade(value);
+        });
+    });
+    document.getElementsByName('skillE[]').forEach(function(input, index) {
+        input.addEventListener('change', function() {
+            const value = parseFloat(this.value);
+            const letterInput = document.getElementsByName('skillEletter[]')[index];
+            letterInput.value = numberToLetterGrade(value);
+        });
+    });
+
+</script>
 
 
 
