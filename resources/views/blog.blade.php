@@ -36,8 +36,11 @@
               <i class="bi bi-file-earmark-text-fill icon"></i>
               <div>
                 <h3>{{ $post->title }}</h3>
-                <p>@php echo substr(strip_tags($post->content), 0, 500); @endphp</p>
-                <a href="{{ route('blog') . '/' . $post->slug }}" class="read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a>
+                <p>@php 
+                  $firstParagraph = preg_match('/<p>(.*?)<\/p>/', $post->content, $matches) ? $matches[1] : '';
+                  echo substr(strip_tags($firstParagraph), 0, 500); 
+                @endphp</p>
+                {{-- <a href="{{ route('blog') . '/' . $post->slug }}" class="read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a> --}}
               </div>
             </div>
           </div><!-- End Service Item -->

@@ -10,7 +10,7 @@
     </div>
     <div class="container text-center">
       <div class="d-flex flex-column justify-content-center align-items-center">
-        <h1 data-aos="fade-up">SLB <span>Bunda Bening</span></h1>
+        <h1 data-aos="fade-up">Sekolah Luar Biasa Bunda Bening Selakshahati</h1>
         <p data-aos="fade-up" data-aos-delay="100">Jl. Cibiru Beet Hilir, Cileunyi Wetan, Kabupaten Bandung, Jawa Barat<br></p>
         {{-- <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
           <a href="#about" class="btn-get-started">Get Started</a>
@@ -88,7 +88,7 @@
             <li><i class="bi bi-check-circle"></i> <span>Melaksanakan pembelajaran yang efektif, kreatif, inovatif dan menyenangkan.</span></li>
             <li><i class="bi bi-check-circle"></i> <span>Meningkatkan pemahaman dan penerapan ilmu pengetahuan dan teknologi.</span></li>
           </ul>
-          <a href="#" class="read-more"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+          {{-- <a href="#" class="read-more"><span>Read More</span><i class="bi bi-arrow-right"></i></a> --}}
         </div>
 
         <div class="col-lg-6 about-images" data-aos="fade-up" data-aos-delay="200">
@@ -116,7 +116,7 @@
   </section><!-- /About Section -->
 
   <!-- Clients Section -->
-  <section id="clients" class="clients section">
+  {{-- <section id="clients" class="clients section">
 
     <div class="container" data-aos="fade-up">
 
@@ -150,7 +150,8 @@
 
     </div>
 
-  </section><!-- /Clients Section -->
+  </section> --}}
+  <!-- /Clients Section -->
 
   <!-- Features Section -->
   <section id="features" class="features section">
@@ -301,7 +302,7 @@
             <div>
               <h3>Program Pendidikan Inklusif</h3>
               <p>Menyediakan kurikulum yang dirancang khusus untuk memenuhi kebutuhan belajar anak berkebutuhan khusus dalam lingkungan kelas reguler dengan dukungan tambahan dari tenaga pendidik terlatih dan asisten pendidikan.</p>
-              <a href="#" class="read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a>
+              {{-- <a href="#" class="read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a> --}}
             </div>
           </div>
         </div><!-- End Service Item -->
@@ -312,7 +313,7 @@
             <div>
               <h3>Kelas Terapi dan Dukungan Individu</h3>
               <p>Menawarkan sesi terapi khusus seperti terapi wicara, terapi okupasi, dan terapi fisik, yang disesuaikan dengan kebutuhan individu untuk membantu anak mengembangkan keterampilan motorik, bahasa, dan sosial.</p>
-              <a href="#" class="read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a>
+              {{-- <a href="#" class="read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a> --}}
             </div>
           </div>
         </div><!-- End Service Item -->
@@ -323,7 +324,7 @@
             <div>
               <h3>Layanan Konseling dan Dukungan Emosional</h3>
               <p>Menyediakan konseling psikologis dan dukungan emosional untuk anak-anak dan keluarga untuk membantu mengatasi tantangan emosional dan sosial serta meningkatkan kesejahteraan mental.</p>
-              <a href="#" class="read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a>
+              {{-- <a href="#" class="read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a> --}}
             </div>
           </div>
         </div><!-- End Service Item -->
@@ -334,7 +335,7 @@
             <div>
               <h3>Program Pengembangan Keterampilan Hidup</h3>
               <p>Mengajarkan keterampilan hidup sehari-hari seperti keterampilan mandiri, manajemen waktu, dan keterampilan sosial melalui kegiatan praktik langsung, dengan tujuan meningkatkan kemandirian anak.</p>
-              <a href="#" class="read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a>
+              {{-- <a href="#" class="read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a> --}}
             </div>
           </div>
         </div><!-- End Service Item -->
@@ -345,7 +346,7 @@
             <div>
               <h3>Pelatihan dan Edukasi untuk Orang Tua</h3>
               <p>Menawarkan workshop dan sesi pelatihan untuk orang tua tentang cara mendukung perkembangan anak berkebutuhan khusus di rumah, serta strategi untuk berkomunikasi dan bekerja sama dengan sekolah.</p>
-              <a href="#" class="read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a>
+              {{-- <a href="#" class="read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a> --}}
             </div>
           </div>
         </div><!-- End Service Item -->
@@ -356,7 +357,7 @@
             <div>
               <h3>Pendampingan dan Advokasi Pendidikan</h3>
               <p>Menyediakan layanan pendampingan untuk membantu keluarga berinteraksi dengan lembaga pendidikan dan mendapatkan hak-hak pendidikan anak berkebutuhan khusus, termasuk pembuatan dan peninjauan rencana pendidikan individual (IEP).</p>
-              <a href="#" class="read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a>
+              {{-- <a href="#" class="read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a> --}}
             </div>
           </div>
         </div><!-- End Service Item -->
@@ -746,11 +747,11 @@
       </div>
 
       <div class="row gy-4 mt-1">
-        <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
+        <div class="col-lg-12" data-aos="fade-up" data-aos-delay="300">
           <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.8340102908787!2d107.75372307548002!3d-6.910441867633191!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68dcac97238f99%3A0x786863fcc0925a02!2sSLB%20Autisma%20Bunda%20Bening%20Selakshahati!5e0!3m2!1sen!2sid!4v1725210145241!5m2!1sen!2sid" frameborder="0" style="border:0; width: 100%; height: 400px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div><!-- End Google Maps -->
 
-        <div class="col-lg-6">
+        {{-- <div class="col-lg-6">
           <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="400">
             <div class="row gy-4">
 
@@ -780,7 +781,8 @@
 
             </div>
           </form>
-        </div><!-- End Contact Form -->
+        </div> --}}
+        <!-- End Contact Form -->
 
       </div>
 

@@ -43,7 +43,7 @@
 			<a href="{{ route('home') }}" class="logo d-flex align-items-center me-auto">
 				{{-- <img src="/assets/img/logo.png" alt=""> --}}
 				<img src="{{ Storage::url('public/logo.jpeg') }}" alt="">
-				<h1 class="sitename">Bunda Bening</h1>
+				<h1 class="sitename">SLB BSH & SLB Bunda Bening</h1>
 			</a>
 
 			@include('components.navbar')
