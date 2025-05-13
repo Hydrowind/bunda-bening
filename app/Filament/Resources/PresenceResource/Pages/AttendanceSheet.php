@@ -36,7 +36,7 @@ class AttendanceSheet extends Page
                 
         $members = User::all();
         if ($user->hasRole('teacher')) { 
-            $members = User::role(['student', 'teacher'])->where('classroom', $user->classroom);
+            $members = User::role(['student'])->where('classroom', $user->classroom);
         }
 
         if ($user->hasRole('staff')) {

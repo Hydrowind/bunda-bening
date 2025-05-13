@@ -21,19 +21,43 @@
                 @foreach($datesInMonth as $date)
                     <th>{{ $date->format('d') }}</th>
                 @endforeach
+                <th>I</th>
+                <th>S</th>
+                <th>A</th>
             </tr>
         </thead>
         <tbody>
             @foreach($students as $student)
+                @php
+                    $countI = 0;
+                    $countS = 0;
+                    $countA = 0;
+                @endphp
                 <tr>
                     <td>{{ $student->name }}</td>
                     @foreach($datesInMonth as $date)
                         <td>
                             @if($student->presences->contains('date', $date))
-                                v
+                                @switch($student->presences->where('date', $date)->first()->note)
+                                    @case('izin')
+                                        <span>I</span>
+                                        @php $countI++; @endphp
+                                        @break
+                                    @case('sakit')
+                                        <span>S</span>
+                                        @php $countS++; @endphp
+                                        @break
+                                    @case('alpa')
+                                        <span>A</span>
+                                        @php $countA++; @endphp
+                                        @break
+                                @endswitch
                             @endif
                         </td>
                     @endforeach
+                    <td>{{ $countI }}</td>
+                    <td>{{ $countS }}</td>
+                    <td>{{ $countA }}</td>
                 </tr>
             @endforeach
         </tbody>
