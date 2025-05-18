@@ -22,3 +22,4 @@ Route::get('faq', [PageController::class, 'faq'])->name('faq');
 Route::get('blog/{slug}', [PageController::class, 'blogview'])->name('blog.view');
 Route::get('/presence/pdf', [PDFController::class, 'generatePDF'])->name('attendance.pdf');
 Route::get('/report/pdf', [PDFController::class, 'generateReportPDF'])->name('studentreport.pdf');
+Route::get('/paycheck/pdf', [PDFController::class, 'generatePaycheckPDF'])->name('paycheck.pdf');

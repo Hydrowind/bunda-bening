@@ -139,6 +139,7 @@ class PresenceResource extends Resource
             'qr' => Pages\QrPresence::route('/qr'),
             'faq' => Pages\Faq::route('/faq'),
             'students-report' => Pages\StudentsReport::route('/students-report'),
+            'paycheck' => Pages\Paycheck::route('/paycheck'),
         ];
     }
 

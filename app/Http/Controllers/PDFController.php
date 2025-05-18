@@ -135,4 +135,26 @@ class PDFController extends Controller
         // Download the PDF file
         return $pdf->download('rapor-siswa.pdf');
     }
+
+    public function generatePaycheckPDF(Request $request)
+    {
+        
+        // Pass the data to the view
+        $pdf = Pdf::loadView('pdf.paycheck-pdf', [
+            'name' => $request->input('name'),
+            'position' => $request->input('position'),
+            'period' => $request->input('period'),
+            'base' => $request->input('base'),
+            'transport' => $request->input('transport'),
+            'meal' => $request->input('meal'),
+            'gross' => $request->input('gross'),
+            'bpjs' => $request->input('bpjs'),
+            'loan' => $request->input('loan'),
+            'deduction' => $request->input('deduction'),
+            'netto' => $request->input('netto'),
+        ])->setPaper('a4', 'portrait');
+
+        // Download the PDF file
+        return $pdf->download('slip-gaji.pdf');
+    }
 }

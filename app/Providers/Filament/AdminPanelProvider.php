@@ -77,6 +77,13 @@ class AdminPanelProvider extends PanelProvider
                     ->sort(52)
                     ->url(fn():string => route('filament.admin.resources.presences.students-report'))
                     ->visible(fn() => auth()->user()->hasAnyRole(['teacher']))
+            ])
+            ->navigationItems([
+                NavigationItem::make('Slip Gaji')
+                    ->icon('heroicon-o-banknotes')
+                    ->sort(53)
+                    ->url(fn():string => route('filament.admin.resources.presences.paycheck'))
+                    ->visible(fn() => auth()->user()->hasAnyRole(['staff', 'admin']))
             ]);
     }
 }
