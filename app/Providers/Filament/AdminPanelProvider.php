@@ -72,13 +72,6 @@ class AdminPanelProvider extends PanelProvider
                     ->visible(fn() => auth()->user()->hasAnyRole(['teacher', 'staff']))
             ]) 
             ->navigationItems([
-                NavigationItem::make('Rapor Siswa')
-                    ->icon('heroicon-o-book-open')
-                    ->sort(52)
-                    ->url(fn():string => route('filament.admin.resources.presences.students-report'))
-                    ->visible(fn() => auth()->user()->hasAnyRole(['teacher']))
-            ])
-            ->navigationItems([
                 NavigationItem::make('Slip Gaji')
                     ->icon('heroicon-o-banknotes')
                     ->sort(53)
