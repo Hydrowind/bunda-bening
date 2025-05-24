@@ -170,6 +170,9 @@ class UserResource extends Resource
         if(Auth::user()->hasAnyRole(['teacher'])) {
             return 'Siswa';
         }
+        if(Auth::user()->hasAnyRole(['staff'])) {
+            return 'Staff & Guru';
+        }
 
         return 'Staff, Guru, dan Siswa';
     }

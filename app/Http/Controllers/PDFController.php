@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Score;
 use App\Models\Student;
 use App\Models\User;
 use App\Services\StudentFuzzyEvaluator;
@@ -63,72 +64,96 @@ class PDFController extends Controller
         return $pdf->download('attendance-sheet-' . $selectedMonth . '.pdf');
     }
 
-    public function generateReportPDF(Request $request)
+    public function generateReportPDF(Request $request, int $id)
     {
         $evaluator = new StudentFuzzyEvaluator();
 
         $attitudeScore = 100;
 
-        $sum = 0;
-        for($i = 0; $i < count($_GET['knowledgeA']);) {
-            $sum += $_GET['knowledgeA'][$i];
-            $i++;
-        }
-        for($i = 0; $i < count($_GET['knowledgeB']);) {
-            $sum += $_GET['knowledgeB'][$i];
-            $i++;
-        }
-        for($i = 0; $i < count($_GET['knowledgeC']);) {
-            $sum += $_GET['knowledgeC'][$i];
-            $i++;
-        }
-        for($i = 0; $i < count($_GET['knowledgeD']);) {
-            $sum += $_GET['knowledgeD'][$i];
-            $i++;
-        }
-        for($i = 0; $i < count($_GET['knowledgeE']);) {
-            $sum += $_GET['knowledgeE'][$i];
-            $i++;
-        }
-        $knowledgeScore = $sum / (count($_GET['knowledgeA']) + count($_GET['knowledgeB']) + count($_GET['knowledgeC']) + count($_GET['knowledgeD']) + count($_GET['knowledgeE']));
+        $score = Score::find($id);
+
+        $groupA = [
+            'religion',
+            'nation',
+            'indonesia',
+            'math',
+            'english',
+            'science',
+            'social',
+        ];
+
+        $groupB = [
+            'art',
+            'sport',
+            'local_wisdom',
+        ];
+
+        $groupC = [
+            'interest',
+        ];
+
+        $groupD = [
+            'independence',
+        ];
+
+        $groupE = [
+            'extraordinary',
+        ];
+
 
         $sum = 0;
-        for($i = 0; $i < count($_GET['skillA']);) {
-            $sum += $_GET['skillA'][$i];
-            $i++;
+        $count = 0;
+
+        for($i = 0; $i < count($groupA); $i++) {
+            $sum += $score[$groupA[$i] . '_knowledge'];
+            $count++;
         }
-        for($i = 0; $i < count($_GET['skillB']);) {
-            $sum += $_GET['skillB'][$i];
-            $i++;
+        for($i = 0; $i < count($groupB); $i++) {
+            $sum += $score[$groupB[$i] . '_knowledge'];
+            $count++;
         }
-        for($i = 0; $i < count($_GET['skillC']);) {
-            $sum += $_GET['skillC'][$i];
-            $i++;
+        for($i = 0; $i < count($groupC); $i++) {
+            $sum += $score[$groupC[$i] . '_knowledge'];
+            $count++;
         }
-        for($i = 0; $i < count($_GET['skillD']);) {
-            $sum += $_GET['skillD'][$i];
-            $i++;
+        for($i = 0; $i < count($groupD); $i++) {
+            $sum += $score[$groupD[$i] . '_knowledge'];
+            $count++;
         }
-        for($i = 0; $i < count($_GET['skillE']);) {
-            $sum += $_GET['skillE'][$i];
-            $i++;
+        for($i = 0; $i < count($groupE); $i++) {
+            $sum += $score[$groupE[$i] . '_knowledge'];
+            $count++;
         }
-        $skillScore = $sum / (count($_GET['skillA']) + count($_GET['skillB']) + count($_GET['skillC']) + count($_GET['skillD']) + count($_GET['skillE']));
+        $knowledgeScore = $sum / $count;
+
+        $sum = 0;
+        $count = 0;
+        for($i = 0; $i < count($groupA); $i++) {
+            $sum += $score[$groupA[$i] . '_skill'];
+            $count++;
+        }
+        for($i = 0; $i < count($groupB); $i++) {
+            $sum += $score[$groupB[$i] . '_skill'];
+            $count++;
+        }
+        for($i = 0; $i < count($groupC); $i++) {
+            $sum += $score[$groupC[$i] . '_skill'];
+            $count++;
+        }
+        for($i = 0; $i < count($groupD); $i++) {
+            $sum += $score[$groupD[$i] . '_skill'];
+            $count++;
+        }
+        for($i = 0; $i < count($groupE); $i++) {
+            $sum += $score[$groupE[$i] . '_skill'];
+            $count++;
+        }
+        $skillScore = $sum / $count;
+
         
         // Pass the data to the view
         $pdf = Pdf::loadView('student-report-pdf', [
-            'knowledgeA' => $request->input('knowledgeA'),
-            'knowledgeB' => $request->input('knowledgeB'),
-            'knowledgeC' => $request->input('knowledgeC'),
-            'knowledgeD' => $request->input('knowledgeD'),
-            'knowledgeE' => $request->input('knowledgeE'),
-
-            'skillA' => $request->input('skillA'),
-            'skillB' => $request->input('skillB'),
-            'skillC' => $request->input('skillC'),
-            'skillD' => $request->input('skillD'),
-            'skillE' => $request->input('skillE'),
-
+            'score' => $score,
             'evaluationResult' => $evaluator->evaluate($attitudeScore, knowledgeScore: $knowledgeScore, skillScore: $skillScore)
         ])->setPaper('a4', 'portrait');
 

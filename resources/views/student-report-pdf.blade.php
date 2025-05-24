@@ -2,6 +2,74 @@
 
 @section('body')
 @php
+  $kelompokA = [
+    [
+      'name' => 'Pendidikan Agama dan Budi Pekerti',
+      'model' => 'religion',
+    ],
+    [
+      'name' => 'Pendidikan Pancasila dan Kewarganegaraan',
+      'model' => 'nation',
+    ],
+    [
+      'name' => 'Bahasa Indonesia',
+      'model' => 'indonesia',
+    ],
+    [
+      'name' => 'Matematika',
+      'model' => 'math',
+    ],
+    [
+      'name' => 'Bahasa Inggris',
+      'model' => 'english',
+    ],
+    [
+      'name' => 'Ilmu Pengetahuan Alam',
+      'model' => 'science',
+    ],
+    [
+      'name' => 'Ilmu Pengetahuan Sosial',
+      'model' => 'social',
+    ],
+  ];
+
+  $kelompokB = [
+    [
+      'name' => 'Seni Budaya',
+      'model' => 'art',
+    ],
+    [
+      'name' => 'Pendidikan Jasmani, Olah Raga, dan Kesehatan',
+      'model' => 'sport',
+    ],
+    [
+      'name' => 'Muatan Lokal Bahasa dan Sastra Sunda/Cirebonan',
+      'model' => 'local_wisdom',
+    ]
+  ];
+
+  $kelompokC = [
+    [
+      'name' => '..............................',
+      'model' => 'interest',
+    ],
+  ];
+
+  $kelompokD = [
+    [
+      'name' => '..............................',
+      'model' => 'independence',
+    ],
+  ];
+
+  $kelompokE = [
+    [
+      'name' => 'Program Khusus',
+      'model' => 'extraordinary',
+    ],
+  ];
+
+
 
   // Function to convert number to letter grade
   function numberToLetterGrade($value) {
@@ -12,107 +80,12 @@
     return '-';
   }
 
-  $kelompokAMapel= [
-    'Pendidikan Agama dan Budi Pekerti',
-    'Pendidikan Pancasila dan Kewarganegaraan',
-    'Bahasa Indonesia',
-    'Matematika',
-    'Ilmu Pengetahuan Alam',
-    'Ilmu Pengetahuan Sosial',
-    'Bahasa Inggris'
-  ];
-
-  $kelompokA = [];
-  $data = [];
-  $j=0;
-  for($i = 0; $i < count($_GET['knowledgeA']); $i++) {
-    $knowledgeScore = $_GET['knowledgeA'][$i];
-    $skillScore = $_GET['skillA'][$i];
-
-    $data['name'] = $kelompokAMapel[$j++];
-    $data['knowledge_score'] =$knowledgeScore;
-    $data['knowledge_grade'] = numberToLetterGrade($knowledgeScore);
-    $data['skill_score'] = $skillScore;
-    $data['skill_grade'] = numberToLetterGrade($skillScore);
-
-    array_push($kelompokA, $data);
-  }
-
-  $kelompokBMapel = [
-    'Seni Budaya dan Prakarya',
-    'Pendidikan Jasmani, Olahraga dan Kesehatan',
-    'Muatan Lokal Bahasa dan Sastra Sunda/Cirebonan'
-  ];
-  $kelompokB = [];
-  $data = [];
-  $j=0;
-  for($i = 0; $i < count($_GET['knowledgeB']); $i++) {
-    $knowledgeScore = $_GET['knowledgeB'][$i];
-    $skillScore = $_GET['skillB'][$i];
-
-    $data['name'] = $kelompokBMapel[$j++];
-    $data['knowledge_score'] =$knowledgeScore;
-    $data['knowledge_grade'] = numberToLetterGrade($knowledgeScore);
-    $data['skill_score'] = $skillScore;
-    $data['skill_grade'] = numberToLetterGrade($skillScore);
-
-    array_push($kelompokB, $data);
-  }
-
-  $kelompokC = [];
-  $data = [];
-  for($i = 0; $i < count($_GET['knowledgeC']); $i++) {
-    $knowledgeScore = $_GET['knowledgeC'][$i];
-    $skillScore = $_GET['skillC'][$i];
-
-    $data['name'] = $_GET['kelompokCMapel'];
-    $data['knowledge_score'] =$knowledgeScore;
-    $data['knowledge_grade'] = numberToLetterGrade($knowledgeScore);
-    $data['skill_score'] = $skillScore;
-    $data['skill_grade'] = numberToLetterGrade($skillScore);
-
-    array_push($kelompokC, $data);
-  }
-
-  $kelompokD = [];
-  $data = [];
-  for($i = 0; $i < count($_GET['knowledgeD']); $i++) {
-    $knowledgeScore = $_GET['knowledgeD'][$i];
-    $skillScore = $_GET['skillD'][$i];
-
-    $data['name'] = $_GET['kelompokDMapel'];
-    $data['knowledge_score'] =$knowledgeScore;
-    $data['knowledge_grade'] = numberToLetterGrade($knowledgeScore);
-    $data['skill_score'] = $skillScore;
-    $data['skill_grade'] = numberToLetterGrade($skillScore);
-
-    array_push($kelompokD, $data);
-  }
-
-  $kelompokEMapel = [
-    'Program Khusus Bina Diri'
-  ];
-  $kelompokE = [];
-  $data = [];
-  $j=0;
-  for($i = 0; $i < count($_GET['knowledgeE']); $i++) {
-    $knowledgeScore = $_GET['knowledgeE'][$i];
-    $skillScore = $_GET['skillE'][$i];
-
-    $data['name'] = $kelompokEMapel[$j++];
-    $data['knowledge_score'] =$knowledgeScore;
-    $data['knowledge_grade'] = numberToLetterGrade($knowledgeScore);
-    $data['skill_score'] = $skillScore;
-    $data['skill_grade'] = numberToLetterGrade($skillScore);
-
-    array_push($kelompokE, $data);
-  }
 @endphp
 
 <div>
 <!-- Header -->
     <div class="flex">
-      <table class="w-1/2 border-gray-300">
+      <table class="w-1/3 border-gray-300">
           <tbody>
             <!-- Nama Sekolah -->
             <tr>
@@ -129,35 +102,35 @@
             <!-- Nama -->
             <tr>
                 <td class="w-1/2 p-2 font-bold">Nama</td>
-                <td class="w-1/2 p-2 font-bold">{{ $_GET['nama'] }}</td>
+                <td class="w-1/2 p-2 font-bold">{{ $score->name }}</td>
             </tr>
 
             <!-- NISN -->
             <tr>
                 <td class="w-1/2 p-2 font-bold">Nomor Induk / NISN</td>
-                <td class="w-1/2 p-2 font-bold">{{ $_GET['nisn'] }}</td>
+                <td class="w-1/2 p-2 font-bold">{{ $score->nisn }}</td>
             </tr>
           </tbody>
       </table>
 
-      <table class="w-1/2 border-collapse border-gray-300">
+      <table class="w-1/3 border-collapse border-gray-300">
           <tbody>
               <!-- Kelas -->
               <tr>
                   <td class="w-1/2 p-2 font-bold">Kelas</td>
-                  <td class="w-1/2 p-2 font-bold">{{ $_GET['kelas'] }}</td>
+                  <td class="w-1/2 p-2 font-bold">{{ $score->class }}</td>
               </tr>
 
               <!-- Semester -->
               <tr>
                 <td class="w-1/2 p-2 font-bold">Semester</td>
-                <td class="w-1/2 p-2 font-bold">{{ $_GET['semester'] }}</td>
+                <td class="w-1/2 p-2 font-bold">{{ $score->semester }}</td>
               </tr>
 
               <!-- Tahun Pelajaran -->
               <tr>
                 <td class="w-1/2 p-2 font-bold">Tahun Pelajaran</td>
-                <td class="w-1/2 p-2 font-bold">{{ $_GET['tahun'] }}</td>
+                <td class="w-1/2 p-2 font-bold">{{ $score->year }}</td>
               </tr>
           </tbody>
       </table>
@@ -173,10 +146,12 @@
     <!-- Sikap Section -->
     <h2 class="font-bold">A. Sikap</h2>
     <h3 class="font-bold mt-3">Sikap Spiritual</h3>
-    <p>{{ $_GET['sikap-spiritual'] }}</p>
+    <textarea rows="5" wire:model="spiritual_attitude" id="ta-sikap-spiritual" class="rounded mt-1
+    fi-input block w-full py-1.5 text-base text-gray-950 transition duration-75 placeholder:text-gray-400 focus:ring-0 disabled:text-gray-500 disabled:[-webkit-text-fill-color:theme(colors.gray.500)] disabled:placeholder:[-webkit-text-fill-color:theme(colors.gray.400)] dark:text-white dark:placeholder:text-gray-500 dark:disabled:text-gray-400 dark:disabled:[-webkit-text-fill-color:theme(colors.gray.400)] dark:disabled:placeholder:[-webkit-text-fill-color:theme(colors.gray.500)] sm:text-sm sm:leading-6 bg-white/0 ps-3 pe-3"></textarea>
     
     <h3 class="font-bold mt-3">Sikap Sosial</h3>
-    <p>{{ $_GET['sikap-sosial'] }}</p>
+    <textarea rows="5" wire:model="social_attitude" id="ta-sikap-sosial" class="rounded mt-1
+    fi-input block w-full py-1.5 text-base text-gray-950 transition duration-75 placeholder:text-gray-400 focus:ring-0 disabled:text-gray-500 disabled:[-webkit-text-fill-color:theme(colors.gray.500)] disabled:placeholder:[-webkit-text-fill-color:theme(colors.gray.400)] dark:text-white dark:placeholder:text-gray-500 dark:disabled:text-gray-400 dark:disabled:[-webkit-text-fill-color:theme(colors.gray.400)] dark:disabled:placeholder:[-webkit-text-fill-color:theme(colors.gray.500)] sm:text-sm sm:leading-6 bg-white/0 ps-3 pe-3"></textarea>
     
     <!-- Pengetahuan dan Keterampilan Section -->
     <h2 class="font-bold mt-6">B. Pengetahuan dan Keterampilan</h2>
@@ -206,10 +181,45 @@
             <tr>
                 <td class="border border-gray-300 p-2">{{ $index + 1 }}</td>
                 <td class="border border-gray-300 p-2">{{ $subject['name'] }}</td>
-                <td class="border border-gray-300 p-2">{{ $subject['knowledge_score'] }}</td>
-                <td class="border border-gray-300 p-2">{{ $subject['knowledge_grade'] }}</td>
-                <td class="border border-gray-300 p-2">{{ $subject['skill_score'] }}</td>
-                <td class="border border-gray-300 p-2">{{ $subject['skill_grade'] }}</td>
+                <td class="border border-gray-300 p-2 text-center">
+                  <x-filament::input.wrapper class="w-20">
+                      <x-filament::input
+                          type="text"
+                          value="{{ $score[$subject['model'] . '_knowledge'] }}"
+                          name="{{ $subject['model'] . '_knowledge' }}"
+                      />
+                  </x-filament::input.wrapper>
+                  {{-- <x-filament::input type="text" name="kelompokA[]" class="w-20 rounded"></x-filament::input> --}}
+                </td>
+                <td class="border border-gray-300 p-2 text-center">
+                  <x-filament::input.wrapper class="w-20">
+                      <x-filament::input
+                          type="text"
+                          name="{{ $subject['model'] . '_knowledge_letter' }}"
+                          disabled
+                      />
+                  </x-filament::input.wrapper>
+                </td>
+                <td class="border border-gray-300 p-2 text-center">
+                  <x-filament::input.wrapper class="w-20">
+                      <x-filament::input
+                          type="text"
+                          value="{{ $score[$subject['model'] . '_skill'] }}"
+                          name="{{ $subject['model'] . '_skill' }}"
+                      />
+                  </x-filament::input.wrapper>
+                  {{-- <input type="text" name="kelompokA[]" class="w-20 rounded"> --}}
+                </td>
+                <td class="border border-gray-300 p-2 text-center">
+                  <x-filament::input.wrapper class="w-20">
+                      <x-filament::input
+                          type="text"
+                          name="{{ $subject['model'] . '_skill_letter' }}"
+                          disabled
+                      />
+                  </x-filament::input.wrapper>
+                  {{-- <input type="text" name="kelompokA[]" class="w-20 rounded"> --}}
+                </td>
             </tr>
             @endforeach
             
@@ -221,10 +231,42 @@
             <tr>
                 <td class="border border-gray-300 p-2">{{ $index + 1 }}</td>
                 <td class="border border-gray-300 p-2">{{ $subject['name'] }}</td>
-                <td class="border border-gray-300 p-2">{{ $subject['knowledge_score'] }}</td>
-                <td class="border border-gray-300 p-2">{{ $subject['knowledge_grade'] }}</td>
-                <td class="border border-gray-300 p-2">{{ $subject['skill_score'] }}</td>
-                <td class="border border-gray-300 p-2">{{ $subject['skill_grade'] }}</td>
+                <td class="border border-gray-300 p-2 text-center">
+                  <x-filament::input.wrapper class="w-20">
+                      <x-filament::input
+                          type="text"
+                          value="{{ $score[$subject['model'] . '_knowledge'] }}"
+                          name="{{ $subject['model'] . '_knowledge' }}"
+                      />
+                  </x-filament::input.wrapper>
+                </td>
+                <td class="border border-gray-300 p-2 text-center">
+                  <x-filament::input.wrapper class="w-20">
+                      <x-filament::input
+                          type="text"
+                          name="{{ $subject['model'] . '_knowledge_letter' }}"
+                          disabled
+                      />
+                  </x-filament::input.wrapper>
+                </td>
+                <td class="border border-gray-300 p-2 text-center">
+                  <x-filament::input.wrapper class="w-20">
+                      <x-filament::input
+                          type="text"
+                          value="{{ $score[$subject['model'] . '_skill'] }}"
+                          name="{{ $subject['model'] . '_skill' }}"
+                      />
+                  </x-filament::input.wrapper>
+                </td>
+                <td class="border border-gray-300 p-2 text-center">
+                  <x-filament::input.wrapper class="w-20">
+                      <x-filament::input
+                          type="text"
+                          name="{{ $subject['model'] . '_skill_letter' }}"
+                          disabled
+                      />
+                  </x-filament::input.wrapper>
+                </td>
             </tr>
             @endforeach
 
@@ -236,11 +278,53 @@
             @foreach ($kelompokC as $index => $subject)
             <tr>
                 <td class="border border-gray-300 p-2">{{ $index + 1 }}</td>
-                <td class="border border-gray-300 p-2">{{ $subject['name'] }}</td>
-                <td class="border border-gray-300 p-2">{{ $subject['knowledge_score'] }}</td>
-                <td class="border border-gray-300 p-2">{{ $subject['knowledge_grade'] }}</td>
-                <td class="border border-gray-300 p-2">{{ $subject['skill_score'] }}</td>
-                <td class="border border-gray-300 p-2">{{ $subject['skill_grade'] }}</td>
+                <td class="border border-gray-300 p-2 text-center">
+                  <x-filament::input.wrapper class="w-full">
+                      <x-filament::input
+                          type="text"
+                          value="{{ $score[$subject['model'] . '_subject'] }}"
+                          value=""
+                      />
+                  </x-filament::input.wrapper>
+                </td>
+                <td class="border border-gray-300 p-2 text-center">
+                  <x-filament::input.wrapper class="w-20">
+                      <x-filament::input
+                          type="text"
+                          value="{{ $score[$subject['model'] . '_knowledge'] }}"
+                          name="{{ $subject['model'] . '_knowledge' }}"
+                          value="0"
+                      />
+                  </x-filament::input.wrapper>
+                </td>
+                <td class="border border-gray-300 p-2 text-center">
+                  <x-filament::input.wrapper class="w-20">
+                      <x-filament::input
+                          type="text"
+                          name="{{ $subject['model'] . '_knowledge_letter' }}"
+                          disabled
+                      />
+                  </x-filament::input.wrapper>
+                </td>
+                <td class="border border-gray-300 p-2 text-center">
+                  <x-filament::input.wrapper class="w-20">
+                      <x-filament::input
+                          type="text"
+                          value="{{ $score[$subject['model'] . '_skill'] }}"
+                          name="{{ $subject['model'] . '_skill' }}"
+                          value="0"
+                      />
+                  </x-filament::input.wrapper>
+                </td>
+                <td class="border border-gray-300 p-2 text-center">
+                  <x-filament::input.wrapper class="w-20">
+                      <x-filament::input
+                          type="text"
+                          name="{{ $subject['model'] . '_skill_letter' }}"
+                          disabled
+                      />
+                  </x-filament::input.wrapper>
+                </td>
             </tr>
             @endforeach
 
@@ -252,11 +336,53 @@
             @foreach ($kelompokD as $index => $subject)
             <tr>
                 <td class="border border-gray-300 p-2">{{ $index + 1 }}</td>
-                <td class="border border-gray-300 p-2">{{ $subject['name'] }}</td>
-                <td class="border border-gray-300 p-2">{{ $subject['knowledge_score'] }}</td>
-                <td class="border border-gray-300 p-2">{{ $subject['knowledge_grade'] }}</td>
-                <td class="border border-gray-300 p-2">{{ $subject['skill_score'] }}</td>
-                <td class="border border-gray-300 p-2">{{ $subject['skill_grade'] }}</td>
+                <td class="border border-gray-300 p-2 text-center">
+                  <x-filament::input.wrapper class="w-full">
+                      <x-filament::input
+                          type="text"
+                          value="{{ $score[$subject['model'] . '_subject'] }}"
+                          value=""
+                      />
+                  </x-filament::input.wrapper>
+                </td>
+                <td class="border border-gray-300 p-2 text-center">
+                  <x-filament::input.wrapper class="w-20">
+                      <x-filament::input
+                          type="text"
+                          value="{{ $score[$subject['model'] . '_knowledge'] }}"
+                          name="{{ $subject['model'] . '_knowledge' }}"
+                          value="0"
+                      />
+                  </x-filament::input.wrapper>
+                </td>
+                <td class="border border-gray-300 p-2 text-center">
+                  <x-filament::input.wrapper class="w-20">
+                      <x-filament::input
+                          type="text"
+                          name="{{ $subject['model'] . '_knowledge_letter' }}"
+                          disabled
+                      />
+                  </x-filament::input.wrapper>
+                </td>
+                <td class="border border-gray-300 p-2 text-center">
+                  <x-filament::input.wrapper class="w-20">
+                      <x-filament::input
+                          type="text"
+                          value="{{ $score[$subject['model'] . '_skill'] }}"
+                          name="{{ $subject['model'] . '_skill' }}"
+                          value="0"
+                      />
+                  </x-filament::input.wrapper>
+                </td>
+                <td class="border border-gray-300 p-2 text-center">
+                  <x-filament::input.wrapper class="w-20">
+                      <x-filament::input
+                          type="text"
+                          name="{{ $subject['model'] . '_skill_letter' }}"
+                          disabled
+                      />
+                  </x-filament::input.wrapper>
+                </td>
             </tr>
             @endforeach
 
@@ -268,10 +394,42 @@
             <tr>
                 <td class="border border-gray-300 p-2">{{ $index + 1 }}</td>
                 <td class="border border-gray-300 p-2">{{ $subject['name'] }}</td>
-                <td class="border border-gray-300 p-2">{{ $subject['knowledge_score'] }}</td>
-                <td class="border border-gray-300 p-2">{{ $subject['knowledge_grade'] }}</td>
-                <td class="border border-gray-300 p-2">{{ $subject['skill_score'] }}</td>
-                <td class="border border-gray-300 p-2">{{ $subject['skill_grade'] }}</td>
+                <td class="border border-gray-300 p-2 text-center">
+                  <x-filament::input.wrapper class="w-20">
+                      <x-filament::input
+                          type="text"
+                          value="{{ $score[$subject['model'] . '_knowledge'] }}"
+                          name="{{ $subject['model'] . '_knowledge' }}"
+                      />
+                  </x-filament::input.wrapper>
+                </td>
+                <td class="border border-gray-300 p-2 text-center">
+                  <x-filament::input.wrapper class="w-20">
+                      <x-filament::input
+                          type="text"
+                          name="{{ $subject['model'] . '_knowledge_letter' }}"
+                          disabled
+                      />
+                  </x-filament::input.wrapper>
+                </td>
+                <td class="border border-gray-300 p-2 text-center">
+                  <x-filament::input.wrapper class="w-20">
+                      <x-filament::input
+                          type="text"
+                          value="{{ $score[$subject['model'] . '_skill'] }}"
+                          name="{{ $subject['model'] . '_skill' }}"
+                      />
+                  </x-filament::input.wrapper>
+                </td>
+                <td class="border border-gray-300 p-2 text-center">
+                  <x-filament::input.wrapper class="w-20">
+                      <x-filament::input
+                          type="text"
+                          name="{{ $subject['model'] . '_skill_letter' }}"
+                          disabled
+                      />
+                  </x-filament::input.wrapper>
+                </td>
             </tr>
             @endforeach
         </tbody>
@@ -474,7 +632,6 @@
                 </td>
             </tr>
 
-            <div class="page-break"></div>
             <!-- Kelompok B Section -->
             <tr>
                 <td colspan="4" class="border border-gray-300 p-2 font-bold">Kelompok B (Wajib)</td>
@@ -586,29 +743,56 @@ Sastra Sunda/Cirebonan</td>
                   </ul>
                 </td>
             </tr>
-        </t>
+        </tbody>
     </table>
-    <p>Tingkat Pemahaman Siswa: <span class="font-bold">{{ $evaluationResult }}</span></p>
-    <p>&nbsp;</p>
-    <h2 class="font-bold">C. Ketidakharidan</h2>
-    <table class="w-1/2 border-collapse border border-gray-300">
+
+
+    <h2 class="font-bold mt-6">C. Ketidakharidan</h2>
+    <table class="w-1/4 border-collapse border border-gray-300">
         <tbody>
             <!-- Sakit -->
             <tr>
                 <td colspan="6" class="border border-gray-300 p-2 font-bold">Sakit</td>
-                <td colspan="6" class="border border-gray-300 p-2 font-bold">{{ $_GET['sakit'] }} Hari</td>
+                <td colspan="6" class="border border-gray-300 p-2 font-bold">
+                  <x-filament::input.wrapper>
+                      <x-filament::input
+                          type="text"
+                          wire:model="{{ $score->sick}}"
+                          value="0"
+                      />
+                      <x-slot name="suffix">Hari</x-slot>
+                  </x-filament::input.wrapper>
+                </td>
             </tr>
 
             <!-- Izin -->
             <tr>
                 <td colspan="6" class="border border-gray-300 p-2 font-bold">Izin</td>
-                <td colspan="6" class="border border-gray-300 p-2 font-bold">{{ $_GET['izin'] }} Hari</td>
+                <td colspan="6" class="border border-gray-300 p-2 font-bold">
+                  <x-filament::input.wrapper>
+                      <x-filament::input
+                          type="text"
+                           wire:model="{{ $score->permission }}"
+                          value="0"
+                      />
+                      <x-slot name="suffix">Hari</x-slot>
+                  </x-filament::input.wrapper>
+                </td>
             </tr>
 
             <!-- Tanpa Keterangan -->
             <tr>
                 <td colspan="6" class="border border-gray-300 p-2 font-bold">Tanpa Keterangan</td>
-                <td colspan="6" class="border border-gray-300 p-2 font-bold">{{ $_GET['alfa'] }} Hari</td>
+                <td colspan="6" class="border border-gray-300 p-2 font-bold">
+                  <x-filament::input.wrapper>
+                      <x-filament::input
+                          type="text"
+                           wire:model="{{ $score->absent }}"
+                          value="0"
+                      />
+                      <x-slot name="suffix">Hari</x-slot>
+                  </x-filament::input.wrapper>
+                </td>
             </tr>
         </tbody>
     </table>
@@ -634,4 +818,69 @@ Sastra Sunda/Cirebonan</td>
       </div>
     </div>
 </div>
+
+
+<script>
+    // Function to convert number to letter grade
+    function numberToLetterGrade(value) {
+        if (value >= 80.5) return 'A';
+        if (value >= 65.5) return 'B';
+        if (value >= 50.5) return 'C';
+        if (value > 0) return 'D';
+        return '-';
+    }
+
+    let subjects = [
+      'religion',
+      'nation',
+      'indonesia',
+      'math',
+      'english',
+      'science',
+      'social',
+
+      'art',
+      'sport',
+      'local_wisdom',
+
+      'independence',
+      'interest',
+
+      'extraordinary',
+    ]
+    
+    setTimeout(() => {
+      subjects.forEach(function(subject) {
+          const knowledgeInput = document.querySelector(`input[name="${subject}_knowledge"]`);
+          const skillInput = document.querySelector(`input[name="${subject}_skill"]`);
+
+          if (knowledgeInput) {
+              const value = parseFloat(knowledgeInput.value);
+              console.log(value);
+              const letterInput = document.querySelector(`input[name="${subject}_knowledge_letter"]`);
+              letterInput.value = numberToLetterGrade(value);
+
+              knowledgeInput.addEventListener('change', function() {
+                  const value = parseFloat(this.value);
+                  const letterInput = document.querySelector(`input[name="${subject}_knowledge_letter"]`);
+                  letterInput.value = numberToLetterGrade(value);
+              });
+          }
+
+          if (skillInput) {
+              const value = parseFloat(skillInput.value);
+              const letterInput = document.querySelector(`input[name="${subject}_skill_letter"]`);
+              letterInput.value = numberToLetterGrade(value);
+
+              skillInput.addEventListener('change', function() {
+                  const value = parseFloat(this.value);
+                  const letterInput = document.querySelector(`input[name="${subject}_skill_letter"]`);
+                  letterInput.value = numberToLetterGrade(value);
+              });
+          }
+      });
+    }, 1000);
+    
+
+</script>
 @endsection

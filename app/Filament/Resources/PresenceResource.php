@@ -145,7 +145,7 @@ class PresenceResource extends Resource
 
     public static function canViewAny(): bool
     {
-        return auth()->user()->hasAnyRole(['teacher', 'staff', 'admin', 'superadmin']);
+        return auth()->user()->hasAnyRole(['teacher', 'admin', 'superadmin']);
     }
 
     public static function getNavigationLabel(): string

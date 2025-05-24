@@ -68,4 +68,9 @@ class ScoreResource extends Resource
             'edit' => Pages\EditScore::route('/{record}/edit'),
         ];
     }
+
+    public static function canViewAny(): bool
+    {
+        return auth()->user()->hasAnyRole(['teacher', 'admin', 'superadmin']);
+    }
 }
