@@ -56,7 +56,6 @@ class AdminPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ])
-
             // ->navigationItems([
             //     NavigationItem::make('QR Absensi')
             //         ->icon('heroicon-o-qr-code')
