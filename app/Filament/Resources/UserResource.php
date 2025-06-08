@@ -167,14 +167,11 @@ class UserResource extends Resource
 
     public static function canViewAny(): bool
     {
-        return auth()->user()->hasAnyRole(['teacher', 'staff', 'admin', 'superadmin']);
+        return auth()->user()->hasAnyRole(['staff', 'admin', 'superadmin']);
     }
 
     public static function getNavigationLabel(): string
     {  
-        if(Auth::user()->hasAnyRole(['teacher'])) {
-            return 'Data Siswa';
-        }
         if(Auth::user()->hasAnyRole(['staff'])) {
             return 'Staff & Guru';
         }
@@ -184,10 +181,6 @@ class UserResource extends Resource
 
     public static function getModelLabel(): string
     {
-        if(Auth::user()->hasAnyRole(['teacher'])) {
-            return 'Siswa';
-        }
-
         return 'Anggota';
     }
 

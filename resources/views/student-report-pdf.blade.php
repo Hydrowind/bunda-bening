@@ -82,6 +82,20 @@
 
 @endphp
 
+<style>
+  @media screen {
+      .print {
+          display: none;
+      }
+  }
+
+  @media print {
+     .print {
+          display: block;
+      }
+ }
+</style>
+
 <div>
 <!-- Header -->
     <div class="flex">
@@ -146,16 +160,20 @@
     <!-- Sikap Section -->
     <h2 class="font-bold">A. Sikap</h2>
     <h3 class="font-bold mt-3">Sikap Spiritual</h3>
-    <textarea rows="5" wire:model="spiritual_attitude" id="ta-sikap-spiritual" class="rounded mt-1
-    fi-input block w-full py-1.5 text-base text-gray-950 transition duration-75 placeholder:text-gray-400 focus:ring-0 disabled:text-gray-500 disabled:[-webkit-text-fill-color:theme(colors.gray.500)] disabled:placeholder:[-webkit-text-fill-color:theme(colors.gray.400)] dark:text-white dark:placeholder:text-gray-500 dark:disabled:text-gray-400 dark:disabled:[-webkit-text-fill-color:theme(colors.gray.400)] dark:disabled:placeholder:[-webkit-text-fill-color:theme(colors.gray.500)] sm:text-sm sm:leading-6 bg-white/0 ps-3 pe-3"></textarea>
+    <div id="ta-sikap-spiritual" class="rounded mt-1
+    fi-input block w-full py-1.5 text-base text-gray-950 transition duration-75 placeholder:text-gray-400 focus:ring-0 disabled:text-gray-500 disabled:[-webkit-text-fill-color:theme(colors.gray.500)] disabled:placeholder:[-webkit-text-fill-color:theme(colors.gray.400)] dark:text-white dark:placeholder:text-gray-500 dark:disabled:text-gray-400 dark:disabled:[-webkit-text-fill-color:theme(colors.gray.400)] dark:disabled:placeholder:[-webkit-text-fill-color:theme(colors.gray.500)] sm:text-sm sm:leading-6 bg-white/0 ps-3 pe-3">
+      {{ $score->spiritual_attitude }}
+    </div>
     
     <h3 class="font-bold mt-3">Sikap Sosial</h3>
-    <textarea rows="5" wire:model="social_attitude" id="ta-sikap-sosial" class="rounded mt-1
-    fi-input block w-full py-1.5 text-base text-gray-950 transition duration-75 placeholder:text-gray-400 focus:ring-0 disabled:text-gray-500 disabled:[-webkit-text-fill-color:theme(colors.gray.500)] disabled:placeholder:[-webkit-text-fill-color:theme(colors.gray.400)] dark:text-white dark:placeholder:text-gray-500 dark:disabled:text-gray-400 dark:disabled:[-webkit-text-fill-color:theme(colors.gray.400)] dark:disabled:placeholder:[-webkit-text-fill-color:theme(colors.gray.500)] sm:text-sm sm:leading-6 bg-white/0 ps-3 pe-3"></textarea>
+    <div id="ta-sikap-sosial" class="rounded mt-1
+    fi-input block w-full py-1.5 text-base text-gray-950 transition duration-75 placeholder:text-gray-400 focus:ring-0 disabled:text-gray-500 disabled:[-webkit-text-fill-color:theme(colors.gray.500)] disabled:placeholder:[-webkit-text-fill-color:theme(colors.gray.400)] dark:text-white dark:placeholder:text-gray-500 dark:disabled:text-gray-400 dark:disabled:[-webkit-text-fill-color:theme(colors.gray.400)] dark:disabled:placeholder:[-webkit-text-fill-color:theme(colors.gray.500)] sm:text-sm sm:leading-6 bg-white/0 ps-3 pe-3">
+      {{ $score->social_attitude }}
+    </div>
     
     <!-- Pengetahuan dan Keterampilan Section -->
     <h2 class="font-bold mt-6">B. Pengetahuan dan Keterampilan</h2>
-    <table class="w-full border-collapse border border-gray-300">
+    <table class="w-full border border-gray-300">
         <thead>
             <tr>
                 <th class="border border-gray-300 p-2">No</th>
@@ -278,12 +296,11 @@
             @foreach ($kelompokC as $index => $subject)
             <tr>
                 <td class="border border-gray-300 p-2">{{ $index + 1 }}</td>
-                <td class="border border-gray-300 p-2 text-center">
+                <td class="border border-gray-300 p-2">
                   <x-filament::input.wrapper class="w-full">
                       <x-filament::input
                           type="text"
                           value="{{ $score[$subject['model'] . '_subject'] }}"
-                          value=""
                       />
                   </x-filament::input.wrapper>
                 </td>
@@ -336,12 +353,11 @@
             @foreach ($kelompokD as $index => $subject)
             <tr>
                 <td class="border border-gray-300 p-2">{{ $index + 1 }}</td>
-                <td class="border border-gray-300 p-2 text-center">
+                <td class="border border-gray-300 p-2">
                   <x-filament::input.wrapper class="w-full">
                       <x-filament::input
                           type="text"
                           value="{{ $score[$subject['model'] . '_subject'] }}"
-                          value=""
                       />
                   </x-filament::input.wrapper>
                 </td>
@@ -451,275 +467,49 @@
             <tr>
                 <td colspan="4" class="border border-gray-300 p-2 font-bold">Kelompok A (Wajib)</td>
             </tr>
-            <tr>
-                <td rowspan="2" class="border border-gray-300 p-2">1</td>
-                <td rowspan="2" class="border border-gray-300 p-2">Pendidikan Agama dan Budi Pekerti</td>
-                <td class="border border-gray-300 p-2">Pengetahuan</td>
-                <td class="border border-gray-300 p-2">
-                  <ul>
-                    <li>Memahami Surah Al-Fatihah</li>
-                    <p>"Peserta didik mampu memahami surat Al-Fatihah dengan sedikit bantuan"</p>
 
-                    <li>Memahami Rukun Iman</li>
-                    <p>"Peserta didik mampu dengan bimbingan untuk memahami rukun iman"</p>
-                  </ul>
-                </td>
-            </tr>
-            <tr>
-                <td class="border border-gray-300 p-2">Keterampilan</td>
-                <td class="border border-gray-300 p-2">
-                  <ul>
-                    <li>Menyalin Surah Al-Fatihah</li>
-                    <p>"Peserta didik mampu mandiri untuk menyalin surat Al-Fatihah"</p>
-                  </ul>
-                </td>
-            </tr>
+            @foreach ($kelompokA as $index => $subject)
+              <tr>
+                  <td rowspan="2" class="border border-gray-300 p-2">{{ $index + 1 }}</td>
+                  <td rowspan="2" class="border border-gray-300 p-2">{{ $subject['name'] }}</td>
+                  <td class="border border-gray-300 p-2">Pengetahuan</td>
+                  <td class="border border-gray-300 p-2">
+                    {{ $score[$subject['model'] . '_knowledge_description'] }}
+                  </td>
+              </tr>
+              <tr>
+                  <td class="border border-gray-300 p-2">Keterampilan</td>
+                  <td class="border border-gray-300 p-2">
+                    {{ $score[$subject['model'] . '_skill_description'] }}
+                  </td>
+              </tr>
+            @endforeach
 
-
-            <tr>
-                <td rowspan="2" class="border border-gray-300 p-2">2</td>
-                <td rowspan="2" class="border border-gray-300 p-2">Pendidikan Pancasila dan Kewarganegaraan</td>
-                <td class="border border-gray-300 p-2">Pengetahuan</td>
-                <td class="border border-gray-300 p-2">
-                  <ul>
-                    <li>Mengenal nama dan gambar lambang negara indonesia</li>
-                    <p>"Peserta didik mampu memahami surat Al-Fatihah dengan sedikit bantuan"</p>
-
-                    <li>Memahami Rukun Iman</li>
-                    <p>"Peserta didik mampu dengan bimbingan untuk memahami rukun iman"</p>
-                  </ul>
-                </td>
-            </tr>
-            <tr>
-                <td class="border border-gray-300 p-2">Keterampilan</td>
-                <td class="border border-gray-300 p-2">
-                  <ul>
-                    <li>Menyalin Surah Al-Fatihah</li>
-                    <p>"Peserta didik mampu mandiri untuk menyalin surat Al-Fatihah"</p>
-                  </ul>
-                </td>
-            </tr>
-
-            <tr>
-                <td rowspan="2" class="border border-gray-300 p-2">3</td>
-                <td rowspan="2" class="border border-gray-300 p-2">Bahasa Indonesia</td>
-                <td class="border border-gray-300 p-2">Pengetahuan</td>
-                <td class="border border-gray-300 p-2">
-                  <ul>
-                    <li>Mengenal huruf-huruf abjad dalam bahasa indonesia</li>
-                    <p>"Peserta didik mampu mengenal huruf abjad dengan bantuan"</p>
-
-                    <li>Mengenal bunyi bahasa indonesia</li>
-                    <p>"Peserta didik mampu mengenal bunyi bahasa indonesia dengan bimbingan"</p>
-                  </ul>
-                </td>
-            </tr>
-            <tr>
-                <td class="border border-gray-300 p-2">Keterampilan</td>
-                <td class="border border-gray-300 p-2">
-                  <ul>
-                    <li>Menyalin huruf-huruf abjad dalam bahasa indonesia</li>
-                    <p>"Peserta didik mampu menyalin huruf abjad dengan mandiri"</p>
-                  </ul>
-                </td>
-            </tr>
-
-            <tr>
-                <td rowspan="2" class="border border-gray-300 p-2">4</td> 
-                <td rowspan="2" class="border border-gray-300 p-2">Matematika</td>
-                <td class="border border-gray-300 p-2">Pengetahuan</td>
-                <td class="border border-gray-300 p-2">
-                  <ul>
-                    <li>Mengenal bilangan asli sampai 10 dengan menggunakan benda konkret</li>
-                    <p>"Peserta didik mampu mengenal bilangan 1-10 dengan bantuan"</p>
-
-                    <li>Mengenal bangun datar dan bangun ruang dengan menggunakan berbagai benda konkret</li>
-                    <p>"Peserta didik mampu mengenal bangun datar dengan bimbingan"</p>
-                  </ul>
-                </td>
-            </tr>
-            <tr>
-                <td class="border border-gray-300 p-2">Keterampilan</td>  
-                <td class="border border-gray-300 p-2">
-                  <ul>
-                    <li>Menuliskan bilangan asli sampai 10</li>
-                    <p>"Peserta didik mampu menuliskan bilangan 1-10 dengan mandiri"</p>
-
-                    <li>Mengelompokkan bangun datar dan bangun ruang</li>
-                    <p>"Peserta didik mampu mengelompokkan bangun datar dengan bantuan"</p>
-                  </ul>
-                </td>
-            </tr>
-
-            <tr>
-                <td rowspan="2" class="border border-gray-300 p-2">5</td>
-                <td rowspan="2" class="border border-gray-300 p-2">Ilmu Pengetahuan Alam</td>
-                <td class="border border-gray-300 p-2">Pengetahuan</td>
-                <td class="border border-gray-300 p-2">
-                  <ul>
-                    <li>Mengenal makhluk hidup dan lingkungan sekitar</li>
-                    <p>"Peserta didik mampu mengenal makhluk hidup dengan bantuan"</p>
-
-                    <li>Memahami perubahan wujud benda</li>
-                    <p>"Peserta didik mampu memahami perubahan wujud dengan bimbingan"</p>
-                  </ul>
-                </td>
-            </tr>
-            <tr>
-                <td class="border border-gray-300 p-2">Keterampilan</td>
-                <td class="border border-gray-300 p-2">
-                  <ul>
-                    <li>Melakukan pengamatan sederhana</li>
-                    <p>"Peserta didik mampu melakukan pengamatan dengan mandiri"</p>
-                    
-                    <li>Melakukan percobaan sederhana</li>
-                    <p>"Peserta didik mampu melakukan percobaan dengan bantuan"</p>
-                  </ul>
-                </td>
-            </tr>
-
-            <tr>
-                <td rowspan="2" class="border border-gray-300 p-2">6</td>
-                <td rowspan="2" class="border border-gray-300 p-2">Ilmu Pengetahuan Sosial</td>
-                <td class="border border-gray-300 p-2">Pengetahuan</td>
-                <td class="border border-gray-300 p-2">
-                  <ul>
-                    <li>Mengenal lingkungan keluarga dan sekolah</li>
-                    <p>"Peserta didik mampu mengenal lingkungan dengan bantuan"</p>
-
-                    <li>Memahami peran anggota keluarga</li>
-                    <p>"Peserta didik mampu memahami peran keluarga dengan bimbingan"</p>
-                  </ul>
-                </td>
-            </tr>
-            <tr>
-                <td class="border border-gray-300 p-2">Keterampilan</td>
-                <td class="border border-gray-300 p-2">
-                  <ul>
-                    <li>Menceritakan kegiatan sehari-hari</li>
-                    <p>"Peserta didik mampu menceritakan kegiatan dengan mandiri"</p>
-                    
-                    <li>Berinteraksi dengan lingkungan sosial</li>
-                    <p>"Peserta didik mampu berinteraksi dengan bantuan"</p>
-                  </ul>
-                </td>
-            </tr>
-
-            <tr>
-                <td rowspan="2" class="border border-gray-300 p-2">7</td>
-                <td rowspan="2" class="border border-gray-300 p-2">Bahasa Inggris</td>
-                <td class="border border-gray-300 p-2">Pengetahuan</td>
-                <td class="border border-gray-300 p-2">
-                  <ul>
-                    <li>Memahami kosakata dasar bahasa Inggris</li>
-                    <p>"Peserta didik mampu mengenal kosakata dasar dengan bantuan"</p>
-
-                    <li>Mengenal ungkapan sapaan sederhana</li>
-                    <p>"Peserta didik mampu mengenal ungkapan sapaan dengan bimbingan"</p>
-                  </ul>
-                </td>
-            </tr>
-            <tr>
-                <td class="border border-gray-300 p-2">Keterampilan</td>
-                <td class="border border-gray-300 p-2">
-                  <ul>
-                    <li>Mengucapkan kosakata sederhana</li>
-                    <p>"Peserta didik mampu mengucapkan kosakata dengan mandiri"</p>
-                    
-                    <li>Melakukan percakapan singkat</li>
-                    <p>"Peserta didik mampu melakukan percakapan dengan bantuan"</p>
-                  </ul>
-                </td>
-            </tr>
 
             <!-- Kelompok B Section -->
             <tr>
                 <td colspan="4" class="border border-gray-300 p-2 font-bold">Kelompok B (Wajib)</td>
             </tr>
 
-            <tr>
-                <td rowspan="2" class="border border-gray-300 p-2">1</td>
-                <td rowspan="2" class="border border-gray-300 p-2">Seni Budaya dan Prakarya</td>
-                <td class="border border-gray-300 p-2">Pengetahuan</td>
-                <td class="border border-gray-300 p-2">
-                  <ul>
-                    <li>Mengenal karya seni rupa dua dimensi</li>
-                    <p>"Peserta didik mampu mengenal karya seni rupa dua dimensi dengan bantuan"</p>
-
-                    <li>Mengenal lagu-lagu daerah</li>
-                    <p>"Peserta didik mampu mengenal lagu daerah dengan bimbingan"</p>
-                  </ul>
-                </td>
-            </tr>
-            <tr>
-                <td class="border border-gray-300 p-2">Keterampilan</td>
-                <td class="border border-gray-300 p-2">
-                  <ul>
-                    <li>Membuat karya seni rupa dua dimensi</li>
-                    <p>"Peserta didik mampu membuat karya seni rupa dua dimensi dengan mandiri"</p>
-                    
-                    <li>Menyanyikan lagu-lagu daerah</li>
-                    <p>"Peserta didik mampu menyanyikan lagu daerah dengan bantuan"</p>
-                  </ul>
-                </td>
-            </tr>
-
-            <tr>
-                <td rowspan="2" class="border border-gray-300 p-2">2</td>
-                <td rowspan="2" class="border border-gray-300 p-2">Pendidikan Jasmani, Olahraga dan Kesehatan</td>
-                <td class="border border-gray-300 p-2">Pengetahuan</td>
-                <td class="border border-gray-300 p-2">
-                  <ul>
-                    <li>Mengetahui bagian-bagian tubuh manusia</li>
-                    <p>"Peserta didik mampu mengetahui bagian tubuh dengan bantuan"</p>
-
-                    <li>Mengetahui cara menjaga kebersihan tubuh</li>
-                    <p>"Peserta didik mampu mengetahui cara menjaga kebersihan dengan bimbingan"</p>
-                  </ul>
-                </td>
-            </tr>
-            <tr>
-                <td class="border border-gray-300 p-2">Keterampilan</td>
-                <td class="border border-gray-300 p-2">
-                  <ul>
-                    <li>Mempraktikkan cara menjaga kebersihan tubuh</li>
-                    <p>"Peserta didik mampu mempraktikkan cara menjaga kebersihan dengan mandiri"</p>
-                    
-                    <li>Melakukan gerak dasar lokomotor</li>
-                    <p>"Peserta didik mampu melakukan gerak dasar dengan bantuan"</p>
-                  </ul>
-                </td>
-            </tr>
-
-            
-
-            <tr>
-                <td rowspan="2" class="border border-gray-300 p-2">3</td>
-                <td rowspan="2" class="border border-gray-300 p-2">Muatan Lokal Bahasa dan
-Sastra Sunda/Cirebonan</td>
-                <td class="border border-gray-300 p-2">Pengetahuan</td>
-                <td class="border border-gray-300 p-2">
-                  <ul>
-                    <li>Mengenal adab sopan santun dalam kehidupan sehari-hari</li>
-                    <p>"Peserta didik mampu mandiri untuk mengenal adab sopan santun dalam kehidupan sehari-hari"</p>
-                  </ul>
-                </td>
-            </tr>
-            <tr>
-                <td class="border border-gray-300 p-2">Keterampilan</td>
-                <td class="border border-gray-300 p-2">
-                  <ul>
-                    <li>Melabel warna, benda, angka, panca indra, buah dan sayuran</li>
-                    <p>"Peserta didik mampu mandiri untuk melabel warna, benda, angka, panca indra, buah dan sayuran"</p>
-                    
-                    <li>Mengelompokan sayuran berdasarkan warnanya</li>
-                    <p>"Peserta didik mampu dengan bimbingan untuk mengelompokan sayuran berdasarkan warnanya"</p>
-                  </ul>
-                </td>
-            </tr>
+            @foreach ($kelompokB as $index => $subject)
+              <tr>
+                  <td rowspan="2" class="border border-gray-300 p-2">{{ $index + 1 }}</td>
+                  <td rowspan="2" class="border border-gray-300 p-2">{{ $subject['name'] }}</td>
+                  <td class="border border-gray-300 p-2">Pengetahuan</td>
+                  <td class="border border-gray-300 p-2">
+                    {{ $score[$subject['model'] . '_knowledge_description'] }}
+                  </td>
+              </tr>
+              <tr>
+                  <td class="border border-gray-300 p-2">Keterampilan</td>
+                  <td class="border border-gray-300 p-2">
+                    {{ $score[$subject['model'] . '_skill_description'] }}
+                  </td>
+              </tr>
+            @endforeach
 
             <!-- Kelompok C Section -->
-            <tr>
+            {{-- <tr>
                 <td colspan="4" class="border border-gray-300 p-2 font-bold">Kelompok C (Pilihan Peminatan)</td>
             </tr>
 
@@ -742,7 +532,8 @@ Sastra Sunda/Cirebonan</td>
                     <p>"Peserta didik mampu mandiri menyapu dan mengepel kelas"</p>
                   </ul>
                 </td>
-            </tr>
+            </tr> --}}
+
         </tbody>
     </table>
 
@@ -754,14 +545,7 @@ Sastra Sunda/Cirebonan</td>
             <tr>
                 <td colspan="6" class="border border-gray-300 p-2 font-bold">Sakit</td>
                 <td colspan="6" class="border border-gray-300 p-2 font-bold">
-                  <x-filament::input.wrapper>
-                      <x-filament::input
-                          type="text"
-                          wire:model="{{ $score->sick}}"
-                          value="0"
-                      />
-                      <x-slot name="suffix">Hari</x-slot>
-                  </x-filament::input.wrapper>
+                  {{ $score->sick }} Hari
                 </td>
             </tr>
 
@@ -769,14 +553,7 @@ Sastra Sunda/Cirebonan</td>
             <tr>
                 <td colspan="6" class="border border-gray-300 p-2 font-bold">Izin</td>
                 <td colspan="6" class="border border-gray-300 p-2 font-bold">
-                  <x-filament::input.wrapper>
-                      <x-filament::input
-                          type="text"
-                           wire:model="{{ $score->permission }}"
-                          value="0"
-                      />
-                      <x-slot name="suffix">Hari</x-slot>
-                  </x-filament::input.wrapper>
+                  {{ $score->permission }} Hari
                 </td>
             </tr>
 
@@ -784,18 +561,13 @@ Sastra Sunda/Cirebonan</td>
             <tr>
                 <td colspan="6" class="border border-gray-300 p-2 font-bold">Tanpa Keterangan</td>
                 <td colspan="6" class="border border-gray-300 p-2 font-bold">
-                  <x-filament::input.wrapper>
-                      <x-filament::input
-                          type="text"
-                           wire:model="{{ $score->absent }}"
-                          value="0"
-                      />
-                      <x-slot name="suffix">Hari</x-slot>
-                  </x-filament::input.wrapper>
+                  {{ $score->absent }} Hari
                 </td>
             </tr>
         </tbody>
     </table>
+    
+    <p class="mt-4">Tingkat Pemahaman Siswa: <span class="font-bold">{{ $evaluationResult }}</span></p>
 
     <p>&nbsp;</p>
     <p>&nbsp;</p>
@@ -849,7 +621,6 @@ Sastra Sunda/Cirebonan</td>
       'extraordinary',
     ]
     
-    setTimeout(() => {
       subjects.forEach(function(subject) {
           const knowledgeInput = document.querySelector(`input[name="${subject}_knowledge"]`);
           const skillInput = document.querySelector(`input[name="${subject}_skill"]`);
@@ -879,8 +650,25 @@ Sastra Sunda/Cirebonan</td>
               });
           }
       });
-    }, 1000);
-    
 
+      window.onload = function() {
+        const el = document.getElementById('print');
+        console.log(el.style.display);
+        window.print();
+      }
 </script>
+
+{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+  var element = document.getElementById('print');
+  var opt = {
+    margin:       0.5,
+    filename:     'rapor.pdf',
+    pagebreak:    { mode: 'css' },
+    image:        { type: 'jpeg', quality: 0.98 },
+    html2canvas:  { scale: 1 },
+    jsPDF:        { unit: 'in', format: 'A4', orientation: 'portrait' }
+  };
+  html2pdf().set(opt).from(element).save();
+</script> --}}
 @endsection

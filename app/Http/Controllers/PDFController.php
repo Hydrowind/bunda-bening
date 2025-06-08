@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Score;
-use App\Models\Student;
 use App\Models\User;
 use App\Services\StudentFuzzyEvaluator;
 use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+
+
 
 class PDFController extends Controller
 {
@@ -150,16 +151,14 @@ class PDFController extends Controller
         }
         $skillScore = $sum / $count;
 
-        
-        // Pass the data to the view
-        $pdf = Pdf::loadView('student-report-pdf', [
+
+        return view('student-report-pdf', [
             'score' => $score,
             'evaluationResult' => $evaluator->evaluate($attitudeScore, knowledgeScore: $knowledgeScore, skillScore: $skillScore)
-        ])->setPaper('a4', 'portrait');
+        ]);
 
-        // Download the PDF file
-        return $pdf->download('rapor-siswa.pdf');
     }
+
 
     public function generatePaycheckPDF(Request $request)
     {

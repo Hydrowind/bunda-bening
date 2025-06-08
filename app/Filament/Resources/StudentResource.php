@@ -3,24 +3,18 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\StudentResource\Pages;
-use App\Filament\Resources\StudentResource\RelationManagers;
 use App\Models\User;
-use AppModelsUser\Student;
-use Filament\Forms;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
-use Filament\Forms\Get;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Hash;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Spatie\Permission\Models\Role;
@@ -37,31 +31,23 @@ class StudentResource extends Resource
     {
         return $form
             ->schema([
+                TextInput::make('id')
+                    ->label('NISN')
+                    ->required()
+                    ->unique(ignoreRecord: true),
                 TextInput::make('name'),
-                TextInput::make('email')->email(),
-                TextInput::make('password')
-                    ->password()
-                    ->dehydrateStateUsing(fn ($state) => Hash::make($state))
-                    ->dehydrated(fn ($state) => filled($state))
-                    ->hidden(Auth::user()->hasRole('teacher')),
                 DatePicker::make('dob')->label('Tanggal Lahir'),
                 FileUpload::make('avatar')
                         ->directory('uploads')
                         ->image()
                         ->label('Foto'),
                 TextInput::make('address')->label('Alamat'),
-                TextInput::make('disability_type')->label('Kebutuhan Khusus')
-                    ->hidden(Auth::user()->hasRole('staff')),
+                TextInput::make('disability_type')->label('Kebutuhan Khusus'),
                     
-                Select::make('roles')
-                    ->relationship('roles', 'name', fn (Builder $query) => $query->whereIn('name', ['staff', 'teacher']))
-                    ->default(Role::where('name', 'student')->first()->id)
-                    ->hidden(Auth::user()->hasRole('teacher'))
-                    ->preload()
-                    ->live(),
+                Hidden::make('roles')
+                    ->default(Role::where('name', 'student')->first()?->id),
                 
-                TextInput::make('classroom')->label(Auth::user()->hasRole('teacher') ? 'Kelas' : 'Kelas yang Diajar')
-                    ->visible(fn (Get $get): bool => $get('roles') == Role::where('name', 'teacher')->first()->id || Auth::user()->hasRole('teacher')),
+                TextInput::make('classroom')->label('Kelas')
             ]);
     }
 
@@ -79,6 +65,7 @@ class StudentResource extends Resource
             ->modifyQueryUsing(function (Builder $query) {
                 $user = Auth::user();
                 
+                
                 $studentRole = Role::where('name', 'student')->first();
                 if ($studentRole) {
                     $query->whereHas('roles', function ($q) use ($studentRole) {
@@ -86,9 +73,9 @@ class StudentResource extends Resource
                     });
                 }
 
-                // $query->whereHas('roles', function ($q) use ($roles) {
-                //     $q->whereIn('role_id', $roles);
-                // });
+                if($user->hasRole('teacher')){
+                    $query->where('classroom', '=', $user->classroom);
+                }
 
                 return $query;
 
@@ -96,8 +83,6 @@ class StudentResource extends Resource
             ->columns([
                 TextColumn::make('no')->rowIndex(),
                 TextColumn::make('name')->sortable(),
-                TextColumn::make('email')->sortable()->copyable()
-                    ->hidden(Auth::user()->hasRole('teacer')),
                 TextColumn::make('dob')->sortable()->date()->label('Tanggal Lahir'),
                 ImageColumn::make('avatar')->label('Foto')->circular()
                     ->defaultImageUrl(Storage::url('uploads/no-image.jpg')),
@@ -106,8 +91,6 @@ class StudentResource extends Resource
                     ->hidden(Auth::user()->hasRole('staff')),
                 TextColumn::make('classroom')->sortable()->label('Kelas')
                     ->hidden(Auth::user()->hasRole('staff')),
-                TextColumn::make('roles.name')
-                    ->hidden(Auth::user()->hasRole('teacher')),
             ])
             ->filters([
                 //
@@ -139,5 +122,15 @@ class StudentResource extends Resource
     public static function canViewAny(): bool
     {
         return auth()->user()->hasAnyRole(['teacher', 'staff', 'admin', 'superadmin']);
+    }
+
+    public static function canCreate(): bool
+    {
+        return auth()->user()->hasAnyRole(['staff', 'admin', 'superadmin']);
+    }
+
+    public static function canEdit($record): bool
+    {
+        return auth()->user()->hasAnyRole(['staff', 'admin', 'superadmin']);
     }
 }
