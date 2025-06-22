@@ -537,6 +537,7 @@
         </tbody>
     </table>
 
+    <p class="mt-4">Tingkat Pemahaman Siswa: <span class="font-bold">{{ $evaluationResult }}</span></p>
 
     <h2 class="font-bold mt-6">C. Ketidakharidan</h2>
     <table class="w-1/4 border-collapse border border-gray-300">
@@ -566,8 +567,19 @@
             </tr>
         </tbody>
     </table>
+
+    <h2 class="font-bold mt-6">D. Catatan Wali Kelas</h2>
+    <div id="ta-catatan-wali-kelas" class="rounded border mt-1 h-10
+    fi-input block w-full py-1.5 text-base text-gray-950 transition duration-75 placeholder:text-gray-400 focus:ring-0 disabled:text-gray-500 disabled:[-webkit-text-fill-color:theme(colors.gray.500)] disabled:placeholder:[-webkit-text-fill-color:theme(colors.gray.400)] dark:text-white dark:placeholder:text-gray-500 dark:disabled:text-gray-400 dark:disabled:[-webkit-text-fill-color:theme(colors.gray.400)] dark:disabled:placeholder:[-webkit-text-fill-color:theme(colors.gray.500)] sm:text-sm sm:leading-6 bg-white/0 ps-3 pe-3">
+      
+    </div>
+
+    <h2 class="font-bold mt-6">E. Tanggapan Orang Tua</h2>
+    <div id="ta-tanggapan-orang-tua" class="rounded border mt-1 h-10
+    fi-input block w-full py-1.5 text-base text-gray-950 transition duration-75 placeholder:text-gray-400 focus:ring-0 disabled:text-gray-500 disabled:[-webkit-text-fill-color:theme(colors.gray.500)] disabled:placeholder:[-webkit-text-fill-color:theme(colors.gray.400)] dark:text-white dark:placeholder:text-gray-500 dark:disabled:text-gray-400 dark:disabled:[-webkit-text-fill-color:theme(colors.gray.400)] dark:disabled:placeholder:[-webkit-text-fill-color:theme(colors.gray.500)] sm:text-sm sm:leading-6 bg-white/0 ps-3 pe-3">
+      
+    </div>
     
-    <p class="mt-4">Tingkat Pemahaman Siswa: <span class="font-bold">{{ $evaluationResult }}</span></p>
 
     <p>&nbsp;</p>
     <p>&nbsp;</p>
@@ -589,6 +601,29 @@
         <p>......................</p>
       </div>
     </div>
+
+    <br><br>
+    <div class="sign flex justify-center align-center">
+      <div>
+        <p>Berdasarkan hasil yang dicapai pada semester 1 dan 2,</p>
+        <p>Peserta didik ditetapkan</p>
+        <p>Naik ke kelas&emsp;&emsp;: ...... (...........................)</p>
+        <p>Tinggal di kelas&emsp;: ...... (...........................)</p>
+      </div>
+    </div>
+
+    <br><br>
+    <div class="sign flex justify-center align-center">
+      <div>
+        <p class="text-center">Kepala Sekolah</p>
+        <br>
+        <br>
+        <br>
+        <p class="text-center">Nining Honijah, S.Pd.I, M.Pd</p>
+        <p class="text-center">NUPTK. 0238748650300063</p>
+      </div>
+    </div>
+    
 </div>
 
 
@@ -652,23 +687,8 @@
       });
 
       window.onload = function() {
-        const el = document.getElementById('print');
-        console.log(el.style.display);
         window.print();
       }
 </script>
 
-{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script>
-  var element = document.getElementById('print');
-  var opt = {
-    margin:       0.5,
-    filename:     'rapor.pdf',
-    pagebreak:    { mode: 'css' },
-    image:        { type: 'jpeg', quality: 0.98 },
-    html2canvas:  { scale: 1 },
-    jsPDF:        { unit: 'in', format: 'A4', orientation: 'portrait' }
-  };
-  html2pdf().set(opt).from(element).save();
-</script> --}}
 @endsection
