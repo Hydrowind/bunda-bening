@@ -46,7 +46,7 @@ class ReportResource extends Resource
             ->schema([
                 Section::make()->schema([ 
                     DatePicker::make('date')->label('Tanggal'),
-                    RichEditor::make('note')->label('Catatan'),
+                    TextInput::make('note')->label('Catatan'),
                     Select::make('user_id')->label('Siswa')->required()
                         ->options(function () {
                             $user = Auth::user();
