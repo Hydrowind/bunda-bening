@@ -71,7 +71,7 @@ class UserResource extends Resource
                     ->live(),
                 
                 TextInput::make('classroom')->label(Auth::user()->hasRole('teacher') ? 'Kelas' : 'Kelas yang Diajar')
-                    ->visible(fn (Get $get): bool => $get('roles') == Role::where('name', 'teacher')->first()->id || Auth::user()->hasRole('teacher')),
+                    ->visible(fn (Get $get): bool => $get('roles') == Role::where('name', 'teacher')->first()->id || Auth::user()->hasRole(['staff', 'teacher'])),
             ]);
     }
 

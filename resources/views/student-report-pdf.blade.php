@@ -70,16 +70,6 @@
   ];
 
 
-
-  // Function to convert number to letter grade
-  function numberToLetterGrade($value) {
-    if ($value >= 80.5) return 'A';
-    if ($value >= 65.5) return 'B';
-    if ($value >= 50.5) return 'C';
-    if ($value > 0) return 'D';
-    return '-';
-  }
-
 @endphp
 
 <style>
@@ -99,29 +89,33 @@
 <div>
 <!-- Header -->
     <div class="flex">
-      <table class="w-1/3 border-gray-300">
+      <table class="w-1/2 border-gray-300">
           <tbody>
             <!-- Nama Sekolah -->
             <tr>
                 <td class="w-1/2 p-2 font-bold">Nama Sekolah</td>
+                <td class="p-2 font-bold">:</td>
                 <td class="w-1/2 p-2 font-bold">SLB Autisma Bunda Bening Selakshahati</td>
             </tr>
 
             <!-- Alamat Sekolah -->
             <tr>
                 <td class="w-1/2 p-2 font-bold">Alamat Sekolah</td>
+                <td class="p-2 font-bold">:</td>
                 <td class="w-1/2 p-2 font-bold">kp. Ciburubeet Hilir Ds. Cileunyi Wetan Kec. Cileunyi</td>
             </tr>
 
             <!-- Nama -->
             <tr>
                 <td class="w-1/2 p-2 font-bold">Nama</td>
+                <td class="p-2 font-bold">:</td>
                 <td class="w-1/2 p-2 font-bold">{{ $score->name }}</td>
             </tr>
 
             <!-- NISN -->
             <tr>
                 <td class="w-1/2 p-2 font-bold">Nomor Induk / NISN</td>
+                <td class="p-2 font-bold">:</td>
                 <td class="w-1/2 p-2 font-bold">{{ $score->nisn }}</td>
             </tr>
           </tbody>
@@ -132,18 +126,21 @@
               <!-- Kelas -->
               <tr>
                   <td class="w-1/2 p-2 font-bold">Kelas</td>
+                  <td class="p-2 font-bold">:</td>
                   <td class="w-1/2 p-2 font-bold">{{ $score->class }}</td>
               </tr>
 
               <!-- Semester -->
               <tr>
                 <td class="w-1/2 p-2 font-bold">Semester</td>
+                <td class="p-2 font-bold">:</td>
                 <td class="w-1/2 p-2 font-bold">{{ $score->semester }}</td>
               </tr>
 
               <!-- Tahun Pelajaran -->
               <tr>
                 <td class="w-1/2 p-2 font-bold">Tahun Pelajaran</td>
+                <td class="p-2 font-bold">:</td>
                 <td class="w-1/2 p-2 font-bold">{{ $score->year }}</td>
               </tr>
           </tbody>
@@ -537,7 +534,7 @@
         </tbody>
     </table>
 
-    <p class="mt-4">Tingkat Pemahaman Siswa: <span class="font-bold">{{ $evaluationResult }}</span></p>
+    <p class="mt-4">Tingkat Pemahaman Siswa: <span class="font-bold">{{ $evaluationScore }} ({{ $evaluationResult }})</span></p>
 
     <h2 class="font-bold mt-6">C. Ketidakharidan</h2>
     <table class="w-1/4 border-collapse border border-gray-300">

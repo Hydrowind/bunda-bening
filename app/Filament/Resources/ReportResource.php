@@ -13,6 +13,7 @@ use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -46,7 +47,7 @@ class ReportResource extends Resource
             ->schema([
                 Section::make()->schema([ 
                     DatePicker::make('date')->label('Tanggal'),
-                    TextInput::make('note')->label('Catatan'),
+                    Textarea::make('note')->label('Catatan'),
                     Select::make('user_id')->label('Siswa')->required()
                         ->options(function () {
                             $user = Auth::user();

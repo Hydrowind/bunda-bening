@@ -154,7 +154,9 @@ class PDFController extends Controller
 
         return view('student-report-pdf', [
             'score' => $score,
-            'evaluationResult' => $evaluator->evaluate($attitudeScore, knowledgeScore: $knowledgeScore, skillScore: $skillScore)
+            // 'evaluationScore' => '',
+            'evaluationScore' => $evaluator->evaluate($attitudeScore, knowledgeScore: $knowledgeScore, skillScore: $skillScore)['numeric_score'],
+            'evaluationResult' => $evaluator->evaluate($attitudeScore, knowledgeScore: $knowledgeScore, skillScore: $skillScore)['performance'],
         ]);
 
     }

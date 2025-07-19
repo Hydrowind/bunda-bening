@@ -42,7 +42,7 @@ class BookloanResource extends Resource
                         ->preload()
                         ->label('Judul Buku')
                         ->required(),
-                    Select::make('user')
+                    Select::make('user_id')
                         ->relationship(name: 'user', titleAttribute: 'name')
                         ->searchable()
                         ->preload()
