@@ -87,6 +87,9 @@ class CreateScore extends CreateRecord
     public $permission;
     public $absent;
 
+    public $homeroom_notes;
+    public $parental_response;
+
 
     
     protected function getViewData(): array
@@ -173,6 +176,9 @@ class CreateScore extends CreateRecord
             'sick' => $this->sick,
             'permission' => $this->permission,
             'absent' => $this->absent,
+
+            'homeroom_notes' => $this->homeroom_notes,
+            'parental_response' => $this->parental_response,
         ]);
 
         Notification::make()->success()->title('Score saved')->send();

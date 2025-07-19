@@ -566,15 +566,15 @@
     </table>
 
     <h2 class="font-bold mt-6">D. Catatan Wali Kelas</h2>
-    <div id="ta-catatan-wali-kelas" class="rounded border mt-1 h-10
+    <div id="ta-catatan-wali" class="rounded mt-1
     fi-input block w-full py-1.5 text-base text-gray-950 transition duration-75 placeholder:text-gray-400 focus:ring-0 disabled:text-gray-500 disabled:[-webkit-text-fill-color:theme(colors.gray.500)] disabled:placeholder:[-webkit-text-fill-color:theme(colors.gray.400)] dark:text-white dark:placeholder:text-gray-500 dark:disabled:text-gray-400 dark:disabled:[-webkit-text-fill-color:theme(colors.gray.400)] dark:disabled:placeholder:[-webkit-text-fill-color:theme(colors.gray.500)] sm:text-sm sm:leading-6 bg-white/0 ps-3 pe-3">
-      
+      {{ $score->homeroom_notes }}
     </div>
 
     <h2 class="font-bold mt-6">E. Tanggapan Orang Tua</h2>
-    <div id="ta-tanggapan-orang-tua" class="rounded border mt-1 h-10
+    <div id="ta-tanggapan-ortu" class="rounded mt-1
     fi-input block w-full py-1.5 text-base text-gray-950 transition duration-75 placeholder:text-gray-400 focus:ring-0 disabled:text-gray-500 disabled:[-webkit-text-fill-color:theme(colors.gray.500)] disabled:placeholder:[-webkit-text-fill-color:theme(colors.gray.400)] dark:text-white dark:placeholder:text-gray-500 dark:disabled:text-gray-400 dark:disabled:[-webkit-text-fill-color:theme(colors.gray.400)] dark:disabled:placeholder:[-webkit-text-fill-color:theme(colors.gray.500)] sm:text-sm sm:leading-6 bg-white/0 ps-3 pe-3">
-      
+      {{ $score->parental_response }}
     </div>
     
 

@@ -82,6 +82,9 @@ class Score extends Model
         'permission',
         'absent',
 
+        'homeroom_notes',
+        'parental_response',
+
         'user_id',
     ];
 

@@ -87,6 +87,8 @@ class EditScore extends EditRecord
     public $permission;
     public $absent;
     
+    public $homeroom_notes;
+    public $parental_response;
 
     protected function getHeaderActions(): array
     {
@@ -184,6 +186,9 @@ class EditScore extends EditRecord
         $this->sick     = $record->sick;
         $this->permission = $record->permission;
         $this->absent   = $record->absent;
+
+        $this->homeroom_notes = $record->homeroom_notes;
+        $this->parental_response = $record->parental_response;
     }
 
     public function submit()
@@ -263,6 +268,9 @@ class EditScore extends EditRecord
             'sick' => $this->sick,
             'permission' => $this->permission,
             'absent' => $this->absent,
+
+            'homeroom_notes' => $this->homeroom_notes,
+            'parental_response' => $this->parental_response,
         ]);
 
         Notification::make()->success()->title('Score updated')->send();

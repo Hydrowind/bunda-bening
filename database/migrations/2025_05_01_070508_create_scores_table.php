@@ -84,6 +84,9 @@ return new class extends Migration
             $table->integer('permission')->nullable();
             $table->integer('absent')->nullable();
 
+            $table->text('homeroom_notes')->nullable();
+            $table->text('parental_response')->nullable();
+
             $table->foreignId('user_id')->cascadeOnDelete();
             $table->timestamps();
         });
