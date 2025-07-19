@@ -55,14 +55,14 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
-            ])
-            ->navigationItems([
-                NavigationItem::make('FAQ')
-                    ->icon('heroicon-o-information-circle')
-                    ->sort(51)
-                    ->url(fn():string => route('filament.admin.resources.presences.faq'))
-                    ->visible(fn() => auth()->user()->hasAnyRole(['teacher', 'staff']))
             ]);
+            // ->navigationItems([
+            //     NavigationItem::make('FAQ')
+            //         ->icon('heroicon-o-information-circle')
+            //         ->sort(51)
+            //         ->url(fn():string => route('filament.admin.resources.presences.faq'))
+            //         ->visible(fn() => auth()->user()->hasAnyRole(['teacher', 'staff']))
+            // ]);
             // ->navigationItems([
             //     NavigationItem::make('Slip Gaji')
             //         ->icon('heroicon-o-banknotes')
