@@ -129,7 +129,7 @@ class ReportResource extends Resource
                 //     ->url(fn (Report $record): string => route('filament.admin.resources.reports.monthly-report', $record))
             ])
             ->headerActions([
-                Action::make('Laporan')
+                Action::make('Cetak Laporan')
                     ->url(fn (): string => route('filament.admin.resources.reports.monthly-report', Auth::user()->id))
             ])
             ->bulkActions([

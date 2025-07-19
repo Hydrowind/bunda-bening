@@ -18,8 +18,8 @@ class ScoreResource extends Resource
 {
     protected static ?string $model = Score::class;
     protected static ?string $navigationIcon = 'heroicon-o-book-open';
-    protected static ?string $modelLabel = 'Nilai Siswa';
-    protected static ?string $pluralModelLabel = 'Nilai Siswa';
+    protected static ?string $modelLabel = 'Rapot Siswa';
+    protected static ?string $pluralModelLabel = 'Rapot Siswa';
 
     public static function form(Form $form): Form
     {
