@@ -23,7 +23,7 @@ class StatsOverview extends BaseWidget
                 });
             case 'staff':
                 return array_filter($stats, function (Stat $stat) {
-                    return $stat->getLabel() !== 'Jumlah Guru' && $stat->getLabel() !== 'Jumlah Siswa';
+                    return $stat->getLabel() !== 'Jumlah Siswa';
                 });
             default:
                 return $stats;

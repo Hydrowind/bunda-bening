@@ -39,9 +39,9 @@ class UserResource extends Resource
 
     protected static ?string $navigationLabel = 'Staff & Guru';
 
-    protected static ?string $modelLabel = 'Anggota';
+    protected static ?string $modelLabel = 'Staff & Guru';
 
-    protected static ?string $pluralModelLabel = 'Anggota';
+    protected static ?string $pluralModelLabel = 'Staff & Guru';
 
     public static function form(Form $form): Form
     {
@@ -181,7 +181,7 @@ class UserResource extends Resource
 
     public static function getModelLabel(): string
     {
-        return 'Anggota';
+        return 'Staff & Guru';
     }
 
     public static function getPluralModelLabel(): string
@@ -190,7 +190,7 @@ class UserResource extends Resource
             return 'Siswa';
         }
 
-        return 'Anggota';
+        return 'Staff & Guru';
     }
 
 }
