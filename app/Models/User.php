@@ -32,6 +32,7 @@ class User extends Authenticatable implements FilamentUser
         'address',
         'disability_type',
         'classroom',
+        'homeroom_teacher',
     ];
 
     /**

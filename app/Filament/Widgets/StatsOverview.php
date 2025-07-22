@@ -19,23 +19,11 @@ class StatsOverview extends BaseWidget
         switch (auth()->user()->getRoleNames()->first()) {
             case 'teacher':
                 return array_filter($stats, function (Stat $stat) {
-                    return $stat->getLabel() !== 'Jumlah Staff';
+                    return $stat->getLabel() === 'Jumlah Siswa';
                 });
             case 'staff':
-                return array_filter($stats, function (Stat $stat) {
-                    return $stat->getLabel() !== 'Jumlah Siswa';
-                });
             default:
                 return $stats;
         }
-
-        if (! auth()->user()->hasAnyRole(['admin', 'staff'])) {
-            // remove it by label:
-            $stats = array_filter($stats, function (Stat $stat) {
-                return $stat->getLabel() !== 'Jumlah Siswa';
-            });
-        }
-
-        return $stats;
     }
 }

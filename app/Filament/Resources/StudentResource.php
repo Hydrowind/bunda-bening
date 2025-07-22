@@ -7,6 +7,7 @@ use App\Models\User;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Hidden;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -47,7 +48,17 @@ class StudentResource extends Resource
                 Hidden::make('roles')
                     ->default(Role::where('name', 'student')->first()?->id),
                 
-                TextInput::make('classroom')->label('Kelas')
+                TextInput::make('classroom')->label('Kelas'),
+
+                Select::make('homeroom_teacher')
+                    ->label('Wali Kelas')
+                    ->options(function () {
+                        $teacherRoleId = Role::where('name', 'teacher')->first()?->id;
+
+                        return User::whereHas('roles', function ($q) use ($teacherRoleId) {
+                            $q->where('role_id', $teacherRoleId);
+                        })->pluck('name', 'id')->toArray();
+                    })
             ]);
     }
 
@@ -74,7 +85,7 @@ class StudentResource extends Resource
                 }
 
                 if($user->hasRole('teacher')){
-                    $query->where('classroom', '=', $user->classroom);
+                    $query->where('homeroom_teacher', '=', $user->id);
                 }
 
                 return $query;

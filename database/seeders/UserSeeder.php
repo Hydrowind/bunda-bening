@@ -60,22 +60,22 @@ class UserSeeder extends Seeder
         ]);
         $user->assignRole('student');
 
-
-        $students = User::factory()->count(20)->create();
-        foreach ($students as $student) {
-            $student->assignRole('student');
+        $staffs = User::factory()->count(3)->create();
+        foreach ($staffs as $staff) {
+            $staff->assignRole('staff');
         }
 
         $teachers = User::factory()->count(10)->create();
         foreach ($teachers as $teacher) {
             $teacher->assignRole('teacher');
         }
-        
-        $staffs = User::factory()->count(3)->create();
-        foreach ($staffs as $staff) {
-            $staff->assignRole('staff');
-        }
 
+        $students = User::factory()->count(20)->create();
+        foreach ($students as $student) {
+            $student->assignRole('student');
+            $student->homeroom_teacher = $teachers->random()->id; // Assign a random teacher as homeroom teacher
+            $student->save();
+        }
         
     }
 }

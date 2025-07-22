@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->string('disability_type')->nullable();
             $table->string('classroom')->nullable();
+            $table->string('homeroom_teacher')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
