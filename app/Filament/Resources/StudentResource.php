@@ -36,22 +36,31 @@ class StudentResource extends Resource
                     ->label('NISN')
                     ->required()
                     ->unique(ignoreRecord: true),
-                TextInput::make('name'),
-                DatePicker::make('dob')->label('Tanggal Lahir'),
+                TextInput::make('name')
+                    ->required(),
+                DatePicker::make('dob')
+                    ->label('Tanggal Lahir')
+                    ->required(),
                 FileUpload::make('avatar')
                         ->directory('uploads')
                         ->image()
                         ->label('Foto'),
-                TextInput::make('address')->label('Alamat'),
-                TextInput::make('disability_type')->label('Kebutuhan Khusus'),
+                TextInput::make('address')
+                    ->label('Alamat')
+                    ->required(),
+                TextInput::make('disability_type')
+                    ->label('Kebutuhan Khusus'),
                     
                 Hidden::make('roles')
                     ->default(Role::where('name', 'student')->first()?->id),
                 
-                TextInput::make('classroom')->label('Kelas'),
+                TextInput::make('classroom')
+                    ->label('Kelas')
+                    ->required(),
 
                 Select::make('homeroom_teacher')
                     ->label('Wali Kelas')
+                    ->required()
                     ->options(function () {
                         $teacherRoleId = Role::where('name', 'teacher')->first()?->id;
 

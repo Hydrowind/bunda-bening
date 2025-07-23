@@ -46,8 +46,8 @@ class ReportResource extends Resource
         return $form
             ->schema([
                 Section::make()->schema([ 
-                    DatePicker::make('date')->label('Tanggal'),
-                    Textarea::make('note')->label('Catatan'),
+                    DatePicker::make('date')->label('Tanggal')->required(),
+                    Textarea::make('note')->label('Catatan')->required(),
                     Select::make('user_id')->label('Siswa')->required()
                         ->options(function () {
                             $user = Auth::user();

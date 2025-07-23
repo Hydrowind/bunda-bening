@@ -47,19 +47,19 @@ class UserResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('name'),
-                TextInput::make('email')->email(),
+                TextInput::make('name')->required(),
+                TextInput::make('email')->email()->unique(ignoreRecord: true),
                 TextInput::make('password')
                     ->password()
                     ->dehydrateStateUsing(fn ($state) => Hash::make($state))
                     ->dehydrated(fn ($state) => filled($state))
                     ->hidden(Auth::user()->hasRole('teacher')),
-                DatePicker::make('dob')->label('Tanggal Lahir'),
+                DatePicker::make('dob')->label('Tanggal Lahir')->required(),
                 FileUpload::make('avatar')
                         ->directory('uploads')
                         ->image()
                         ->label('Foto'),
-                TextInput::make('address')->label('Alamat'),
+                TextInput::make('address')->label('Alamat')->required(),
                 TextInput::make('disability_type')->label('Kebutuhan Khusus')
                     ->hidden(Auth::user()->hasRole('staff')),
                     
