@@ -65,7 +65,7 @@ class MonthlyReport extends Page
                 
         $members = User::all();
         if ($this->currentUser->hasRole('teacher')) { 
-            $this->members = User::role(['student', 'teacher'])->where('classroom', $this->currentUser->classroom);
+            $this->members = User::role(['student', 'teacher'])->where('homeroom_teacher', $this->currentUser->id);
         }
 
         if ($this->currentUser->hasRole('staff')) {

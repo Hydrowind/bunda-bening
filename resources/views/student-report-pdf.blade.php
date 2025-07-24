@@ -536,7 +536,7 @@
 
     <p class="mt-4">Tingkat Pemahaman Siswa: <span class="font-bold">{{ $evaluationScore }} ({{ $evaluationResult }})</span></p>
 
-    <h2 class="font-bold mt-6">C. Ketidakharidan</h2>
+    <h2 class="font-bold mt-6">C. Ketidakhadiran</h2>
     <table class="w-1/4 border-collapse border border-gray-300">
         <tbody>
             <!-- Sakit -->
