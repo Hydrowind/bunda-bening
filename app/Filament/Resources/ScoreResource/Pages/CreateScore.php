@@ -95,7 +95,7 @@ class CreateScore extends CreateRecord
     protected function getViewData(): array
     {
         return [
-            'students' => User::role('student')->get(),
+            'students' => User::role('student')->where('homeroom_teacher', auth()->user()->id)->get(),
         ];
     }
 

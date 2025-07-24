@@ -54,7 +54,7 @@ class ReportResource extends Resource
                             
                             $members = User::all();
                             if ($user->hasRole('teacher')) { 
-                                $members = User::role('student')->where('classroom', $user->classroom);
+                                $members = User::role('student')->where('homeroom_teacher', $user->id);
                             }
             
                             if ($user->hasRole('staff')) {

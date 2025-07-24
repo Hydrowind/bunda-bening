@@ -48,7 +48,7 @@ class UserResource extends Resource
         return $form
             ->schema([
                 TextInput::make('name')->required(),
-                TextInput::make('email')->email()->unique(ignoreRecord: true),
+                TextInput::make('email')->email()->unique(ignoreRecord: true)->required(),
                 TextInput::make('password')
                     ->password()
                     ->dehydrateStateUsing(fn ($state) => Hash::make($state))
