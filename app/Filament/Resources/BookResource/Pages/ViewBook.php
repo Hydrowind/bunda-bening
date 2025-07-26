@@ -14,6 +14,10 @@ class ViewBook extends ViewRecord
     {
         return [
             Actions\EditAction::make(),
+            Actions\Action::make('back')
+                ->label('Back')
+                ->url(static::getResource()::getUrl('index'))
+                ->color('gray'),
         ];
     }
 }

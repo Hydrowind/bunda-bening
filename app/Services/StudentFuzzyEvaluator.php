@@ -237,14 +237,14 @@ class StudentFuzzyEvaluator
 
     private function mapToPerformance($numericScore)
     {
-        if ($numericScore >= 85) {
-            return 'sangat baik';
-        } elseif ($numericScore >= 70) {
-            return 'baik';
-        } elseif ($numericScore >= 55) {
-            return 'cukup baik';
+        if ($numericScore >= 80.5) {
+            return '(BS) Baik Sekali';
+        } elseif ($numericScore >= 65.5) {
+            return '(B) Baik)';
+        } elseif ($numericScore >= 50.5) {
+            return '(C) Cukup';
         } else {
-            return 'kurang baik';
+            return '(PB) Perlu Bimbingan';
         }
     }
 

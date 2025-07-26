@@ -9,4 +9,14 @@ use Filament\Resources\Pages\CreateRecord;
 class CreatePresence extends CreateRecord
 {
     protected static string $resource = PresenceResource::class;
+
+    protected function getHeaderActions(): array
+    {
+        return [
+            Actions\Action::make('back')
+                ->label('Back')
+                ->url(static::getResource()::getUrl('index'))
+                ->color('gray'),
+        ];
+    }
 }

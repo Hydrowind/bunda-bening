@@ -50,7 +50,6 @@ class UserResource extends Resource
                 TextInput::make('name')->required(),
                 TextInput::make('email')->email()->unique(ignoreRecord: true)->required(),
                 TextInput::make('password')
-                    ->password()
                     ->dehydrateStateUsing(fn ($state) => Hash::make($state))
                     ->dehydrated(fn ($state) => filled($state))
                     ->hidden(Auth::user()->hasRole('teacher')),
@@ -70,8 +69,8 @@ class UserResource extends Resource
                     ->preload()
                     ->live(),
                 
-                TextInput::make('classroom')->label(Auth::user()->hasRole('teacher') ? 'Kelas' : 'Kelas yang Diajar')
-                    ->visible(fn (Get $get): bool => $get('roles') == Role::where('name', 'teacher')->first()->id || Auth::user()->hasRole(['staff', 'teacher'])),
+                // TextInput::make('classroom')->label(Auth::user()->hasRole('teacher') ? 'Kelas' : 'Kelas yang Diajar')
+                //     ->visible(fn (Get $get): bool => $get('roles') == Role::where('name', 'teacher')->first()->id || Auth::user()->hasRole(['staff', 'teacher'])),
             ]);
     }
 
@@ -129,7 +128,7 @@ class UserResource extends Resource
                 TextColumn::make('dob')->sortable()->date()->label('Tanggal Lahir'),
                 ImageColumn::make('avatar')->label('Foto')->circular()
                     ->defaultImageUrl(Storage::url('uploads/no-image.jpg')),
-                TextColumn::make('address')->sortable()->label('Alamat'),
+                // TextColumn::make('address')->sortable()->label('Alamat'),
                 TextColumn::make('disability_type')->sortable()->label('Disabilitas')
                     ->hidden(Auth::user()->hasRole('staff')),
                 TextColumn::make('classroom')->sortable()->label('Kelas')

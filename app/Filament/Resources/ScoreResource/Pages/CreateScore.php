@@ -99,6 +99,16 @@ class CreateScore extends CreateRecord
         ];
     }
 
+    protected function getHeaderActions(): array
+    {
+        return [
+            Actions\Action::make('back')
+                ->label('Back')
+                ->url(static::getResource()::getUrl('index'))
+                ->color('gray'),
+        ];
+    }
+
     public function submit()
     {
         $this->name = User::where('id', $this->user_id)->first()->name;

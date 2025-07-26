@@ -69,9 +69,10 @@ class PDFController extends Controller
     {
         $evaluator = new StudentFuzzyEvaluator();
 
-        $attitudeScore = 100;
-
         $score = Score::find($id);
+
+        // 1 semester = 6 months * 4 weeks * 6 days = 144 days 
+        $attitudeScore = ($score['sick'] + $score['absent'] + $score['permission']) / 144; 
 
         $groupA = [
             'religion',

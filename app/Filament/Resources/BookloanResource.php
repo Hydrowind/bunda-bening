@@ -76,7 +76,8 @@ class BookloanResource extends Resource
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\EditAction::make()
+                    ->disabled(fn (Bookloan $record) => $record->returned === 1),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
