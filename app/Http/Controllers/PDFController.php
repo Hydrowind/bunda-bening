@@ -145,14 +145,14 @@ class PDFController extends Controller
             $sum += $score[$groupB[$i] . '_skill'];
             $count++;
         }
-        for($i = 0; $i < count($groupC); $i++) {
-            $sum += $score[$groupC[$i] . '_skill'];
-            $count++;
-        }
-        for($i = 0; $i < count($groupD); $i++) {
-            $sum += $score[$groupD[$i] . '_skill'];
-            $count++;
-        }
+        // for($i = 0; $i < count($groupC); $i++) {
+        //     $sum += $score[$groupC[$i] . '_skill'];
+        //     $count++;
+        // }
+        // for($i = 0; $i < count($groupD); $i++) {
+        //     $sum += $score[$groupD[$i] . '_skill'];
+        //     $count++;
+        // }
         for($i = 0; $i < count($groupE); $i++) {
             $sum += $score[$groupE[$i] . '_skill'];
             $count++;
