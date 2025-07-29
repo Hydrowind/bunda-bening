@@ -15,10 +15,6 @@ class EditReport extends EditRecord
         return [
             Actions\ViewAction::make(),
             Actions\DeleteAction::make(),
-            Actions\Action::make('back')
-                ->label('Back')
-                ->url(static::getResource()::getUrl('index'))
-                ->color('gray'),
         ];
     }
 }

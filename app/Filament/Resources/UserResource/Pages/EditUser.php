@@ -16,10 +16,6 @@ class EditUser extends EditRecord
         return [
             Actions\ViewAction::make(),
             Actions\DeleteAction::make(),
-            Action::make('back')
-                ->label('Back')
-                ->url(static::getResource()::getUrl('index'))
-                ->color('gray'),
         ];
     }
 }

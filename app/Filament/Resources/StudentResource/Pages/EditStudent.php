@@ -14,10 +14,6 @@ class EditStudent extends EditRecord
     {
         return [
             Actions\DeleteAction::make(),
-            Actions\Action::make('back')
-                ->label('Back')
-                ->url(static::getResource()::getUrl('index'))
-                ->color('gray'),
         ];
     }
 }
