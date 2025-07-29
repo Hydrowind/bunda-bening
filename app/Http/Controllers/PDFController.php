@@ -71,14 +71,14 @@ class PDFController extends Controller
 
         $score = Score::find($id);
 
-        $absentWeighted = (
-            $score['sick'] * 0.1 + 
-            $score['absent'] * 1.0 + 
-            $score['permission'] * 0.3
+        $absentTotal = (
+            $score['sick'] + 
+            $score['absent'] + 
+            $score['permission']
         );
 
         // 1 semester = 6 months * 4 weeks * 6 days = 144 days 
-        $absentRatio = $absentWeighted / 144; 
+        $absentRatio = $absentTotal / 144; 
         $attitudeScore = 1 - $absentRatio;
 
         $groupA = [
