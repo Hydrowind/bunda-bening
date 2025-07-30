@@ -78,7 +78,7 @@ class PDFController extends Controller
         );
 
         // 1 semester = 6 months * 4 weeks * 6 days = 144 days 
-        $absentRatio = ($absentTotal / 144) * 100; 
+        $absentRatio = ($absentTotal / 72) * 100; 
         $attitudeScore = 100 - $absentRatio;
 
         $groupA = [
