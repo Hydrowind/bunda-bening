@@ -783,6 +783,7 @@ Sastra Sunda/Cirebonan</td>
                           type="text"
                           name="sakit"
                           value="0"
+                          required
                       />
                       <x-slot name="suffix">Hari</x-slot>
                   </x-filament::input.wrapper>
@@ -798,6 +799,7 @@ Sastra Sunda/Cirebonan</td>
                           type="text"
                           name="izin"
                           value="0"
+                          required
                       />
                       <x-slot name="suffix">Hari</x-slot>
                   </x-filament::input.wrapper>
@@ -813,6 +815,7 @@ Sastra Sunda/Cirebonan</td>
                           type="text"
                           name="alfa"
                           value="0"
+                          required
                       />
                       <x-slot name="suffix">Hari</x-slot>
                   </x-filament::input.wrapper>
