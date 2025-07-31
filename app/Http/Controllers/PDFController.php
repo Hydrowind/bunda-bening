@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Score;
 use App\Models\User;
 use App\Services\StudentFuzzyEvaluator;
+use App\Services\StudentFuzzyEvaluator2;
 use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -67,19 +68,25 @@ class PDFController extends Controller
 
     public function generateReportPDF(Request $request, int $id)
     {
-        $evaluator = new StudentFuzzyEvaluator();
+        $evaluator = new StudentFuzzyEvaluator2();
 
         $score = Score::find($id);
 
-        $absentTotal = (
-            $score['sick'] + 
-            $score['absent'] + 
-            $score['permission']
+        // Bobot absen khusus SLB
+        $weightedAbsent = (
+            $score['sick'] * 0.3 +        // sakit berdampak ringan
+            $score['permission'] * 0.5 +  // izin berdampak sedang
+            $score['absent'] * 1.0        // bolos berdampak penuh
         );
 
-        // 1 semester = 6 months * 4 weeks * 6 days = 144 days 
-        $absentRatio = ($absentTotal / 72) * 100; 
-        $attitudeScore = 100 - $absentRatio;
+        // Jumlah hari efektif semester untuk SLB: 6 bulan x 6 hari/minggu x 4 minggu = 144 hari
+        $totalEffectiveDays = 144;
+
+        // Rasio absen dalam persen
+        $absentRatio = ($weightedAbsent / $totalEffectiveDays) * 100;
+
+        // Nilai sikap dimulai dari 100, dikurangi absen berbobot
+        $attitudeScore = max(0, 100 - $absentRatio); // tidak boleh kurang dari 0
 
         $groupA = [
             'religion',
@@ -159,14 +166,17 @@ class PDFController extends Controller
         }
         $skillScore = $sum / $count;
 
+        $weights = [
+                'attitude' => 0.2,
+                'knowledge' => 0.4,
+                'skill' => 0.4
+        ];
 
         return view('student-report-pdf', [
             'score' => $score,
-            // 'evaluationScore' => '',
-            'evaluationScore' => $evaluator->evaluate($attitudeScore, knowledgeScore: $knowledgeScore, skillScore: $skillScore)['numeric_score'],
-            'evaluationResult' => $evaluator->evaluate($attitudeScore, knowledgeScore: $knowledgeScore, skillScore: $skillScore)['performance'],
+            'evaluationScore' => $evaluator->evaluate(attitude: $attitudeScore, knowledgeScore: $knowledgeScore, skillScore: $skillScore, customWeights: $weights)['numeric_score'],
+            'evaluationResult' => $evaluator->evaluate($attitudeScore, knowledgeScore: $knowledgeScore, skillScore: $skillScore, customWeights: $weights)['performance'],
         ]);
-
     }
 
 
