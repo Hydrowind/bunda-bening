@@ -167,9 +167,9 @@ class PDFController extends Controller
         $skillScore = $sum / $count;
 
         $weights = [
-                'attitude' => 0.2,
-                'knowledge' => 0.4,
-                'skill' => 0.4
+                'attitude' => 0.0,
+                'knowledge' => 0.5,
+                'skill' => 0.5
         ];
 
         return view('student-report-pdf', [

@@ -534,6 +534,7 @@
                           type="text"
                           wire:model="sick"
                           value="0"
+                          required
                       />
                       <x-slot name="suffix">Hari</x-slot>
                   </x-filament::input.wrapper>
@@ -547,8 +548,9 @@
                   <x-filament::input.wrapper>
                       <x-filament::input
                           type="text"
-                           wire:model="permission"
+                          wire:model="permission"
                           value="0"
+                          required
                       />
                       <x-slot name="suffix">Hari</x-slot>
                   </x-filament::input.wrapper>
@@ -562,8 +564,9 @@
                   <x-filament::input.wrapper>
                       <x-filament::input
                           type="text"
-                           wire:model="absent"
+                          wire:model="absent"
                           value="0"
+                          required
                       />
                       <x-slot name="suffix">Hari</x-slot>
                   </x-filament::input.wrapper>
